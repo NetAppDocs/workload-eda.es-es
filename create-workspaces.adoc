@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: create-workspaces.html 
+keywords: manage, workspace, snapshot, project 
+summary: Un espacio de trabajo en NetApp Workload Factory para EDA es una representación de Perforce de un proyecto que se basa en una instantánea del proyecto. Puede crear espacios de trabajo como parte de un proyecto EDA. 
+---
+= Crear un espacio de trabajo EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Un espacio de trabajo en NetApp Workload Factory para EDA es una representación de Perforce de un proyecto en un momento específico. Los espacios de trabajo se crean utilizando una instantánea del proyecto como base. Puede crear nuevos espacios de trabajo dentro de un proyecto EDA. Puede crear espacios de trabajo desde la interfaz de usuario de Perforce.
+
+.Antes de empezar
+Asegúrese de haber integrado EDA con Perforce Helix Visual Client. Ver link:integrate-perforce.html["Integrar EDA con Perforce"^] Para más información.
+
+.Pasos
+. Inicie sesión en Perforce.
+. En el menú Perforce, seleccione *Ver* > *WF*.
++
+La pantalla de inicio de sesión de Workload Factory aparece dentro de la interfaz de usuario de Perforce.
+
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Seleccione el menú image:workloads-menu-icon.png["El ícono del menú de hamburguesa se utiliza para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego seleccione *EDA*.
+. Seleccione *CI/CD*.
+. Seleccione *Crear proyecto* y luego seleccione *Crear espacio de trabajo*.
+. En la página Crear un proyecto de espacio de trabajo, proporcione lo siguiente:
++
+.. Seleccione una instantánea para utilizarla como base para el espacio de trabajo.
+.. Introduzca un nombre para el espacio de trabajo.
+.. Opcionalmente, ingrese un identificador de usuario para reclamar el espacio de trabajo. Este identificador debe coincidir con el ID de usuario de Perforce del desarrollador que utilizará este espacio de trabajo.
+
+
+. Seleccione *Crear*.
+
+
+.Resultado
+Se crea el espacio de trabajo y aparece en la lista de espacios de trabajo en la página Espacios de trabajo.

@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: task-configure-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation 
+summary: Configure su panel de EDA agregando etiquetas para recopilar métricas. 
+---
+= Utilice el panel de control
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cuando inicia sesión por primera vez en EDA, puede usar el panel para observar el uso del proyecto en todos sus sistemas de archivos y volúmenes de FSx for ONTAP . El panel de control incluye varios filtros predeterminados que puedes usar para personalizar la información que se muestra. Además, puede crear y aplicar sus propias etiquetas de AWS para organizar y filtrar los datos según sus requisitos comerciales específicos.
+
+El panel le ayuda a supervisar el uso del almacenamiento para la capacidad asignada, la capacidad utilizada, el rendimiento y las IOPS.
+
+Las métricas de CloudWatch recopiladas incluyen:
+
+* Capacidad aprovisionada: métrica a nivel de volumen que representa la capacidad de almacenamiento aprovisionada.
+* Capacidad utilizada: métrica a nivel de volumen que representa el almacenamiento utilizado.
+* Rendimiento promedio/máximo: se calcula como el promedio o máximo de la suma de DataReadBytes y DataWriteBytes durante el período de tiempo especificado.
+* IOPS promedio/máximo: se calcula como el promedio o máximo de la suma de DataReadOperations, DataWriteOperations y MetadataOperations durante el período de tiempo especificado.
+
+
+
+
+== Configurar el panel de control
+
+Para utilizar el panel de manera eficaz, configure las etiquetas de AWS en su FSx para los volúmenes de ONTAP según los requisitos de su negocio, por ejemplo, etiquetas que representen proyectos o unidades de negocio. Para más detalles, véase <<Configurar filtros personalizados>>.
+
+Las etiquetas de AWS son metadatos para sus recursos de AWS. Le ayudan a categorizar sus recursos de AWS de diferentes maneras, por ejemplo, por proyecto, aplicación o unidad de negocio. Para obtener más detalles sobre el etiquetado, consulte https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["¿Qué son las etiquetas?"^] y  https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Referencia de la API de etiquetado de grupos de recursos de AWS"^].
+
+Una vez configurados, en la página *Configuración de etiquetas* proporcione los nombres de claves de etiquetas de AWS y las etiquetas correspondientes para mostrar en su panel de control.
+
+Cuando se aplican estas etiquetas, Workload Factory comienza a recopilar y mostrar las métricas de CloudWatch relevantes.
+
+Su panel de control se convierte en una herramienta dinámica para organizar, rastrear costos y filtrar recursos según sus necesidades organizacionales.
+
+
+
+=== Configurar filtros personalizados
+
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Seleccione el menú image:workloads-menu-icon.png["El ícono del menú de hamburguesa se utiliza para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego seleccione *EDA*.
++
+Si aún no ha configurado su panel de control, se le solicitará automáticamente que lo haga.
+
+. Para cada filtro requerido, agregue un nombre de etiqueta de filtro y el nombre de clave de etiqueta de AWS que desea asociar con él.
+. Seleccione *Aplicar*.
+. Para ver los cambios después de aplicar cualquier etiqueta o filtro, seleccione el ícono de actualización en el panel. El panel dinámico, configurado con los nuevos filtros, se muestra en el panel de proyectos de EDA.
+. Para editar la configuración del panel más tarde, seleccione *Configurar*.
+
+
+
+
+=== Filtrar el panel de control
+
+Puede filtrar la información que se muestra en el panel seleccionando uno o todos los siguientes filtros predeterminados, así como cualquier filtro personalizado que haya creado:
+
+* Cartas credenciales
+* Región
+* Sistema de archivos
+* Tipo de volumen
+* Intervalo de tiempo
+
+
+Cuando haya seleccionado los filtros necesarios, seleccione el ícono de actualización para actualizar la información del panel.
+
+Para obtener una explicación de la información que se muestra en una tarjeta, seleccione el ícono de información de esa tarjeta.

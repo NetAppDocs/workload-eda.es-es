@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: quick-start-eda.html 
+keywords: requirements, permissions, eda, builders, quick start, electronic design automation 
+summary: Las bases de datos tienen tres modos diferentes que tienen diferentes requisitos. 
+---
+= Inicio rápido para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Comience a crear un proyecto EDA. Los administradores y líderes de equipo pueden usar EDA para administrar proyectos y espacios de trabajo para equipos de desarrolladores.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"] Iniciar sesión en Workload Factory
+[role="quick-margin-para"]
+Necesitarás https://docs.netapp.com/us-en/workload-setup-admin/sign-up-saas.html["Configurar una cuenta con Workload Factory"^] e inicie sesión usando uno de los https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dos"]Agregar credenciales y permisos
+[role="quick-margin-para"]
+Elige las políticas de permisos que mejor se adapten a tus necesidades.
+
+[role="quick-margin-para"]
+Si decide no otorgar permisos, puede comenzar a usar Workload Factory for EDA para copiar ejemplos de código parcialmente completados.
+
+[role="quick-margin-para"]
+Si elige otorgar permisos, deberá agregar credenciales a una cuenta manualmente, lo que incluye la selección de capacidades de carga de trabajo, como EDA e AI, y la creación de políticas de IAM para los permisos requeridos.
+
+[role="quick-margin-para"]
+https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aprenda a agregar credenciales y permisos"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tres"] Configure su entorno para cumplir con los requisitos de EDA
+[role="quick-margin-para"]
+Necesitará un sistema de archivos FSx para ONTAP implementado y descubierto que contenga al menos un volumen que se haya configurado como un recurso compartido NFS.
+
+[role="quick-margin-para"]
+link:requirements-eda.html["Obtenga más información sobre los requisitos de EDA"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Cuatro"] Configurar el panel de control del proyecto
+[role="quick-margin-para"]
+Configure el panel del proyecto para monitorear el estado del sistema, el rendimiento y el uso del almacenamiento, lo que le permitirá optimizar su entorno EDA de manera efectiva.
+
+[role="quick-margin-para"]
+link:task-configure-dashboard.html["Aprenda a configurar el panel del proyecto"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"] Integrar con otros servicios
+[role="quick-margin-para"]
+Integre EDA con otros servicios como un portal de servicios o Perforce Helix Core utilizando la API REST de Workload Factory.
+
+[role="quick-margin-para"]
+link:integrate-perforce.html["Aprenda a integrar EDA con Perforce"^].

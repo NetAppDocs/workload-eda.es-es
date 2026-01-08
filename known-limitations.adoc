@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: known-limitations.html 
+keywords: limitations, builders, eda, electronic design automation 
+summary: Las limitaciones conocidas identifican plataformas, dispositivos o funciones que no son compatibles con esta versión del producto o que no interoperan correctamente con él. Revise estas limitaciones cuidadosamente. 
+---
+= Limitaciones conocidas de NetApp Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las limitaciones conocidas identifican plataformas, dispositivos o funciones que no son compatibles con esta versión del producto o que no interoperan correctamente con él. Revise estas limitaciones cuidadosamente.
+
+
+
+== Se requieren permisos de operador
+
+NetApp Workload Factory para EDA requiere permisos de operador para funcionar correctamente.

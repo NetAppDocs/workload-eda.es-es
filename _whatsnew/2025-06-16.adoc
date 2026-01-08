@@ -1,0 +1,11 @@
+= Soporte para clones
+:allow-uri-read: 
+
+
+
+
+=== Soporte para clones
+
+Ahora puedes clonar un proyecto en BlueXP Workload Factory for Builders. Cuando clonas un proyecto, Builders crea un nuevo proyecto a partir de una instantánea, con la misma configuración que el original. La clonación es útil para crear rápidamente proyectos similares o para realizar pruebas. Puedes montar el nuevo clon del proyecto siguiendo las instrucciones en Builders.
+
+https://docs.netapp.com/us-en/workload-builders/version-projects.html["Administrar versiones de proyectos de BlueXP Workload Factory for Builders"]
