@@ -31,6 +31,10 @@ sidebar:
     entries:
     - title: Utilice el panel de control
       url: "/task-configure-dashboard.html"
+  - title: Supervisa la latencia del volumen
+    entries:
+    - title: Supervisa la latencia del volumen
+      url: "/task-monitor-latency.html"
   - title: Utilice la integración de Perforce
     entries:
     - title: Obtenga más información sobre la integración de Perforce

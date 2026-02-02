@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: task-monitor-latency.html 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP 
+summary: Supervisa y analiza el rendimiento de la latencia del volumen con umbrales configurables para eventos de advertencia y críticos, para identificar de forma proactiva los cuellos de botella de rendimiento. 
+---
+= Supervisa la latencia del volumen
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Usando el análisis de latencia, puedes supervisar de forma proactiva el rendimiento del volumen siguiendo las métricas de latencia de lectura y escritura en tus sistemas de archivos FSx para ONTAP. Configura umbrales personalizables para eventos de advertencia y críticos para identificar posibles cuellos de botella en el rendimiento antes de que afecten tus cargas de trabajo EDA.
+
+
+
+== Descripción general
+
+El análisis de latencia recopila y supervisa las métricas de CloudWatch para las operaciones de lectura y escritura de volúmenes. Cuando se superan los umbrales de latencia e IOPS para todos los puntos de datos dentro de un intervalo de tiempo especificado, el sistema genera alertas que aparecen en la tabla de eventos de latencia. Esto te permite:
+
+* Identifica los volúmenes que están experimentando una degradación del rendimiento.
+* Distingue entre problemas de rendimiento de nivel de alerta y de nivel crítico.
+* Sigue las tendencias de latencia a lo largo del tiempo para optimizar las configuraciones de almacenamiento.
+* Toma medidas proactivas antes de que la latencia afecte el rendimiento de la carga de trabajo.
+
+
+
+
+== Antes de empezar
+
+Para usar el análisis de latencia, debes tener las credenciales de AWS configuradas en Workload Factory. La función requiere acceso a las métricas de CloudWatch para todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS.
+
+Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
+
+
+
+== Configura los umbrales de latencia
+
+Puedes configurar umbrales tanto para eventos de advertencia como para eventos críticos. Cada tipo de evento incluye umbrales independientes para las operaciones de lectura y escritura. El sistema evalúa estos umbrales de forma continua y genera alertas cuando se cumplen las condiciones.
+
+
+NOTE: Debes establecer los umbrales de eventos críticos más altos que los umbrales de eventos de advertencia para asegurar una escalada de alertas adecuada. Si no, no puedes guardar tu configuración.
+
+.Acerca de esta tarea
+Para que se active una alerta, deben superarse tanto el umbral de latencia como el umbral de IOPS para todos los puntos de datos dentro del intervalo de tiempo especificado. Esta lógica de doble condición ayuda a reducir los falsos positivos al garantizar que la alta latencia se mantenga bajo una carga significativa.
+
+.Pasos
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona *EDA*.
+. En el menú EDA, selecciona *Latencia*.
+. En la página de configuración de latencia de EDA, configura los siguientes umbrales:
++
+** *Eventos de advertencia*
++
+*** *Umbral de latencia de lectura*: ingresa el umbral de latencia en milisegundos. Predeterminado: 6 ms.
+*** *Umbral de IOPS de lectura*: introduce el umbral de IOPS en operaciones por segundo. Predeterminado: 100 ops/seg.
+*** *Rango de tiempo de lectura*: ingresa el intervalo de tiempo en minutos (5-20). Predeterminado: 10 minutos.
+*** *Umbral de latencia de escritura*: ingresa el umbral de latencia en milisegundos. Predeterminado: 8 ms.
+*** *Umbral de escritura IOPS*: ingresa el umbral de IOPS en operaciones por segundo. Predeterminado: 100 ops/seg.
+*** *Rango de tiempo de escritura*: ingresa el rango de tiempo en minutos (5-20). Predeterminado: 10 minutos.
+
+
+** *Eventos críticos*
++
+*** *Umbral de latencia de lectura*: Ingresa el umbral de latencia en milisegundos. Predeterminado: 12 ms.
+*** *Umbral de IOPS de lectura*: introduce el umbral de IOPS en operaciones por segundo. Predeterminado: 100 ops/seg.
+*** *Rango de tiempo de lectura*: ingresa el intervalo de tiempo en minutos (5-20). Predeterminado: 10 minutos.
+*** *Umbral de latencia de escritura*: ingresa el umbral de latencia en milisegundos. Predeterminado: 15 ms.
+*** *Umbral de escritura IOPS*: ingresa el umbral de IOPS en operaciones por segundo. Predeterminado: 100 ops/seg.
+*** *Rango de tiempo de escritura*: ingresa el rango de tiempo en minutos (5-20). Predeterminado: 10 minutos.
+
+
+
+
+. Seleccione *Aplicar*.
+
+
+.Resultado
+Workload Factory comienza a recopilar métricas de latencia para todos los volúmenes de FSx para ONTAP asociados a tus credenciales de AWS. Las métricas se recopilan al menos cada 20 minutos. La tabla de eventos de latencia muestra cualquier volumen que supere tus umbrales configurados.
+
+
+
+== Entender las alertas
+
+La función de análisis de latencia utiliza las alarmas de CloudWatch para supervisar el rendimiento del volumen. Entender cómo se activan las alertas te ayuda a configurar los umbrales adecuados y a interpretar los resultados.
+
+
+
+=== Métricas recopiladas
+
+El sistema recoge las siguientes métricas CloudWatch para cada volumen:
+
+* *Umbral de latencia de lectura*: calculado como 1000 * m2/(m1+0.000001) donde m1 = DataReadOperations y m2 = DataReadOperationTime
+* *Umbral de latencia de escritura*: calculado como 1000 * m2/(m1+0.000001) donde m1 = DataWriteOperations y m2 = DataWriteOperationTime
+
+
+
+
+=== Condiciones de activación de alertas
+
+Se activa una alerta cuando se cumplen todas las condiciones siguientes:
+
+* Se supera el umbral de latencia para el tipo de operación (read o write).
+* Se supera el umbral de IOPS para el tipo de operación.
+* Ambas condiciones persisten para todos los puntos de datos dentro del intervalo de tiempo configurado.
+
+
+Por ejemplo, con los umbrales de advertencia por defecto, una alerta de lectura solo se activa si la latencia de lectura supera los 6 ms y las IOPS de lectura superan los 100 ops/seg para todos los puntos de datos dentro de un periodo de 10 minutos.
+
+
+
+=== Gravedad del evento
+
+* *Eventos de advertencia*: indican una latencia elevada que podría requerir atención.
+* *Eventos críticos*: indican una latencia grave que requiere una investigación inmediata.
+
+
+
+
+== Ver eventos de latencia
+
+La tabla de eventos de latencia muestra todos los eventos de advertencia y críticos detectados en las últimas 72 horas. Usa esta tabla para monitorear el rendimiento del volumen e identificar los volúmenes que necesitan optimización.
+
+.Información adicional
+* En la tabla solo aparece la última brecha de cada volumen. Si un volumen experimenta múltiples brechas, solo se muestra el evento más reciente.
+* Los eventos se eliminan automáticamente después de 72 horas.
+* La tabla muestra un máximo de 200 eventos. Los eventos antiguos se eliminan a medida que se agregan nuevos eventos.
+
+
+.Pasos
+. En la pestaña *Latencia*, mira la tabla de eventos de latencia.
+. Revisa la información de cada evento incluyendo:
++
+** *Gravedad*: Indica si el evento es crítico o advertencia.
+** *Nombre del volumen*: el nombre del volumen afectado.
+** *ID del volumen*: el ID del volumen afectado.
+** *Sistema de archivos*: El sistema de archivos FSx for ONTAP que contiene el volumen.
+** *Hora de detección*: cuándo se detectó la infracción
+** *Mediana de latencia*: El valor de latencia mediana durante el periodo de infracción.
+
+
+. Para ordenar la tabla, selecciona cualquier encabezado de columna. Por defecto, los eventos críticos aparecen primero ordenados por hora, seguidos de los eventos de aviso ordenados por hora.
+. Para descartar uno o más eventos, al lado de cada evento selecciona *Descartar*.
+. Para añadir columnas a la tabla, selecciona el icono de columna, elige las columnas y selecciona *Aplicar*.
+
+
+
+
+== Gestiona la configuración de latencia
+
+Después de la configuración inicial, puedes editar tus umbrales.
+
+.Pasos
+. En la página *Latencia*, selecciona *Editar*.
+. Modifica cualquiera de los valores de umbral según sea necesario.
++
+
+NOTE: Asegúrate de que los umbrales críticos se mantengan más altos que los umbrales de aviso. El sistema muestra un error si configuras umbrales críticos más bajos que los umbrales de aviso.
+
+. Selecciona *Aplicar* para guardar tus cambios.
+
+
+
+
+== Mejores prácticas
+
+Ten en cuenta estas recomendaciones a la hora de configurar y usar el análisis de latencia:
+
+* *Establece umbrales realistas*: configura los umbrales según los requisitos de tu carga de trabajo. Los valores predeterminados proporcionan un punto de partida pero puede que necesites ajustarlos para tu entorno específico.
+* *Comienza con umbrales de advertencia*: Usa eventos de advertencia para establecer expectativas de rendimiento de referencia antes de ajustar los umbrales críticos.
+* *Considera cuidadosamente los intervalos de tiempo*: los intervalos de tiempo más cortos (5-10 minutos) detectan los problemas más rápido pero pueden generar más alertas. Los intervalos de tiempo más largos (15-20 minutos) reducen los falsos positivos pero pueden retrasar la detección.
+* *Supervisa las tendencias*: Revisa periódicamente la tabla de eventos de latencia para identificar patrones o problemas recurrentes que puedan indicar problemas de configuración subyacentes.
+* *Coordina los umbrales de IOPS y latencia*: la lógica de doble condición significa que deben superarse ambos. Establecer umbrales de IOPS muy altos podría evitar las alertas incluso cuando la latencia es problemática.
+* *Revisa los sucesos descartados*: revisa periódicamente por qué se descartaron los sucesos para identificar oportunidades de ajuste de umbrales o mejoras en la infraestructura.
+

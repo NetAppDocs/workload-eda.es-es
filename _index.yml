@@ -17,6 +17,10 @@ indexpage:
     links:
     - title: Utilice el panel de control
       url: "/task-configure-dashboard.html"
+  - title: Supervisa la latencia del volumen
+    links:
+    - title: Supervisa la latencia del volumen
+      url: "/task-monitor-latency.html"
   - title: Utilice la integración de Perforce
     links:
     - title: Obtenga más información sobre la integración de Perforce

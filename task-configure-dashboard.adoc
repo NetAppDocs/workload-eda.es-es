@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: task-configure-dashboard.html 
-keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation 
-summary: Configure su panel de EDA agregando etiquetas para recopilar métricas. 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization 
+summary: Configura tu panel EDA añadiendo etiquetas para recopilar métricas. Personaliza los filtros con opciones de selección única o múltiple para adaptarlos a las necesidades de tu negocio. 
 ---
 = Utilice el panel de control
 :allow-uri-read: 
@@ -11,9 +11,9 @@ summary: Configure su panel de EDA agregando etiquetas para recopilar métricas.
 
 
 [role="lead"]
-Cuando inicia sesión por primera vez en EDA, puede usar el panel para observar el uso del proyecto en todos sus sistemas de archivos y volúmenes de FSx for ONTAP . El panel de control incluye varios filtros predeterminados que puedes usar para personalizar la información que se muestra. Además, puede crear y aplicar sus propias etiquetas de AWS para organizar y filtrar los datos según sus requisitos comerciales específicos.
+La primera vez que inicias sesión en EDA, puedes usar el panel de control para observar el uso del proyecto en tus sistemas de archivos y volúmenes FSx para ONTAP. El panel de control incluye varios filtros predeterminados que puedes usar para personalizar la información mostrada. Además, puedes crear hasta cinco filtros personalizados basados en tus etiquetas de AWS, con opciones de selección única o múltiple, para organizar y filtrar los datos según tus requisitos empresariales específicos.
 
-El panel le ayuda a supervisar el uso del almacenamiento para la capacidad asignada, la capacidad utilizada, el rendimiento y las IOPS.
+El panel de control te ayuda a supervisar el uso del almacenamiento en cuanto a capacidad asignada, capacidad utilizada, rendimiento e IOPS. Para la supervisión proactiva de la latencia, consulta link:task-monitor-latency.html["Supervisa la latencia del volumen"].
 
 Las métricas de CloudWatch recopiladas incluyen:
 
@@ -27,7 +27,7 @@ Las métricas de CloudWatch recopiladas incluyen:
 
 == Configurar el panel de control
 
-Para utilizar el panel de manera eficaz, configure las etiquetas de AWS en su FSx para los volúmenes de ONTAP según los requisitos de su negocio, por ejemplo, etiquetas que representen proyectos o unidades de negocio. Para más detalles, véase <<Configurar filtros personalizados>>.
+Para utilizar eficazmente el panel de control, configura hasta cinco etiquetas de AWS en tu FSx para volúmenes ONTAP según tus necesidades empresariales, por ejemplo, etiquetas que representen proyectos o unidades de negocio. Para más detalles, consulta <<Configurar filtros personalizados>>.
 
 Las etiquetas de AWS son metadatos para sus recursos de AWS. Le ayudan a categorizar sus recursos de AWS de diferentes maneras, por ejemplo, por proyecto, aplicación o unidad de negocio. Para obtener más detalles sobre el etiquetado, consulte https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["¿Qué son las etiquetas?"^] y  https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Referencia de la API de etiquetado de grupos de recursos de AWS"^].
 
@@ -41,13 +41,29 @@ Su panel de control se convierte en una herramienta dinámica para organizar, ra
 
 === Configurar filtros personalizados
 
+Puedes configurar hasta cinco filtros personalizados basados en tus etiquetas de AWS. Cada filtro personalizado requiere tres componentes: un nombre de etiqueta de filtro, un nombre de clave de etiqueta de AWS y un tipo de selección (selección única o múltiple). Si no configuras ningún filtro personalizado, los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo) siguen disponibles para que puedas ver e interactuar con tus paneles.
+
 . Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
 . Seleccione el menú image:workloads-menu-icon.png["El ícono del menú de hamburguesa se utiliza para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego seleccione *EDA*.
 +
 Si aún no ha configurado su panel de control, se le solicitará automáticamente que lo haga.
 
-. Para cada filtro requerido, agregue un nombre de etiqueta de filtro y el nombre de clave de etiqueta de AWS que desea asociar con él.
+. Selecciona *+ Add filters*.
+. Para cada filtro personalizado que quieras crear (hasta cinco), proporciona lo siguiente:
++
+** *Nombre de la etiqueta del filtro*: El nombre para mostrar que aparece en el panel de control.
+** *Nombre de la clave de etiqueta de AWS*: la clave de etiqueta de recurso de AWS que corresponde a este filtro.
+** *Selección múltiple*: Elige si este filtro permite selección única o selección múltiple. Cuando seleccionas *Selección múltiple*, puedes seleccionar varios valores para este filtro al mismo tiempo. La selección única te limita a seleccionar solo un valor a la vez.
++
+
+NOTE: Los filtros aparecen en el panel de control en el orden en que los configuras. Piensa en organizar primero los filtros que usas con más frecuencia para que te sea más fácil acceder a ellos.
+
+
+
 . Seleccione *Aplicar*.
++
+Puedes eliminar un filtro personalizado seleccionando el icono de la papelera junto a ese filtro antes de aplicar tus cambios.
+
 . Para ver los cambios después de aplicar cualquier etiqueta o filtro, seleccione el ícono de actualización en el panel. El panel dinámico, configurado con los nuevos filtros, se muestra en el panel de proyectos de EDA.
 . Para editar la configuración del panel más tarde, seleccione *Configurar*.
 
@@ -56,7 +72,9 @@ Si aún no ha configurado su panel de control, se le solicitará automáticament
 
 === Filtrar el panel de control
 
-Puede filtrar la información que se muestra en el panel seleccionando uno o todos los siguientes filtros predeterminados, así como cualquier filtro personalizado que haya creado:
+Puedes filtrar la información mostrada en el panel de control usando una combinación de filtros predeterminados y cualquier filtro personalizado que hayas creado.
+
+Los siguientes filtros predeterminados siempre están disponibles:
 
 * Cartas credenciales
 * Región
@@ -65,6 +83,59 @@ Puede filtrar la información que se muestra en el panel seleccionando uno o tod
 * Intervalo de tiempo
 
 
+Los filtros personalizados que configures aparecen en el panel de control además de estos filtros predeterminados. Cuando uses filtros:
+
+* *Los filtros de selección múltiple* te permiten seleccionar varios valores simultáneamente para ampliar tu vista. Por ejemplo, podrías seleccionar varios proyectos para ver métricas combinadas.
+* *Los filtros de selección única* te restringen a seleccionar solo un valor a la vez, útil cuando necesitas centrarte en un recurso o categoría específicos.
+
+
 Cuando haya seleccionado los filtros necesarios, seleccione el ícono de actualización para actualizar la información del panel.
 
 Para obtener una explicación de la información que se muestra en una tarjeta, seleccione el ícono de información de esa tarjeta.
+
+
+
+== Ver detalles del volumen
+
+El panel de control ofrece dos modos de visualización para ayudarte a analizar tus métricas de almacenamiento: vista total y vista de volumen. Puedes cambiar entre estos modos usando las pestañas disponibles en el panel de control.
+
+
+
+=== Vista total
+
+La vista Total (por defecto) muestra las métricas agregadas de todos los volúmenes que coinciden con los filtros seleccionados. Esta vista proporciona una visión a grandes rasgos del rendimiento general del almacenamiento, mostrando métricas combinadas de capacidad, IOPS y rendimiento.
+
+
+
+=== Vista de volumen
+
+La vista Volumen muestra el rendimiento de volúmenes individuales a lo largo del tiempo, mostrando los 10 volúmenes principales para cada métrica. Esta vista te ayuda a identificar volúmenes específicos que están impulsando el uso de recursos y a observar su comportamiento durante el periodo de tiempo seleccionado.
+
+Para cambiar a la vista Volume, selecciona la pestaña *Volume* en el panel de control.
+
+
+
+==== Métricas de volumen mostradas
+
+Cuando seleccionas la vista Volumen, el panel muestra los 10 volúmenes principales de tu número total de volúmenes. * *Capacidad utilizada del volumen*: muestra los volúmenes con la mayor capacidad utilizada actualmente. * *IOPS*: muestra los volúmenes con el promedio más alto de IOPS durante el periodo de tiempo seleccionado. * *Throughput*: muestra los volúmenes con el mayor throughput promedio durante el periodo de tiempo seleccionado.
+
+
+NOTE: El panel solo muestra los 10 volúmenes principales para cada métrica. Si tienes más de 10 volúmenes, es posible que algunos no se muestren en la vista detallada.
+
+Cuando los mismos volúmenes aparecen en las métricas *Capacidad de volumen utilizada*, *IOPS* y *Throughput*, el panel utiliza un código de colores coherente en la leyenda para que sea más fácil seguir volúmenes específicos en las diferentes métricas.
+
+El eje horizontal muestra el intervalo de tiempo, mientras que una leyenda muestra todos los volúmenes (hasta 10) representados en la gráfica.
+
+
+
+==== Datos de volumen interactivo
+
+Puedes pasar el ratón por encima de cualquier línea de volumen en los gráficos para ver información detallada:
+
+*Capacidad utilizada del volumen*: muestra el nombre del volumen, la capacidad utilizada en ese momento y la capacidad asignada.
+
+*IOPS*: muestra el nombre del volumen, el promedio de IOPS para el intervalo de tiempo y el máximo de IOPS para el intervalo de tiempo.
+
+*Rendimiento*: muestra el nombre del volumen, el rendimiento medio para el intervalo de tiempo y el rendimiento máximo para el intervalo de tiempo.
+
+Estos datos interactivos te ayudan a analizar los patrones de rendimiento del volumen y a identificar posibles cuellos de botella u oportunidades de optimización.
