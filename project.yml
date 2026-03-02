@@ -27,14 +27,18 @@ sidebar:
       url: "/learn-eda.html"
     - title: Inicio rápido
       url: "/quick-start-eda.html"
-  - title: Utilice el panel de control del proyecto
+  - title: Descripción general del almacenamiento EDA
     entries:
-    - title: Utilice el panel de control
-      url: "/task-configure-dashboard.html"
-  - title: Supervisa la latencia del volumen
+    - title: Administra las operaciones de almacenamiento de EDA
+      url: "/task-use-overview-dashboard.html"
+  - title: Análisis de latencia FSx
     entries:
-    - title: Supervisa la latencia del volumen
+    - title: Supervisa la latencia del volumen FSx
       url: "/task-monitor-latency.html"
+  - title: Análisis de uso del proyecto
+    entries:
+    - title: Analiza el uso del almacenamiento del proyecto
+      url: "/task-configure-dashboard.html"
   - title: Utilice la integración de Perforce
     entries:
     - title: Obtenga más información sobre la integración de Perforce

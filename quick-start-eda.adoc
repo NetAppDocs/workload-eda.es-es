@@ -37,14 +37,28 @@ Necesitará un sistema de archivos FSx para ONTAP implementado y descubierto que
 [role="quick-margin-para"]
 link:requirements-eda.html["Obtenga más información sobre los requisitos de EDA"^].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Cuatro"] Configurar el panel de control del proyecto
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Cuatro"] Habilita el panel de resumen
+[role="quick-margin-para"]
+Activa el panel de control general para supervisar el estado, la capacidad y el rendimiento de tus clústeres FSx para ONTAP. Acepta la solicitud de consentimiento para permitir que Workload Factory empiece a recopilar métricas de CloudWatch.
+
+[role="quick-margin-para"]
+link:task-use-overview-dashboard.html["Aprende cómo activar el panel de resumen"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"] Configura el panel del proyecto
 [role="quick-margin-para"]
 Configure el panel del proyecto para monitorear el estado del sistema, el rendimiento y el uso del almacenamiento, lo que le permitirá optimizar su entorno EDA de manera efectiva.
 
 [role="quick-margin-para"]
 link:task-configure-dashboard.html["Aprenda a configurar el panel del proyecto"^].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"] Integrar con otros servicios
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Seis"] Configura el análisis de latencia FSx
+[role="quick-margin-para"]
+Configura umbrales de latencia para identificar y resolver proactivamente los problemas de rendimiento antes de que afecten el tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, y aprovecha el análisis básico automatizado.
+
+[role="quick-margin-para"]
+link:task-monitor-latency.html["Aprende a configurar la supervisión de la latencia"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Siete"] Integra con otros servicios
 [role="quick-margin-para"]
 Integre EDA con otros servicios como un portal de servicios o Perforce Helix Core utilizando la API REST de Workload Factory.
 
