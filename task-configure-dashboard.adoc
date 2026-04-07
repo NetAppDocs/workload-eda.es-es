@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: task-configure-dashboard.html 
 keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization 
-summary: Configura el panel de control del proyecto EDA añadiendo etiquetas para recopilar métricas. Personaliza los filtros con opciones de selección única o múltiple para adaptarlos a las necesidades de tu negocio. 
+summary: Configura el cuadro de mandos del proyecto EDA añadiendo etiquetas para recopilar métricas. Personaliza los filtros con opciones de selección única o múltiple para satisfacer tus necesidades empresariales. 
 ---
-= Utilice el panel de control del proyecto
+= Usa el panel de control de Proyecto
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
@@ -46,7 +46,7 @@ Su panel de control se convierte en una herramienta dinámica para organizar, ra
 === Configurar filtros personalizados
 
 
-NOTE: Solo el primer usuario admin que accede al panel de control del proyecto puede configurar, agregar o eliminar filtros personalizados. Todos los demás usuarios, incluidos los admins posteriores, tienen acceso de solo lectura a los filtros.
+NOTE: Solo el primer usuario administrador que accede al panel de control del proyecto puede configurar, añadir o eliminar filtros personalizados. Todos los demás usuarios, incluidos los administradores posteriores, tienen acceso de solo lectura a los filtros.
 
 Los filtros personalizados te permiten organizar los datos de tu panel según cómo funciona tu organización. Al alinear los filtros con la estructura de tus proyectos, equipos o centros de costes, puedes acceder rápidamente a los datos específicos que necesitas sin tener que navegar por información irrelevante. Esto hace que la planificación de capacidad, el seguimiento de costes y la supervisión del rendimiento sean más eficientes.
 

@@ -2,44 +2,44 @@
 sidebar: sidebar 
 permalink: task-use-overview-dashboard.html 
 keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, cluster usage, capacity, throughput, IOPS, EMS events, latency events, performance widgets, clusters table, volume placement, scale up, scale down, CloudWatch metrics, CSV export 
-summary: Usa el panel de control general para supervisar el estado, la capacidad y el rendimiento de tus clústeres FSx para ONTAP. Consulta el uso del clúster a escala y toma decisiones informadas sobre la colocación de volúmenes y el escalado de capacidad. 
+summary: Usa el panel de información general para supervisar el estado, la capacidad y el rendimiento de tus sistemas de archivos FSx para ONTAP. Consulta el uso del almacenamiento a escala y toma decisiones informadas sobre la colocación de volúmenes y el escalado de capacidad. 
 ---
-= Usa el panel de resumen en las cargas de trabajo EDA
+= Usa el panel Overview en cargas de trabajo EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-Como administrador de TI que gestiona cargas de trabajo EDA en docenas de sistemas de archivos FSx para ONTAP, puedes usar el panel de información general para responder preguntas operativas diarias comunes sobre el estado de tus clústeres. Úsalo para decidir dónde colocar nuevos volúmenes o trabajos, entender el uso del clúster a escala y tomar decisiones informadas sobre escalar la capacidad y el rendimiento hacia arriba o hacia abajo.
+Como administrador de TI que gestiona cargas de trabajo de EDA en varios sistemas de archivos FSx para ONTAP (clústeres de ONTAP), puedes usar el panel Overview para evaluar rápidamente el estado y el uso del clúster. Úsalo para decidir dónde colocar nuevos volúmenes o trabajos, identificar candidatos para mover volúmenes o SVM, y determinar cuándo escalar la capacidad o el rendimiento.
 
 
 
 == Descripción general
 
-El panel de vista general te da una vista centralizada del clúster que te ayuda a entender rápidamente el uso del clúster en cuanto a capacidad, rendimiento e IOPS, y a decidir dónde poner nuevos volúmenes o mover volúmenes y SVM existentes.
+El panel Overview proporciona una vista centralizada de tus clústeres FSx for ONTAP, incluyendo capacidad y rendimiento. Úsalo para colocar nuevos volúmenes, reequilibrar cargas de trabajo y planificar el escalado de capacidad o rendimiento.
 
 El panel incluye:
 
-* *Estado de salud del clúster*: Información resumida en la parte superior del panel de control que destaca la latencia, la disponibilidad y la protección, los eventos de seguridad y las recomendaciones de capacidad en todos tus clústeres.
-* *Tabla de clústeres*: Una tabla detallada y con opción de búsqueda que muestra las métricas de uso y rendimiento de cada clúster de FSx para ONTAP, con soporte para filtrar, ordenar, paginar y exportar a CSV.
+* *Estado de salud del clúster*: Información resumida en la parte superior del panel de control que destaca los eventos de latencia, la utilización de SSD y las recomendaciones de capacidad, así como los eventos de ONTAP EMS en todos tus sistemas de archivos.
+* *Tabla de clústeres*: Una tabla detallada en la que se pueden realizar búsquedas y que muestra las métricas de uso y rendimiento de cada clúster, con soporte para filtrar, ordenar, paginar y exportar a CSV.
 
 
 
 
 == Requisitos
 
-Antes de usar el panel de resumen, asegúrate de cumplir con los siguientes requisitos:
+Antes de utilizar el dashboard, asegúrate de que cumples los siguientes requisitos:
 
-Credenciales de AWS con permisos de visualización:: Debes tener credenciales de AWS configuradas en Workload Factory con al menos permisos de lectura (vista) para General Storage. Las credenciales configuradas con _Basic_ mode no son compatibles.
+Credenciales de AWS con permisos de visualización:: Debes configurar las credenciales de AWS en Workload Factory con al menos permisos de lectura (vista) para General Storage. Las credenciales _Basic_ no son compatibles.
 +
 --
-Si no has configurado credenciales con permisos de visualización, se te redirige a la página de configuración de credenciales de AWS cuando abres la pestaña Overview.
+Si no has configurado las credenciales con permisos de visualización, se te redirige a la página de configuración de credenciales de AWS cuando abres la pestaña Overview.
 
 Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
 
 --
-Activa el panel EDA:: Una vez confirmadas las credenciales con permisos de visualización, debes activar el panel de Workload Factory para empezar a recopilar métricas de CloudWatch para tus sistemas de archivos FSx for ONTAP.
+Activa el panel de control:: Después de que Workload Factory confirme las credenciales con permisos de visualización, debes activar el panel para comenzar a recopilar métricas de CloudWatch para tus sistemas de archivos FSx para ONTAP.
 
 
 
@@ -55,13 +55,13 @@ NOTE: La recopilación de métricas puede tardar un poco después de que des tu 
 
 
 .Resultado
-Workload Factory comienza a recopilar métricas de CloudWatch para todos los sistemas de archivos FSx for ONTAP asociados con tus credenciales de AWS configuradas. El panel de información general se rellena a medida que las métricas están disponibles. Se muestra una notificación si la recopilación aún está en curso.
+Workload Factory comienza a recopilar métricas de CloudWatch para todos los sistemas de archivos FSx para ONTAP asociados con tus credenciales de AWS configuradas. El panel se rellena a medida que las métricas están disponibles. Se muestra una notificación si la recopilación aún está en curso.
 
 
 
 == Filtrar el panel de control
 
-Usa los filtros en la parte superior del panel de vista general para centrarte en los sistemas de archivos relevantes para tu tarea actual. Estos son filtros a nivel de Workload Factory que se aplican tanto a la información de latencia y eventos de ONTAP como a la tabla de clústeres.
+Usa los filtros en la parte superior del panel de control para centrarte en sistemas de archivos específicos. Estos filtros se aplican a las secciones de latencia, utilización y eventos de ONTAP, así como a la tabla de clústeres.
 
 Filtros disponibles:
 
@@ -69,41 +69,87 @@ Filtros disponibles:
 * *Cuenta AWS*: filtra por una o varias cuentas de AWS asociadas a tus credenciales configuradas.
 
 
-Cuando actualizas las selecciones de filtro, toda la información se actualiza para mostrar solo los sistemas de archivos y clústeres que coinciden.
+Al actualizar las selecciones del filtro, toda la información se actualiza para mostrar solo los sistemas de archivos coincidentes.
 
 
 
 == Estado de salud del clúster
 
-En la parte superior del panel de control general, se muestra una vista resumida de la actividad de eventos y el estado de salud en todos tus clústeres filtrados. Esta información solo se muestra cuando al menos un enlace FSx for ONTAP está asociado con tus sistemas de archivos. Si no hay enlaces disponibles, la información se oculta.
+En la parte superior del panel de control, se muestra una instantánea del estado y la actividad de tus sistemas de archivos filtrados. Esta información solo se muestra cuando al menos un enlace FSx for ONTAP está asociado con tus sistemas de archivos. Si no hay enlaces disponibles, la información está oculta.
+
+* *Latencia*: Muestra el número de eventos de latencia detectados en los sistemas de archivos del ámbito.
+* *Utilización*: Muestra el estado de utilización de los SSD e identifica los sistemas de archivos con recomendaciones de capacidad activas.
+* *Eventos ONTAP*: Muestra el número de eventos EMS detectados, clasificados por capacidad, disponibilidad y protección, y seguridad y otros.
+
 
 
 
 === Latencia
 
-La sección Latencia muestra el número de eventos de latencia detectados en los sistemas de archivos dentro del alcance.
+Muestra el número de eventos de latencia detectados en los sistemas de archivos del ámbito.
 
-* El recuento refleja los eventos de latencia generados por la función link:task-monitor-latency.html["Análisis de latencia FSx"].
-* Al seleccionar *Review* se accede a la pestaña *Latencia*.
+* Cuando seleccionas *Review*, se muestra la pestaña *Latencia*.
 * Sólo puedes ver la información sobre latencia si has activado la monitorización de latencia. Si no has configurado los umbrales de latencia, selecciona *Configurar*. Para más detalles sobre la monitorización de latencia, consulta link:task-monitor-latency.html["Análisis de latencia FSx"^].
 
 
 
 
-=== Capacidad
+=== Utilización
 
-La sección Capacity muestra el número de mensajes EMS relacionados con problemas de capacidad, junto con el número de sistemas de archivos afectados.
+Muestra el número de sistemas de archivos en el ámbito que tienen al menos un clúster con un uso de SSD superior al 80% y el número de sistemas de archivos con recomendaciones de capacidad activas. Esto te ayuda a identificar rápidamente los sistemas de archivos que podrían requerir atención de capacidad.
 
-Los eventos de EMS supervisados incluyen, pero no se limitan a:
 
-* Agregado casi lleno
-* Agregado completo
-* Volumen casi lleno
-* Volumen completo
-* Reserva de snapshot casi llena
-* Reserva de snapshot completa
+
+==== Recomendaciones de capacidad
+
+Workload Factory ejecuta automáticamente un algoritmo de recomendación de capacidad para cada sistema de archivos FSx para ONTAP visible en tu inventario EDA. El algoritmo escanea una vez cada 24 horas e identifica cuándo se recomiendan ajustes de capacidad SSD.
+
+Cuando se identifica una recomendación:
+
+* Recibes una notificación inmediata (correo electrónico o WAD), según tu configuración de notificaciones de Workload Factory. Las notificaciones se envían en cuanto se identifica una recomendación, en lugar de esperar al resumen semanal.
+* Aparece un indicador de bombilla en la fila de la tabla Clusters para cualquier sistema de archivos con una recomendación activa.
+* Se muestra el número total de sistemas de archivos con recomendaciones activas. Esto garantiza que las recomendaciones sean visibles incluso si el sistema de archivos afectado no se encuentra en la primera página de la tabla.
+
+
+
+
+==== Ver y aplicar las recomendaciones de capacidad
+
+.Pasos
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona *EDA*.
+. Selecciona la pestaña *Vista general*.
+. En la tabla *Clusters*, localiza un sistema de archivos con un indicador de bombilla.
++
+Pasa el ratón por encima del indicador de la bombilla para ver un tooltip con una breve descripción de la recomendación.
+
+. Selecciona el nombre del clúster en la tabla para abrirlo y ver las recomendaciones.
+. Revisa la recomendación de SSD y el gráfico de capacidad.
++
+La recomendación explica el cambio sugerido y el razonamiento en el que se basa. Por ejemplo: recomendamos aumentar el tamaño del SSD en función del patrón de uso del SSD de tu sistema de archivos.
+
++
+El gráfico presenta el uso actual de SSD junto con las tendencias históricas y muestra cómo el algoritmo de recomendación de capacidad habría ajustado la capacidad a lo largo del tiempo.
+
+. En la parte superior derecha del gráfico, selecciona el intervalo de tiempo para cambiar el periodo mostrado. El valor predeterminado es una semana.
+
+
+
+
+=== Eventos ONTAP
+
+Muestra el número de eventos EMS detectados en los sistemas de archivos del ámbito, clasificados por Capacidad, Disponibilidad y protección, y Seguridad y otros.
+
+.Capacidad
+Muestra el número de mensajes EMS relacionados con problemas de capacidad, junto con el número de sistemas de archivos afectados.
+
+Algunos ejemplos de sucesos de EMS supervisados son:
+
+* Agregado casi lleno/lleno
+* Volumen casi lleno/lleno
+* Reserva de snapshot casi llena/llena
 * Tamaño completo del directorio
-* Grupos Flex completos
+* FlexGroup completo
 * Inodos llenos
 
 
@@ -111,21 +157,15 @@ Para consultar la lista completa de los eventos EMS supervisados, consulta link:
 
 Seleccionar *Capacidad* te lleva a la pantalla de análisis de capacidad en cargas de trabajo de almacenamiento.
 
-
-
-=== Disponibilidad y protección
-
-La sección Disponibilidad y protección muestra el número de mensajes EMS relacionados con la disponibilidad y protección de datos, junto con el número de sistemas de archivos afectados.
+.Disponibilidad y protección
+Muestra el número de mensajes EMS relacionados con la disponibilidad y la protección de datos, junto con el número de sistemas de archivos afectados.
 
 Los eventos supervisados incluyen FlexCache y eventos EMS relacionados con SnapMirror.
 
 Seleccionar *Disponibilidad y protección* te lleva a la pantalla de análisis de disponibilidad y protección en Storage workloads.
 
-
-
-=== Seguridad y otros
-
-La sección Seguridad y otros muestra el número de mensajes EMS para eventos no categorizados bajo Capacidad o Disponibilidad y protección, junto con el número de sistemas de archivos afectados. Los eventos monitorizados incluyen protección anti-ransomware, fallos de autenticación NFS y otros.
+.Seguridad y otros
+Muestra el número de mensajes EMS para eventos no categorizados bajo Capacidad o Disponibilidad y protección, junto con el número de sistemas de archivos afectados. Los eventos monitorizados incluyen protección anti-ransomware, fallos de autenticación NFS y otros.
 
 Seleccionar *Seguridad y otros* te lleva a la pantalla de análisis de eventos en Storage workloads.
 
@@ -133,7 +173,17 @@ Seleccionar *Seguridad y otros* te lleva a la pantalla de análisis de eventos e
 
 == Tabla de clústeres
 
-La tabla de clústeres proporciona una vista detallada de cada clúster de FSx para ONTAP asociado con tus credenciales de AWS configuradas, filtrado por la región activa y las selecciones de cuenta de AWS. Los datos se recopilan de métricas de CloudWatch. La tabla admite búsqueda, filtrado de columnas, paginación, personalización de columnas y exportación a CSV.
+Proporciona una vista detallada de cada sistema de archivos FSx para ONTAP asociado con tus credenciales de AWS configuradas, filtrado por la región activa y las selecciones de cuenta de AWS. Los datos se recopilan de las métricas de CloudWatch. La tabla admite búsqueda, filtrado de columnas, paginación, personalización de columnas y exportación de CSV.
+
+Las métricas clave incluyen:
+
+* Nombre, región y cuenta de AWS
+* Métricas de capacidad SSD (utilizada, total y porcentaje de uso)
+* Almacenamiento de pool de capacidad
+* Métricas de rendimiento (media, P95, P99 y máximo en los últimos 30 días)
+
+
+Usa *SSD usage* para identificar los sistemas de archivos que se acercan a los límites de capacidad. Usa *Throughput usage (P99)* para comparar la demanda de rendimiento con el SKU de rendimiento provisionado. Pasa el mouse por los encabezados de columna de rendimiento para ver los detalles del cálculo.
 
 
 
@@ -145,51 +195,9 @@ La tabla de clústeres proporciona una vista detallada de cada clúster de FSx p
 * La tabla está paginada. Usa los controles de paginación en la parte inferior de la tabla para navegar entre páginas.
 
 
-La tabla incluye las siguientes columnas. En la tabla se indican las columnas que aparecen por defecto. Puedes añadir o quitar columnas que no son predeterminadas usando el selector de columnas. Para las columnas de rendimiento, pasa el cursor sobre el encabezado de la columna para ver detalles sobre el periodo de cálculo de 30 días y la fórmula de uso.
 
-[cols="30,10,60"]
-|===
-| Columna | Predeterminado | Descripción 
+NOTE: Los sistemas de archivos con recomendaciones de capacidad activas muestran un indicador de bombilla en la tabla. Selecciona el nombre de cualquier sistema de archivos para ver las métricas de capacidad SSD, las tendencias históricas de uso y las recomendaciones de capacidad para ese sistema de archivos.
 
-
-| Nombre del clúster | Sí | El nombre del clúster de FSx for ONTAP. 
-
-
-| Región | Sí | La región de AWS donde se despliega el clúster. 
-
-
-| Cuenta de AWS | No | La cuenta de AWS asociada con el clúster. 
-
-
-| Capacidad utilizada de SSD | Sí | La cantidad de almacenamiento SSD actualmente en uso. 
-
-
-| Capacidad total SSD | Sí | La capacidad total de almacenamiento SSD aprovisionada. 
-
-
-| Uso de SSD | Sí | Porcentaje de capacidad SSD en uso. Usa esto para identificar los clústeres que se acercan a los límites de capacidad antes de que afecten el rendimiento de la carga de trabajo. 
-
-
-| Fondo de capacidad | Sí | La cantidad de almacenamiento en el pool de capacidad. 
-
-
-| Rendimiento promedio | Sí | El rendimiento promedio de los últimos 30 días. 
-
-
-| Rendimiento P95 | No | El rendimiento del percentil 95 durante los últimos 30 días. 
-
-
-| Rendimiento P99 | Sí | El rendimiento del percentil 99 en los últimos 30 días. 
-
-
-| Rendimiento máximo | No | El caudal máximo registrado durante los últimos 30 días. 
-
-
-| Uso de throughput (P99) | Sí | P99 rendimiento relativo al SKU de rendimiento provisionado. Usa esto para identificar clusters donde el rendimiento está constantemente cerca o en el límite de rendimiento provisionado. 
-
-
-| SKU de rendimiento | Sí | El nivel de rendimiento provisionado. Compáralo con el uso de rendimiento para evaluar si la SKU actual tiene el tamaño adecuado. 
-|===
 
 
 === Personalizar columnas

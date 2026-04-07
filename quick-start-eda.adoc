@@ -37,23 +37,23 @@ Necesitará un sistema de archivos FSx para ONTAP implementado y descubierto que
 [role="quick-margin-para"]
 link:requirements-eda.html["Obtenga más información sobre los requisitos de EDA"^].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Cuatro"] Habilita el panel de resumen
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Cuatro"] Activar el panel de resumen
 [role="quick-margin-para"]
-Activa el panel de control general para supervisar el estado, la capacidad y el rendimiento de tus clústeres FSx para ONTAP. Acepta la solicitud de consentimiento para permitir que Workload Factory empiece a recopilar métricas de CloudWatch.
+Activa el panel Overview para supervisar el estado, la capacidad y el rendimiento de tus clústeres FSx para ONTAP. Acepta la solicitud de consentimiento para permitir que Workload Factory comience a recopilar métricas de CloudWatch.
 
 [role="quick-margin-para"]
-link:task-use-overview-dashboard.html["Aprende cómo activar el panel de resumen"^].
+link:task-use-overview-dashboard.html["Aprende cómo activar el panel de información general"^].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"] Configura el panel del proyecto
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"] Configura el panel de control del proyecto
 [role="quick-margin-para"]
-Configure el panel del proyecto para monitorear el estado del sistema, el rendimiento y el uso del almacenamiento, lo que le permitirá optimizar su entorno EDA de manera efectiva.
+Configura el panel de control del proyecto para supervisar el estado del sistema, el rendimiento y el uso del almacenamiento, lo que te permitirá optimizar tu entorno EDA de forma eficaz.
 
 [role="quick-margin-para"]
-link:task-configure-dashboard.html["Aprenda a configurar el panel del proyecto"^].
+link:task-configure-dashboard.html["Aprende cómo configurar el panel de control del proyecto"^].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Seis"] Configura el análisis de latencia FSx
 [role="quick-margin-para"]
-Configura umbrales de latencia para identificar y resolver proactivamente los problemas de rendimiento antes de que afecten el tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, y aprovecha el análisis básico automatizado.
+Configura umbrales de latencia para identificar y resolver proactivamente los problemas de rendimiento antes de que afecten el tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, aprovecha el análisis básico automatizado y, opcionalmente, habilita el análisis de agente de IA para escenarios complejos configurando un ARN de modelo de Amazon Bedrock.
 
 [role="quick-margin-para"]
 link:task-monitor-latency.html["Aprende a configurar la supervisión de la latencia"^].
