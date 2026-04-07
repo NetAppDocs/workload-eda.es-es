@@ -37,19 +37,19 @@ los permisos de los modos _Basic_ y _Read-only_ no son compatibles con la monito
 Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
 
 --
+FSx para el sistema de archivos ONTAP:: Necesitas al menos un sistema de archivos FSx para ONTAP con volúmenes desplegados en tu entorno de AWS. La función de supervisión de latencia recopila automáticamente métricas para todos los volúmenes asociados con tus credenciales de AWS configuradas.
+Enlace a FSx para ONTAP:: Para ver información básica de análisis en la tabla de eventos de latencia y el panel de análisis, debes asociar un enlace con el sistema de archivos FSx para ONTAP. Sin un enlace, aún se pueden detectar eventos, pero el análisis proporciona información limitada. Si no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar un enlace existente y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
++
+--
+Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Crear un enlace"^].
+
+--
 Modelo ARN de Amazon Bedrock (opcional):: Para usar la función opcional de análisis de agente de IA, tienes que proporcionar un ARN de modelo de Amazon Bedrock en la configuración de Workload Factory.
 +
 --
 Para más detalles, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
 
 Si no configuras un modelo ARN de Bedrock, igual puedes usar la monitorización de latencia y el análisis básico automatizado. El análisis de AI-agent no estará disponible.
-
---
-FSx para el sistema de archivos ONTAP:: Necesitas al menos un sistema de archivos FSx para ONTAP con volúmenes desplegados en tu entorno de AWS. La función de supervisión de latencia recopila automáticamente métricas para todos los volúmenes asociados con tus credenciales de AWS configuradas.
-Enlace a FSx para ONTAP:: Para ver información básica de análisis en la tabla de eventos de latencia y el panel de análisis, debes asociar un enlace con el sistema de archivos FSx para ONTAP. Sin un enlace, aún se pueden detectar eventos, pero el análisis proporciona información limitada. Si no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar un enlace existente y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
-+
---
-Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Crear un enlace"^].
 
 --
 
