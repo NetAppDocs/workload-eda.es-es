@@ -4,7 +4,7 @@ permalink: learn-eda-workloads.html
 keywords: software builders, development, benefits, eda, electronic design automation, perforce integration, ci, cd 
 summary: Aprenda a utilizar la integración de Perforce en NetApp Workload Factory para EDA. 
 ---
-= Obtenga más información sobre la integración de Perforce en NetApp Workload Factory para EDA
+= Conoce la integración de Perforce en Workload Factory para EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/

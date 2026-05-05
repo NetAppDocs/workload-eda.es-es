@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: quick-start-eda.html 
 keywords: requirements, permissions, eda, builders, quick start, electronic design automation 
-summary: Las bases de datos tienen tres modos diferentes que tienen diferentes requisitos. 
+summary: Empieza a usar Workload Factory para EDA configurando tu entorno, activando los paneles de control de supervisión y configurando el análisis de latencia. 
 ---
-= Inicio rápido para EDA
+= Inicio rápido de Workload Factory para EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-Comience a crear un proyecto EDA. Los administradores y líderes de equipo pueden usar EDA para administrar proyectos y espacios de trabajo para equipos de desarrolladores.
+Empieza a usar Workload Factory para EDA configurando tu entorno, habilitando paneles de monitoreo y configurando el análisis de latencia para optimizar el rendimiento de FSx para ONTAP en tus cargas de trabajo EDA.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"] Iniciar sesión en Workload Factory
 [role="quick-margin-para"]
@@ -51,12 +51,12 @@ Configura el panel de control del proyecto para supervisar el estado del sistema
 [role="quick-margin-para"]
 link:task-configure-dashboard.html["Aprende cómo configurar el panel de control del proyecto"^].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Seis"] Configura el análisis de latencia FSx
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Seis"] Configura FSx para el análisis de latencia de ONTAP
 [role="quick-margin-para"]
-Configura umbrales de latencia para identificar y resolver proactivamente los problemas de rendimiento antes de que afecten el tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, aprovecha el análisis básico automatizado y, opcionalmente, habilita el análisis de agente de IA para escenarios complejos configurando un ARN de modelo de Amazon Bedrock.
+Configura umbrales de latencia para identificar y resolver proactivamente los problemas de rendimiento antes de que afecten el tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, configura notificaciones por correo electrónico o SNS para recibir alertas en tiempo real, aprovecha el análisis básico automatizado y, opcionalmente, habilita el análisis de agente de IA para escenarios complejos configurando un ARN de modelo de Amazon Bedrock.
 
 [role="quick-margin-para"]
-link:task-monitor-latency.html["Aprende a configurar la supervisión de la latencia"^].
+link:task-monitor-latency.html["Aprende a configurar la supervisión de la latencia"^]. Una vez detectados los eventos, puedes link:task-analyze-latency-trends.html["analizar las tendencias de latencia"^] usando el gráfico interactivo.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["Siete"] Integra con otros servicios
 [role="quick-margin-para"]

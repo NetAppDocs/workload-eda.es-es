@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: task-monitor-latency.html 
 keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis, latency troubleshooting, ai latency analysis, latency events table 
-summary: Supervisa y analiza el rendimiento de la latencia del volumen con umbrales configurables para advertencias y eventos críticos. Usa el análisis básico automatizado para identificar y resolver proactivamente los cuellos de botella de rendimiento. 
+summary: Supervisa el rendimiento de la latencia del volumen con umbrales configurables para advertencias y eventos críticos. Usa análisis básicos automatizados y análisis de agentes de IA para identificar y resolver proactivamente los cuellos de botella de rendimiento. 
 ---
-= Supervisa la latencia del volumen en las cargas de trabajo EDA
+= Supervisa la latencia del volumen en Workload Factory para EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
@@ -17,11 +17,11 @@ Como administrador de TI o ingeniero de DevOps que gestiona cargas de trabajo de
 
 == Descripción general
 
-El análisis de latencia recopila métricas de CloudWatch para operaciones de lectura y escritura en todos los volúmenes de FSx para ONTAP asociados a tus credenciales de AWS. Se genera una alerta cuando se superan tanto el umbral de latencia como el umbral de IOPS para todos los puntos de datos dentro del intervalo de tiempo configurado. Esta lógica de doble condición reduce los falsos positivos al garantizar que la latencia elevada se mantiene bajo carga real.
+El análisis de latencia recopila métricas de CloudWatch para operaciones de lectura y escritura en todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS. Se genera una alerta cuando se superan tanto el umbral de latencia como el umbral de IOPS para todos los puntos de datos dentro del intervalo de tiempo configurado. Esto reduce los falsos positivos al asegurar que la latencia elevada se mantiene bajo carga real. Puedes ver todos los eventos detectados y, si has configurado notificaciones, recibes notificaciones por correo electrónico o Amazon SNS con detalles sobre los volúmenes afectados.
 
-Cuando se detecta un evento, Workload Factory ejecuta un análisis básico utilizando las métricas del centro de latencia de ONTAP QoS para identificar el principal contribuyente a la latencia (por ejemplo, FlexCache, pool de capacidad, límites de QoS, disco, datos, clúster u otros subsistemas).
+Cuando se detecta un evento, Workload Factory ejecuta un análisis básico utilizando las métricas del centro de latencia de ONTAP QoS para identificar el principal contribuyente a la latencia (por ejemplo, FlexCache, capacity pool, límites de QoS, disco, datos, clúster u otros subsistemas). Luego puedes link:task-analyze-latency-trends.html["analizar las tendencias de latencia"] usando un gráfico interactivo.
 
-Para los escenarios de datos y clúster, puedes invocar opcionalmente el análisis de agente de IA desde el panel de análisis de latencia para obtener una explicación detallada de la causa raíz, una lista de los clientes EC2 afectados y los pasos de corrección recomendados.
+Para los escenarios de datos y clústeres, puedes ejecutar opcionalmente un análisis de agente de IA para obtener una explicación detallada de la causa raíz, una lista de los clientes EC2 afectados y los pasos de corrección recomendados.
 
 
 
@@ -38,7 +38,7 @@ Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp
 
 --
 FSx para el sistema de archivos ONTAP:: Necesitas al menos un sistema de archivos FSx para ONTAP con volúmenes desplegados en tu entorno de AWS. La función de supervisión de latencia recopila automáticamente métricas para todos los volúmenes asociados con tus credenciales de AWS configuradas.
-Enlace a FSx para ONTAP:: Para ver información básica de análisis en la tabla de eventos de latencia y el panel de análisis, debes asociar un enlace con el sistema de archivos FSx para ONTAP. Sin un enlace, aún se pueden detectar eventos, pero el análisis proporciona información limitada. Si no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar un enlace existente y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
+Enlace a FSx para ONTAP:: Para ver la información básica del análisis, debes asociar un enlace con el sistema de archivos FSx para ONTAP. Sin un enlace, se pueden seguir detectando eventos, pero el análisis proporciona información limitada. Si no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar un enlace existente y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
 +
 --
 Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Crear un enlace"^].
@@ -49,16 +49,17 @@ Modelo ARN de Amazon Bedrock (opcional):: Para usar la función opcional de aná
 --
 Para más detalles, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
 
-Si no configuras un modelo ARN de Bedrock, igual puedes usar la monitorización de latencia y el análisis básico automatizado. El análisis de AI-agent no estará disponible.
+Si no configuras un modelo ARN de Bedrock, igual puedes usar la monitorización de latencia y el análisis básico automatizado, pero el análisis de AI-agent no está disponible.
 
 --
+Configuración de notificaciones (opcional):: Para recibir notificaciones por correo electrónico o Amazon SNS cuando se detecten eventos de latencia, configura las preferencias de notificación en los ajustes de Workload Factory. Consulta <<Configura las notificaciones de latencia>> para más detalles.
 
 
 
 
 == Entender las alertas
 
-La función de análisis de latencia utiliza las alarmas de CloudWatch para supervisar el rendimiento del volumen. Entender cómo se activan las alertas te ayuda a configurar los umbrales adecuados y a interpretar los resultados.
+El análisis de latencia utiliza las alarmas de CloudWatch para supervisar el rendimiento del volumen. Entender cómo se activan las alertas te ayuda a configurar los umbrales adecuados y a interpretar los resultados.
 
 
 
@@ -95,7 +96,7 @@ Por ejemplo, con los umbrales de advertencia por defecto, una alerta de lectura 
 
 == Configura los umbrales de latencia
 
-Configura los umbrales de advertencia y críticos para las operaciones de lectura y escritura. El sistema evalúa los umbrales continuamente y genera alertas cuando se cumplen las condiciones.
+Puedes configurar umbrales de advertencia y críticos para las operaciones de lectura y escritura. El sistema evalúa los umbrales continuamente y genera alertas cuando se cumplen las condiciones.
 
 
 NOTE: Debes establecer los umbrales de eventos críticos más altos que los umbrales de eventos de advertencia para asegurar una escalada de alertas adecuada. Si no, no puedes guardar tu configuración.
@@ -132,7 +133,7 @@ NOTE: Debes establecer los umbrales de eventos críticos más altos que los umbr
 
 
 .Resultado
-Workload Factory comienza a recopilar métricas de latencia para todos los volúmenes de FSx para ONTAP asociados a tus credenciales de AWS. Las métricas se recopilan al menos cada 20 minutos. La tabla de eventos de latencia muestra cualquier volumen que supere tus umbrales configurados.
+Workload Factory comienza a recopilar métricas de latencia para todos los volúmenes de FSx para ONTAP asociados a tus credenciales de AWS. Las métricas se recopilan al menos cada 20 minutos. Se muestran todos los volúmenes que superen tus umbrales configurados.
 
 
 
@@ -140,15 +141,14 @@ Workload Factory comienza a recopilar métricas de latencia para todos los volú
 
 La tabla de eventos de latencia proporciona una vista centralizada de todos los eventos de advertencia y críticos detectados en las últimas 72 horas.
 
-* En la tabla solo aparece la última brecha de cada volumen. Si un volumen experimenta múltiples brechas, solo se muestra el evento más reciente.
+* Solo se muestra la última brecha para cada volumen. Si un volumen experimenta múltiples brechas, solo se muestra el evento más reciente.
 * Los eventos se eliminan automáticamente después de 72 horas.
-* La tabla muestra un máximo de 200 eventos. Los eventos antiguos se eliminan a medida que se agregan nuevos eventos.
-* Los eventos aparecen en la tabla aunque no haya ningún enlace asociado al sistema de archivos. Se necesita un enlace para ver los detalles básicos del análisis y ejecutar el análisis del agente AI.
+* Se muestra un máximo de 200 eventos. Los eventos antiguos se eliminan a medida que se añaden nuevos eventos.
+* Los eventos se muestran aunque no haya ningún enlace asociado al sistema de archivos. Se necesita un enlace para ver los detalles básicos del análisis y ejecutar el análisis del agente AI.
 
 
 .Pasos
-. En la pestaña *Latencia*, mira la tabla de eventos de latencia.
-. Revisa la información de cada evento incluyendo:
+. En la pestaña *Latencia*, revisa la información de cada evento incluyendo:
 +
 ** *Gravedad*: Indica si el evento es crítico o advertencia
 ** *Nombre del volumen*: El nombre del volumen afectado
@@ -159,17 +159,18 @@ La tabla de eventos de latencia proporciona una vista centralizada de todos los 
 ** *Hora de detección*: cuándo se detectó la infracción
 
 
-. Para ver los detalles de un evento de latencia, selecciona el evento en la columna *Severity* de la tabla de eventos de latencia. Esto abre un panel de análisis de latencia para ese evento.
-. Para ordenar la tabla, selecciona cualquier encabezado de columna. Por defecto, los eventos críticos aparecen primero ordenados por hora, seguidos de los eventos de aviso ordenados por hora.
+. Para ver los detalles de un evento de latencia, selecciona el evento en la columna *Severity*. Esto abre un panel de análisis de latencia para ese evento.
+. Para ordenar la tabla, selecciona cualquier encabezado de columna. Por defecto, los eventos críticos se muestran primero ordenados por tiempo, seguidos de los eventos de advertencia ordenados por tiempo.
 . Para descartar uno o más eventos, al lado de cada evento selecciona image:icon-action.png["El icono del menú de acciones"] *Dismiss*.
 . Para añadir columnas a la tabla, selecciona image:column-icon.png["El icono de la columna"], elige las columnas y selecciona *Aplicar*.
+. Para analizar las tendencias de latencia a lo largo del tiempo, selecciona un evento para abrir el panel de análisis de latencia. Usa la pestaña *A lo largo del tiempo* para ver el gráfico interactivo de latencia. Consulta link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"] para más detalles.
 
 
 
 
-== Entender el análisis básico
+== Analizar un evento de latencia
 
-El análisis básico te ayuda a identificar rápidamente la causa raíz de los problemas de latencia sin necesidad de investigación manual. Cuando se detecta un evento de latencia, Workload Factory realiza automáticamente un análisis básico utilizando las métricas del centro de retardo de ONTAP QoS. El análisis identifica qué componente está causando la latencia y proporciona una breve descripción en el panel de análisis de latencia.
+El análisis básico te ayuda a identificar rápidamente la causa raíz de los problemas de latencia sin necesidad de investigación manual. Cuando se detecta un evento de latencia, Workload Factory realiza automáticamente un análisis básico utilizando las métricas del centro de retardo de ONTAP QoS. El análisis identifica qué componente está causando la latencia y proporciona una breve descripción.
 
 
 NOTE: Puede haber ligeras discrepancias entre los valores de latencia del análisis QoS de ONTAP y los datos de CloudWatch debido a diferentes metodologías de recopilación. El análisis básico utiliza datos de ONTAP para la identificación de la causa raíz.
@@ -178,7 +179,17 @@ NOTE: Puede haber ligeras discrepancias entre los valores de latencia del análi
 
 === Panel de análisis de latencia
 
-Al seleccionar un evento de latencia en la columna *Severity* de la tabla de eventos de latencia, se abre un panel de análisis de latencia para ese evento.
+Selecciona un evento de latencia en la columna *Severity* para abrir el panel de análisis de latencia de ese evento. El panel incluye pestañas que ofrecen diferentes vistas del evento de latencia:
+
+* *Resumen*: Muestra los resultados básicos del análisis, indicando qué componente está causando la latencia
+* *A lo largo del tiempo*: muestra un gráfico de latencia interactivo con datos históricos
+
+
+
+
+==== Descripción general
+
+La pestaña *Overview* muestra los resultados del análisis básico automatizado, identificando qué componente está causando la latencia:
 
 * *FlexCache*: latencia de las operaciones FlexCache
 * *Pool de capacidad*: Latencia de las operaciones del pool de capacidad
@@ -190,7 +201,15 @@ Al seleccionar un evento de latencia en la columna *Severity* de la tabla de eve
 * *Otros*: Latencia de otros subsistemas como NVRAM y red
 
 
-Si se configura una ARN de modelo de Amazon Bedrock, el panel también incluye una opción para ejecutar análisis de agente de IA para escenarios de datos y clúster. Si Bedrock no está configurado, el panel muestra un enlace a la página de configuración de cargas de trabajo de almacenamiento para el sistema de archivos específico donde puedes configurar el acceso a Bedrock.
+Si se configura una ARN de modelo de Amazon Bedrock, la pestaña *Overview* también incluye una opción para ejecutar análisis de agentes de IA para escenarios de datos y clúster. Si Bedrock no está configurado, la pestaña muestra un enlace a la página de configuración de cargas de trabajo de almacenamiento para el sistema de archivos específico donde puedes configurar el acceso a Bedrock.
+
+
+
+==== Con el tiempo
+
+La pestaña *Over time* muestra un gráfico de latencia interactivo que muestra las métricas de latencia de CloudWatch a lo largo del tiempo para el volumen afectado. El gráfico muestra la latencia de lectura o escritura dependiendo del tipo de alarma que activó el evento. Puedes seleccionar diferentes marcos de tiempo (1H, 3H, 12H, 24H, 72H) para ver el comportamiento de la latencia durante diferentes períodos.
+
+Para obtener instrucciones detalladas sobre el uso del gráfico, consulta link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"].
 
 
 
@@ -199,7 +218,7 @@ Si se configura una ARN de modelo de Amazon Bedrock, el panel también incluye u
 Mientras que el análisis básico identifica el origen de la latencia, las situaciones complejas en las que intervienen datos o componentes de clúster a menudo requieren una investigación más profunda para determinar la causa principal específica y los posibles pasos a seguir para solucionarla. El análisis con AI-agent ofrece este nivel más profundo de solución de problemas al identificar cuestiones como volúmenes bully, configuraciones no óptimas o requisitos de escalado horizontal que el análisis básico no puede detectar.
 
 .Antes de empezar
-Debes haber configurado un ARN de modelo de Amazon Bedrock en los ajustes de Workload Factory.
+Configura un ARN de modelo de Amazon Bedrock en los ajustes de Workload Factory, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
 
 .Acerca de esta tarea
 Cuando ejecutas el análisis del AI-agent, el sistema actualiza automáticamente los datos del análisis básico y los utiliza como entrada para el AI-agent. El AI-agent evalúa el escenario de latencia y proporciona:
@@ -219,19 +238,13 @@ El agente IA sigue las pautas básicas de análisis para identificar escenarios 
 
 .Pasos
 . En la pestaña *Latencia*, localiza el evento que quieres analizar.
-. En la columna *Severidad* de la tabla de eventos de latencia, selecciona un evento de latencia para abrir un panel de análisis de ese evento.
+. En la columna *Severidad*, selecciona un evento de latencia para abrir un panel de análisis de ese evento.
 +
-Si no hay ningún enlace asociado con el sistema de archivos, se muestra un aviso pidiéndote que asocies un enlace con el sistema de archivos afectado. Selecciona el aviso para que te redirijan a la página de configuración de enlaces para ese sistema de archivos. Un tooltip explica la redirección y señala que asociar un enlace y configurar el acceso a Bedrock (recomendado) permite el análisis completo de eventos.
+Si no hay ningún enlace asociado con el sistema de archivos, se muestra un aviso pidiéndote que asocies un enlace con el sistema de archivos afectado. Selecciona el aviso para que te redirijan a la página de configuración de enlaces para ese sistema de archivos.
 
-. En el panel de análisis, revisa los resultados del análisis básico para entender el origen de la latencia.
-. Si el origen de la latencia se identifica como datos o clúster, selecciona *Analizar*.
-. Revisa los resultados del análisis del agente de IA, que incluyen:
-+
-** Explicación de la causa raíz
-** Lista de clientes EC2 afectados
-** Posibles medidas correctoras
-
-
+. Revisa la pestaña *Overview* para entender los resultados básicos del análisis e identificar la fuente de latencia.
+. Si el origen de la latencia se identifica como datos o clúster, selecciona *Analizar* para ejecutar el análisis del agente de IA.
+. Revisa los resultados del análisis del agente de IA.
 . Implementa los pasos de remediación recomendados para resolver el problema de latencia.
 . Después de la corrección, supervisa la tabla de eventos de latencia para verificar que el problema se ha resuelto.
 
@@ -254,6 +267,32 @@ NOTE: Asegúrate de que los umbrales críticos se mantengan más altos que los u
 
 
 
+== Configura las notificaciones de latencia
+
+Puedes configurar notificaciones por correo electrónico o Amazon SNS para recibir alertas cuando se detecten eventos de latencia. Las notificaciones se envían cada vez que un volumen supera los umbrales que configuraste, dándote conciencia en tiempo real de los problemas de rendimiento. Para activar las notificaciones, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html#wf-console-email-notifications["Configura la configuración de notificaciones"].
+
+Las notificaciones de latencia se envían por sistema de archivos. Cuando uno o varios volúmenes de un sistema de archivos superan los umbrales de latencia, recibes una única notificación con una lista de todos los volúmenes afectados.
+
+
+NOTE: Si hay más de 10 volúmenes afectados, el correo electrónico muestra los 10 primeros volúmenes e indica cuántos volúmenes adicionales están afectados. Puedes ver todos los volúmenes afectados en la consola Workload Factory.
+
+Las notificaciones incluyen:
+
+* Detalles del sistema de archivos
+* Lista de volúmenes con umbrales superados
+* Gravedad del evento (Advertencia o Crítico)
+* Valores de latencia y comparación de umbrales
+* Enlace directo a la página de latencia para investigación
+
+
+Canales de notificación:
+
+* *Correo electrónico*: Enviado a las direcciones de correo electrónico configuradas en tus ajustes de notificación de Workload Factory
+* *Amazon SNS*: Publicado en tu tema SNS configurado para la integración con otros sistemas
+
+
+
+
 == Mejores prácticas
 
 Ten en cuenta estas recomendaciones a la hora de configurar y usar el análisis de latencia:
@@ -266,3 +305,5 @@ Ten en cuenta estas recomendaciones a la hora de configurar y usar el análisis 
 * *Revisa los sucesos descartados*: revisa periódicamente por qué se descartaron los sucesos para identificar oportunidades de ajuste de umbrales o mejoras en la infraestructura.
 * *Usa el análisis de agentes de IA de forma estratégica*: ejecuta el análisis de agente de IA para escenarios de datos y clústeres donde el análisis básico lo recomiende. El análisis de agente de IA proporciona información más profunda para problemas de rendimiento complejos que requieren una solución de problemas detallada.
 
+
+Para conocer las mejores prácticas sobre cómo analizar las tendencias de latencia, consulta link:task-analyze-latency-trends.html#graph-interpretation["Interpretación de gráficos"].

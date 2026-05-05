@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: task-analyze-latency-trends.html 
+keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency 
+summary: Usa el gráfico de latencia interactivo para analizar las tendencias de latencia de volumen a lo largo del tiempo, identificar patrones y seguir la efectividad de la remediación. 
+---
+= Analiza las tendencias de latencia para EDA en Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Después de detectar un evento de latencia, puedes usar el gráfico interactivo para analizar el comportamiento de la latencia del volumen a lo largo del tiempo. Esto te ayuda a identificar patrones, entender si los problemas de rendimiento son recurrentes o aislados, y tomar decisiones condicionadas por los datos sobre la remediación.
+
+
+
+== Antes de empezar
+
+Debes tener link:task-monitor-latency.html["monitorización de latencia configurada"] y al menos un evento de latencia detectado.
+
+
+
+== Analiza las tendencias de latencia
+
+El gráfico de latencia ofrece una representación visual del comportamiento de la latencia del volumen a lo largo del tiempo.
+
+.Acerca de esta tarea
+El gráfico de latencia muestra los datos de latencia de CloudWatch para el volumen afectado. El gráfico muestra automáticamente la latencia de lectura o la latencia de escritura según la alarma que activó el evento. Puedes ajustar el intervalo de tiempo para ver el comportamiento de la latencia en diferentes periodos.
+
+Incluye:
+
+* *Línea métrica de latencia*: Muestra los valores reales de latencia (en milisegundos) recogidos de CloudWatch a lo largo del tiempo
+* *Líneas de umbral*: Líneas horizontales discontinuas que indican tus umbrales de advertencia y críticos configurados
+* *Indicadores de infracción*: Marcadores visuales que muestran cuándo y cuántas veces se superaron los umbrales durante el periodo de tiempo
+* *Detalles de las infracciones*: Para cada infracción, ve el valor medio de latencia, el porcentaje por encima del umbral, los datos del centro de retrasos de QoS y el tiempo de detección
+
+
+.Pasos
+. En la pestaña *Latencia*, selecciona un evento de latencia de la tabla de eventos.
++
+Se abre el panel de análisis de latencia.
+
+. Selecciona la pestaña *A lo largo del tiempo*.
+. Revisa la vista de gráfico predeterminada que muestra los datos de latencia de las últimas 3 horas.
+. Cambia el intervalo de tiempo para analizar distintos periodos e identificar patrones.
+. Observa la línea de tendencia de la latencia en relación con las líneas de umbral.
+. Revisa los indicadores de incumplimiento del gráfico:
++
+Cuando se superan los umbrales varias veces durante el periodo de tiempo mostrado, los marcadores de incumplimiento indican cuándo se superaron los umbrales.
+
+. Para ver los detalles de la infracción, pasa el ratón por encima o selecciona un indicador de infracción.
+. Revisa el resumen del recuento de infracciones:
++
+El gráfico muestra el número total de infracciones de advertencia o críticas detectadas durante el periodo de tiempo seleccionado.
+
+. Utiliza las percepciones gráficas para:
++
+** Determina si los problemas de latencia son aislados o recurrentes
+** Identifica los patrones horarios que se correlacionan con una latencia elevada
+** Evalúa si los picos de latencia son breves o sostenidos
+** Correlaciona los eventos de latencia con patrones de carga de trabajo o cambios en el sistema
+
+
+
+
+.Resultado
+Obtienes una visión completa del comportamiento de la latencia del volumen a lo largo del tiempo, lo que te ayuda a tomar decisiones informadas sobre si se necesita una corrección inmediata, si es necesario ajustar los umbrales o si hay que investigar problemas de infraestructura subyacentes.
+
+
+NOTE: El gráfico de latencia muestra los datos de la métrica CloudWatch, que pueden diferir ligeramente de los datos del centro de retardo de ONTAP QoS debido a las diferentes metodologías de recopilación. Ambas fuentes de datos se proporcionan para un análisis exhaustivo.
+
+
+
+== Interpretación de gráficos
+
+Ten en cuenta estas recomendaciones al analizar las tendencias de latencia:
+
+* *Usa varios marcos temporales*: Revisa el gráfico en diferentes periodos de tiempo para distinguir entre picos aislados y una degradación sostenida del rendimiento. Empieza con la vista de 24H para contexto, luego haz zoom en periodos más cortos para analizar incidentes específicos, o amplía a 72H para identificar patrones diarios.
+* *Compara los umbrales visualmente*: Usa las líneas de umbral en el gráfico para evaluar si los valores de advertencia y críticos que configuraste son adecuados para tus patrones de carga de trabajo. Si la latencia se acerca con frecuencia al umbral pero no lo cruza, piensa si tu umbral está configurado demasiado alto. Si ves muchos cruces breves del umbral que no afectan las operaciones, es posible que tu umbral sea demasiado sensible.
+* *Identifica patrones diarios*: Usa las vistas de 24H y 72H para identificar patrones según la hora del día. Si los picos de latencia ocurren en momentos predecibles, puedes programar de forma proactiva las operaciones que consumen muchos recursos durante los periodos de baja demanda o añadir capacidad para manejar los picos de carga.
+* *Distinguir los tipos de picos*: Los picos breves y agudos indican problemas transitorios (como una contención temporal de recursos), mientras que una latencia elevada y sostenida sugiere problemas sistémicos (como limitaciones de capacidad o problemas de configuración). Cada uno requiere diferentes enfoques de corrección.
+* *Supervisa las tendencias después de los cambios*: Después de ajustar umbrales, añadir capacidad o cambiar configuraciones, supervisa el gráfico durante al menos 72 horas para confirmar que tus cambios tienen el efecto deseado.
+
