@@ -1,0 +1,116 @@
+---
+sidebar: sidebar 
+permalink: learn-latency-monitoring.html 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis 
+summary: Descubre cómo la supervisión de la latencia en Workload Factory para EDA te ayuda a detectar y analizar problemas de rendimiento con volúmenes FSx para ONTAP usando análisis básico automatizado y análisis opcional con agente de IA. 
+---
+= Conoce la supervisión de la latencia en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+La supervisión de la latencia en Workload Factory para EDA te ayuda a identificar y resolver de forma proactiva los cuellos de botella de rendimiento en tus volúmenes FSx para ONTAP. El sistema supervisa la latencia de lectura y escritura mediante métricas de CloudWatch y proporciona análisis automatizados para ayudarte a comprender la causa raíz de los problemas de rendimiento.
+
+
+
+== Cómo funciona el monitoreo de latencia
+
+El análisis de latencia recopila métricas de CloudWatch para operaciones de lectura y escritura en todos los volúmenes de FSx para ONTAP asociados a tus credenciales de AWS. El sistema evalúa continuamente estas métricas frente a umbrales configurables para detectar problemas de rendimiento de forma temprana.
+
+Cuando se detecta un evento de latencia, Workload Factory realiza automáticamente un análisis básico utilizando las métricas del centro de retardo de ONTAP QoS para identificar el principal contribuyente a la latencia. Para escenarios más complejos que impliquen datos o componentes de clúster, puedes ejecutar opcionalmente un análisis de agente de IA para obtener explicaciones detalladas de la causa raíz, listas de clientes afectados y pasos específicos de corrección.
+
+
+
+=== Generación de alertas
+
+Se genera una alerta cuando se superan tanto el umbral de latencia como el umbral de IOPS para todos los puntos de datos dentro del intervalo de tiempo configurado. Este enfoque de doble condición reduce los falsos positivos al garantizar que la latencia elevada se mantiene bajo carga real.
+
+Puedes configurar umbrales distintos para:
+
+* Operaciones de lectura
+* Operaciones de escritura
+* Gravedad de la advertencia
+* Gravedad crítica
+
+
+Todos los eventos detectados aparecen en la tabla de eventos de latencia y, si has configurado notificaciones, recibes notificaciones por correo electrónico o Amazon SNS con detalles sobre los volúmenes afectados.
+
+
+
+== Entender las alertas
+
+Entender cómo se activan las alertas te ayuda a configurar los umbrales adecuados y a interpretar los resultados.
+
+
+
+=== Métricas recopiladas
+
+El sistema recoge las siguientes métricas CloudWatch para cada volumen:
+
+* *Umbral de latencia de lectura*: calculado como 1000 * m2/(m1+0.000001) donde m1 = DataReadOperations y m2 = DataReadOperationTime
+* *Umbral de latencia de escritura*: calculado como 1000 * m2/(m1+0.000001) donde m1 = DataWriteOperations y m2 = DataWriteOperationTime
+
+
+
+
+=== Condiciones de activación de alertas
+
+Se activa una alerta cuando se cumplen todas las condiciones siguientes:
+
+* Se supera el umbral de latencia para el tipo de operación (read o write).
+* Se supera el umbral de IOPS para el tipo de operación.
+* Ambas condiciones persisten para todos los puntos de datos dentro del intervalo de tiempo configurado.
+
+
+Por ejemplo, con los umbrales de advertencia por defecto, una alerta de lectura solo se activa si la latencia de lectura supera los 6 ms y las IOPS de lectura superan los 100 ops/seg para todos los puntos de datos dentro de un periodo de 10 minutos.
+
+
+
+=== Gravedad del evento
+
+* *Eventos de advertencia*: Indican una latencia elevada que podría requerir atención
+* *Eventos críticos*: Indican una latencia grave que requiere una investigación inmediata
+
+
+
+
+== Análisis de latencia
+
+Workload Factory proporciona dos niveles de análisis para ayudarte a solucionar problemas de latencia.
+
+
+
+=== Análisis básico
+
+Cuando se detecta un evento de latencia, Workload Factory ejecuta automáticamente un análisis básico utilizando las métricas del centro de retardo de ONTAP QoS para identificar qué componente está causando la latencia (por ejemplo, FlexCache, pool de capacidad, límites de QoS, disco, datos, clúster u otros subsistemas). Este análisis proporciona una rápida identificación del origen de la latencia sin necesidad de investigación manual.
+
+El análisis básico está disponible para todos los eventos de latencia cuando has asociado un enlace con el sistema de ficheros FSx para ONTAP. Sin un enlace, los eventos se pueden seguir detectando, pero el análisis proporciona información limitada.
+
+
+NOTE: Puede haber ligeras discrepancias entre los valores de latencia del análisis QoS de ONTAP y los datos de CloudWatch debido a diferentes metodologías de recopilación. El análisis básico utiliza datos de ONTAP para la identificación de la causa raíz.
+
+
+
+=== Análisis de agente de IA
+
+Mientras que el análisis básico identifica el origen de la latencia, los escenarios complejos que implican datos o componentes de clúster a menudo requieren una investigación más profunda. El análisis de AI-agent ofrece este nivel más profundo de solución de problemas al identificar cuestiones como volúmenes bully, configuraciones no óptimas o requisitos de escalado horizontal que el análisis básico no puede detectar.
+
+Cuando ejecutas el análisis AI-agent, el sistema proporciona:
+
+* *Posible causa raíz*: Explicación detallada de lo que está causando el problema de latencia
+* *Clientes afectados*: Lista de nombres de instancias EC2 afectadas por la latencia
+* *Posibles medidas correctoras*: dos o más acciones específicas para resolver el problema
+
+
+El análisis de agentes de IA requiere un ARN de modelo de Amazon Bedrock configurado en tus ajustes de Workload Factory. Si Bedrock no está configurado, aún puedes usar la monitorización de latencia y el análisis básico automatizado.
+
+
+
+== Información relacionada
+
+* link:task-configure-latency-monitoring.html["Configura el monitoreo de latencia"]
+* link:task-analyze-latency-issues.html["Analiza los problemas de latencia"]
+* link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"]
+

@@ -17,7 +17,7 @@ Después de detectar un evento de latencia, puedes usar el gráfico interactivo 
 
 == Antes de empezar
 
-Debes tener link:task-monitor-latency.html["monitorización de latencia configurada"] y al menos un evento de latencia detectado.
+Debes tener link:task-configure-latency-monitoring.html["monitorización de latencia configurada"] y al menos un evento de latencia detectado.
 
 
 

@@ -55,4 +55,4 @@ El nombre predeterminado para el clon es el nombre del proyecto con un sufijo de
 
 
 .Resultado
-La fábrica de carga de trabajo crea un nuevo clon del proyecto, y el clon aparece como un nuevo proyecto en la página Proyectos.
+Workload Factory crea un nuevo clon del proyecto, y el clon aparece como un nuevo proyecto en la página Projects.

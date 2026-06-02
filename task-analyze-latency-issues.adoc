@@ -1,0 +1,144 @@
+---
+sidebar: sidebar 
+permalink: task-analyze-latency-issues.html 
+keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI-agent analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps 
+summary: Visualiza y analiza los eventos de latencia para identificar problemas de rendimiento con FSx para volúmenes ONTAP. Usa el análisis básico automatizado y el análisis opcional de agente de IA para determinar las causas raíz y los pasos de corrección recomendados. 
+---
+= Analiza los problemas de latencia en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ve los eventos de latencia detectados y usa herramientas de análisis automatizadas para identificar las causas raíz y resolver los cuellos de botella de rendimiento en tus volúmenes FSx para ONTAP.
+
+
+
+== Antes de empezar
+
+Debes tener link:task-configure-latency-monitoring.html["monitorización de latencia configurada"] antes de poder ver y analizar eventos de latencia.
+
+
+
+== Ver eventos de latencia
+
+La tabla de eventos de latencia proporciona una vista centralizada de todos los eventos de advertencia y críticos detectados en las últimas 72 horas.
+
+.Acerca de esta tarea
+* Solo se muestra la última brecha para cada volumen. Si un volumen experimenta múltiples brechas, solo se muestra el evento más reciente.
+* Los eventos se eliminan automáticamente después de 72 horas.
+* Se muestra un máximo de 200 eventos. Los eventos antiguos se eliminan a medida que se añaden nuevos eventos.
+* Los eventos se muestran aunque no haya ningún enlace asociado al sistema de archivos. Se necesita un enlace para ver los detalles básicos del análisis y ejecutar el análisis del agente AI.
+
+
+.Pasos
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona *EDA*.
+. Selecciona la pestaña *Latencia*.
+. Revisa la información de cada evento en la tabla de eventos de latencia.
+. Para ver los detalles de un evento de latencia, selecciona el evento en la columna *Severity*. Esto abre un panel de análisis de latencia para ese evento.
+. Para ordenar la tabla, selecciona cualquier encabezado de columna. Por defecto, los eventos críticos se muestran primero ordenados por tiempo, seguidos de los eventos de advertencia ordenados por tiempo.
+. Para descartar uno o más eventos, al lado de cada evento selecciona image:icon-action.png["El icono del menú de acciones"] *Dismiss*.
+. Para añadir columnas a la tabla, selecciona image:column-icon.png["El icono de la columna"], elige las columnas y selecciona *Aplicar*.
+. Para analizar las tendencias de latencia a lo largo del tiempo, selecciona un evento para abrir el panel de análisis de latencia. Usa la pestaña *A lo largo del tiempo* para ver el gráfico interactivo de latencia. Consulta link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"] para más detalles.
+
+
+
+
+== Analizar un evento de latencia
+
+El análisis básico te ayuda a identificar rápidamente la causa raíz de los problemas de latencia sin necesidad de investigación manual.
+
+
+
+=== Panel de análisis de latencia
+
+Selecciona un evento de latencia en la columna *Severity* para abrir el panel de análisis de latencia de ese evento. El panel incluye pestañas que ofrecen diferentes vistas del evento de latencia:
+
+* *Resumen*: Muestra los resultados básicos del análisis, indicando qué componente está causando la latencia
+* *A lo largo del tiempo*: muestra un gráfico de latencia interactivo con datos históricos
+
+
+
+
+==== Ficha de descripción general
+
+La pestaña *Overview* muestra los resultados del análisis básico automatizado, identificando qué componente está causando la latencia.
+
+Si se configura una ARN de modelo de Amazon Bedrock, la pestaña *Overview* también incluye una opción para ejecutar análisis de agentes de IA para escenarios de datos y clúster. Si Bedrock no está configurado, la pestaña muestra un enlace a la página de configuración de cargas de trabajo de almacenamiento para el sistema de archivos específico donde puedes configurar el acceso a Bedrock.
+
+
+
+==== Pestaña a lo largo del tiempo
+
+La pestaña *Over time* muestra un gráfico de latencia interactivo que muestra las métricas de latencia de CloudWatch a lo largo del tiempo para el volumen afectado. El gráfico muestra la latencia de lectura o escritura dependiendo del tipo de alarma que activó el evento. Puedes seleccionar diferentes marcos de tiempo (1H, 3H, 12H, 24H, 72H) para ver el comportamiento de la latencia durante diferentes períodos.
+
+Para obtener instrucciones detalladas sobre el uso del gráfico, consulta link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"].
+
+
+
+=== Pasos
+
+. En la pestaña *Latencia*, localiza el evento que quieres analizar.
+. En la columna *Severidad*, selecciona un evento de latencia para abrir un panel de análisis de ese evento.
++
+Si no hay ningún enlace asociado con el sistema de archivos, se muestra un aviso pidiéndote que asocies un enlace con el sistema de archivos afectado. Selecciona el aviso para que te redirijan a la página de configuración de enlaces para ese sistema de archivos.
+
+. Revisa la pestaña *Overview* para entender los resultados básicos del análisis e identificar la fuente de latencia.
+. Opcionalmente, selecciona la pestaña *A lo largo del tiempo* para ver las tendencias de latencia del volumen afectado.
+. Si el origen de la latencia requiere una investigación más profunda (escenarios de datos o clúster), ejecuta el análisis del agente de IA.
+
+
+
+
+== Ejecuta el análisis de agentes de IA
+
+El análisis del agente de IA proporciona una investigación más profunda para determinar la causa raíz específica y los posibles pasos de remediación.
+
+.Antes de empezar
+Configura un ARN de modelo de Amazon Bedrock en los ajustes de Workload Factory, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
+
+.Acerca de esta tarea
+Cuando ejecutas el análisis del AI-agent, el sistema actualiza automáticamente los datos del análisis básico y los utiliza como entrada para el AI-agent.
+
+.Pasos
+. En la pestaña *Latencia*, localiza el evento que quieres analizar.
+. En la columna *Severidad*, selecciona un evento de latencia para abrir un panel de análisis de ese evento.
++
+Si no hay ningún enlace asociado con el sistema de archivos, se muestra un aviso pidiéndote que asocies un enlace con el sistema de archivos afectado. Selecciona el aviso para que te redirijan a la página de configuración de enlaces para ese sistema de archivos.
+
+. Revisa la pestaña *Overview* para entender los resultados básicos del análisis e identificar la fuente de latencia.
+. Si el origen de la latencia se identifica como datos o clúster, selecciona *Analizar* para ejecutar el análisis del agente de IA.
+. Revisa los resultados del análisis del agente de IA, incluyendo:
++
+** Explicación de la posible causa raíz
+** Lista de clientes EC2 afectados
+** Medidas correctoras recomendadas
+
+
+. Implementa los pasos de remediación recomendados para resolver el problema de latencia.
+. Después de la corrección, supervisa la tabla de eventos de latencia para verificar que el problema se ha resuelto.
+
+
+
+
+== Mejores prácticas
+
+Ten en cuenta estas recomendaciones al analizar los problemas de latencia:
+
+* *Supervisa las tendencias*: Revisa periódicamente la tabla de eventos de latencia para identificar patrones o problemas recurrentes que puedan indicar problemas de configuración subyacentes.
+* *Usa el análisis de agentes de IA de forma estratégica*: ejecuta el análisis de agente de IA para escenarios de datos y clústeres donde el análisis básico lo recomiende. El análisis de agente de IA proporciona información más profunda para problemas de rendimiento complejos que requieren una solución de problemas detallada.
+* *Revisa los sucesos descartados*: revisa periódicamente por qué se descartaron los sucesos para identificar oportunidades de ajuste de umbrales o mejoras en la infraestructura.
+
+
+Para conocer las mejores prácticas sobre cómo analizar las tendencias de latencia, consulta link:task-analyze-latency-trends.html#graph-interpretation["Interpretación de gráficos"].
+
+
+
+== Información relacionada
+
+* link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"]
+* link:task-configure-latency-monitoring.html["Configura el monitoreo de latencia"]
+* link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"]
+

@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: learn-overview-dashboard.html 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, capacity automation, capacity recommendations, decision points 
+summary: Descubre cómo el panel Overview en Workload Factory para EDA te ayuda a monitorear la salud, la capacidad y el rendimiento de los clústeres de FSx for ONTAP a escala. 
+---
+= Conoce el panel de información general en Workload Factory for EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+El panel de control Overview proporciona una vista centralizada para los administradores de TI que gestionan cargas de trabajo de EDA en varios sistemas de archivos FSx para ONTAP. Úsalo para evaluar rápidamente el estado y el uso del clúster, decidir dónde colocar nuevos volúmenes o trabajos, identificar candidatos para mover volúmenes o SVMs, y determinar cuándo escalar la capacidad o el rendimiento.
+
+
+
+== Descripción general
+
+El panel Overview recopila métricas de CloudWatch para todos los sistemas de archivos FSx para ONTAP asociados con tus credenciales de AWS configuradas.
+
+Incluye:
+
+* *Estado del clúster*: Información resumida en la parte superior que destaca los eventos de latencia, la utilización de SSD y las recomendaciones de capacidad, así como los eventos de ONTAP EMS en todos tus sistemas de archivos.
+* *Tabla de clústeres*: Una tabla detallada en la que se pueden realizar búsquedas y que muestra las métricas de uso y rendimiento de cada clúster, con soporte para filtrar, ordenar, paginar y exportar a CSV.
+
+
+Te ayuda a:
+
+* Coloca nuevos volúmenes y reequilibra las cargas de trabajo
+* Planifica el escalado de capacidad o rendimiento
+* Supervisa la salud del clúster a gran escala
+* Toma decisiones informadas sobre la colocación de volúmenes
+* Identifica los clústeres que se acercan a los límites de capacidad
+
+
+
+
+== Componentes del panel de control
+
+
+
+=== Estado de salud del clúster
+
+El estado de salud del clúster proporciona una instantánea de la actividad de tus sistemas de archivos filtrados. Esta información solo se muestra cuando al menos un enlace FSx for ONTAP está asociado a tus sistemas de archivos.
+
+El estado de salud incluye las siguientes áreas:
+
+*Latencia*:: Muestra el número de eventos de latencia detectados en los sistemas de archivos del ámbito. Sólo puedes ver la información sobre latencia si has activado la monitorización de latencia.
+*Gestión de la capacidad de las SSD*:: Muestra el número de sistemas de archivos con un uso de SSD superior al 80% y el número de sistemas de archivos con recomendaciones de capacidad activas. Esto te ayuda a identificar rápidamente los sistemas de archivos que podrían requerir atención de capacidad.
+*Eventos de ONTAP*:: Muestra el número de eventos EMS detectados, clasificados por Capacidad, Disponibilidad y protección, y Seguridad y otros.
+
+
+
+
+=== Tabla de clústeres
+
+La tabla de clústeres proporciona una vista detallada de cada sistema de archivos FSx para ONTAP, filtrada por tu región activa y las selecciones de cuenta de AWS. Los datos se recopilan de las métricas de CloudWatch.
+
+Utiliza la tabla para:
+
+* Identifica los sistemas de archivos que se acercan a los límites de capacidad (columna de uso de SSD)
+* Compara la demanda de caudal con la SKU de caudal aprovisionada (columna uso de caudal P99)
+* Supervisa las métricas de rendimiento en varios clústeres
+* Comprobar el estado de la configuración del enlace (columna Enlace asociado) - la validez de la conexión se verifica diariamente
+* Selecciona varios clusters para actualizar parámetros en masa
+
+
+
+
+== Gestión de la capacidad de las SSD
+
+El panel Overview ofrece una gestión inteligente de la capacidad de las unidades SSD.
+
+
+
+=== Modos de gestión
+
+*Automatiza*:: Workload Factory aumenta automáticamente la capacidad de las unidades SSD en función de umbrales y patrones de uso predefinidos. El sistema gestiona el escalado de capacidad sin intervención manual. Es ideal para entornos en los que se prefiere la gestión automatizada.
+*Recomendar*:: Workload Factory analiza tus patrones de uso de SSD y proporciona recomendaciones para aumentar la capacidad. Tú revisas y aplicas manualmente las recomendaciones. Esto te da control total sobre las decisiones de capacidad mientras te beneficias del análisis automatizado.
+*Ninguno*:: No se realizan recomendaciones de capacidad ni acciones automatizadas. Esto es útil cuando quieres gestionar la capacidad manualmente sin ayuda del sistema.
+
+
+
+
+=== Recomendaciones de capacidad
+
+Cuando Workload Factory está en modo Automate o Recommend, el sistema ejecuta automáticamente un algoritmo de recomendación de capacidad para cada sistema de archivos FSx para ONTAP. El algoritmo escanea una vez cada 24 horas e identifica cuándo se recomiendan ajustes de capacidad de SSD.
+
+Cuando se identifica una recomendación:
+
+* Recibes una notificación inmediata según tu configuración de notificaciones de Workload Factory
+* Los sistemas de archivos con recomendaciones pueden identificarse filtrando la tabla Clusters por las columnas Last SSD increase timestamp o Last SSD increase description
+* Se muestra el número total de sistemas de archivos con recomendaciones activas
+
+
+La recomendación explica el cambio sugerido y el razonamiento que lo sustenta, como por ejemplo: recomendamos aumentar el tamaño del SSD en función de tu patrón de uso del SSD del sistema de archivos.
+
+
+
+=== Parámetros de gestión de SSD
+
+Los parámetros controlan cómo el sistema de gestión de la capacidad analiza y actúa sobre tu uso de SSD:
+
+*Umbral* (10-90%):: El porcentaje de uso de SSD que activa las recomendaciones de capacidad o las acciones de automatización. Por ejemplo, un umbral del 80% significa que las recomendaciones o acciones se producen cuando el uso de SSD alcanza el 80%. Disponible en los modos Recommend y Automate.
+*Lookback* (1-200 horas):: Periodo de tiempo utilizado para analizar los patrones de uso históricos de las unidades SSD. Un periodo más largo proporciona más contexto histórico para las decisiones de capacidad. Disponible solo en modo Automate.
+*Por adelantado* (1-200 horas):: Periodo de tiempo utilizado para proyectar las necesidades futuras de capacidad. Un periodo más largo planifica con más anticipación el crecimiento de la capacidad. Disponible solo en modo Automate.
+
+
+Puedes configurar estos parámetros individualmente para cada sistema de archivos o aplicar ajustes coherentes en varios sistemas de archivos mediante la edición masiva.
+
+
+
+=== Comprender los puntos de decisión sobre capacidad
+
+El gráfico de uso de SSD muestra los puntos de decisión que indican cuándo se generaron recomendaciones de capacidad o se tomaron acciones de automatización. Estos indicadores visuales te ayudan a comprender el comportamiento del algoritmo de gestión de capacidad a lo largo del tiempo.
+
+*Puntos de decisión de la recomendación*:: Aparecen cuando el algoritmo de recomendación de capacidad identifica que se necesita capacidad SSD adicional. Estos puntos pueden aparecer con una frecuencia de hasta 30 minutos si no se ha aumentado la capacidad SSD. El gráfico muestra todos los puntos de decisión cuando es posible o los consolida si el intervalo de tiempo hace que los puntos individuales sean demasiado densos.
+*Puntos de decisión para la automatización*:: Aparecen cuando el sistema de automatización intenta aumentar la capacidad de SSD. Estos puntos indican si la acción de automatización tuvo éxito o falló.
+
+
+Usa los puntos de decisión con el gráfico de uso histórico de SSD para:
+
+* Entiende con qué frecuencia se necesitan ajustes de capacidad
+* Evalúa si el modo de automatización o de recomendación se ajusta mejor a tus patrones de carga de trabajo
+* Identifica las limitaciones de capacidad recurrentes
+* Planifica las futuras necesidades de capacidad en función de las tendencias de crecimiento
+* Solucionar los intentos fallidos de automatización
+
+
+
+
+== Información relacionada
+
+* link:task-activate-overview-dashboard.html["Activa el panel de información general"]
+* link:task-use-overview-dashboard.html["Usa el panel de control general"]
+

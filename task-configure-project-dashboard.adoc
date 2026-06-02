@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: Configura filtros personalizados para el panel de control de Projects para organizar las métricas según tu estructura empresarial, como proyectos, equipos o aplicaciones. 
+---
+= Configura el panel de control de proyectos en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configura filtros personalizados para el panel de control de Projects y organiza las métricas según la estructura de tu empresa, como proyectos, equipos o centros de costes. Esto te ayuda a hacer un seguimiento preciso de los costes, identificar qué recursos consumen más capacidad y tomar decisiones informadas sobre la asignación de recursos y la planificación del presupuesto. Al alinear los filtros con el funcionamiento de tu organización, puedes acceder rápidamente a los datos relevantes y mejorar la eficiencia en la planificación de capacidad, el seguimiento de costes y la supervisión del rendimiento.
+
+
+
+== Antes de empezar
+
+Para utilizar filtros personalizados de forma eficaz, configura etiquetas de AWS en tu FSx para volúmenes ONTAP según tus requisitos empresariales; por ejemplo, etiquetas que representen proyectos, equipos o unidades de negocio.
+
+
+
+== Configurar filtros personalizados
+
+
+NOTE: Sólo el primer usuario admin que accede al panel de control de Projects puede configurar, añadir o eliminar filtros personalizados. Todos los demás usuarios, incluidos los admins posteriores, tienen acceso de solo lectura a los filtros.
+
+.Acerca de esta tarea
+Puedes configurar hasta cinco filtros personalizados basados en tus etiquetas de AWS. Cada filtro personalizado requiere tres componentes: un nombre de etiqueta de filtro, un nombre de clave de etiqueta de AWS y un tipo de selección (selección única o múltiple).
+
+Si no configuras ningún filtro personalizado, los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo) siguen disponibles para que puedas ver e interactuar con tus paneles.
+
+.Pasos
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Seleccione el menú image:workloads-menu-icon.png["El ícono del menú de hamburguesa se utiliza para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego seleccione *EDA*.
+. Selecciona *Proyectos*.
++
+Si aún no ha configurado su panel de control, se le solicitará automáticamente que lo haga.
+
+. Selecciona *+ Add filters*.
+. Para cada filtro personalizado que quieras crear, añade los detalles:
++
+** Nombre de la etiqueta del filtro (el nombre que aparece en el dashboard)
+** Nombre de la clave de etiqueta de AWS (la clave de etiqueta real utilizada en tus recursos)
+** Tipo de selección (simple o múltiple)
++
+
+NOTE: Los filtros aparecen en el panel de control en el orden en que los configuras. Piensa en organizar primero los filtros que usas con más frecuencia para que te sea más fácil acceder a ellos.
+
+
+
+. Seleccione *Aplicar*.
++
+Puedes eliminar un filtro personalizado seleccionando el icono de la papelera junto a ese filtro antes de aplicar tus cambios.
+
+. Para ver tus cambios después de aplicar cualquier etiqueta o filtro, selecciona el icono de actualizar en el panel.
+. Para editar la configuración del panel más tarde, seleccione *Configurar*.
+
+
+.Resultado
+Cuando se aplican estas etiquetas, Workload Factory comienza a recopilar y mostrar las métricas relevantes de CloudWatch. Tu panel de control se convierte en una herramienta dinámica para organizar, hacer un seguimiento de los costos y filtrar los recursos según las necesidades de tu organización.
+
+
+
+== Información relacionada
+
+* link:learn-project-dashboard.html["Conoce el panel de control Projects"]
+* link:task-use-project-dashboard.html["Usa el panel Proyectos"]
+

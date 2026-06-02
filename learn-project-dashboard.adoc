@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: learn-project-dashboard.html 
+keywords: projects dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation, volume details, capacity utilization, throughput utilization, IOPS utilization, custom filters 
+summary: Descubre cómo el panel de proyectos en Workload Factory for EDA te ayuda a supervisar y analizar el uso del almacenamiento de proyectos en los sistemas de archivos y volúmenes de FSx para ONTAP. 
+---
+= Conoce el panel de control Projects en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+El panel de control de proyectos ayuda a los administradores de TI y a los gestores de proyectos a observar y analizar el uso de los proyectos en todos los sistemas de archivos y volúmenes de FSx para ONTAP. Proporciona visibilidad de los patrones de uso del almacenamiento, ayudándote a identificar los proyectos que consumen muchos recursos, hacer un seguimiento de los costos y optimizar la asignación del almacenamiento antes de que los problemas de capacidad o rendimiento afecten tus simulaciones EDA.
+
+
+
+== Cómo funciona el panel de control de Proyectos
+
+El panel Projects recopila métricas de CloudWatch para todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS. Puedes crear hasta cinco filtros personalizados basados en tus etiquetas de AWS para organizar y filtrar los datos según tus requisitos específicos del negocio, como proyectos, equipos o aplicaciones.
+
+El cuadro de mandos te ayuda:
+
+* Planifica la capacidad y evalúa los costes
+* Toma decisiones condicionadas por los datos sobre la asignación de recursos
+* Identifica los proyectos que requieren muchos recursos
+* Realiza un seguimiento preciso de los costes en todos los proyectos o equipos
+* Optimiza la asignación del almacenamiento antes de que surjan problemas
+
+
+Para la supervisión proactiva de la latencia, consulta link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"].
+
+
+
+=== CloudWatch métricas recopiladas
+
+El panel recoge y muestra las siguientes métricas CloudWatch:
+
+* *Capacidad aprovisionada*: Métrica a nivel de volumen que representa la capacidad de almacenamiento aprovisionada.
+* *Capacidad utilizada*: Métrica a nivel de volumen que representa el almacenamiento utilizado.
+* *Rendimiento medio/máximo*: Calculado como la media o el máximo de la suma de DataReadBytes y DataWriteBytes durante el periodo de tiempo especificado.
+* *Promedio/Máximo de IOPS*: Calculado como el promedio o el máximo de la suma de DataReadOperations, DataWriteOperations y MetadataOperations durante el periodo de tiempo especificado.
+
+
+
+
+== Filtros personalizados
+
+Los filtros personalizados te permiten organizar los datos de tu panel según cómo funciona tu organización. Al alinear los filtros con la estructura de tus proyectos, equipos o centros de costes, puedes acceder rápidamente a los datos específicos que necesitas sin tener que navegar por información irrelevante. Esto hace que la planificación de capacidad, el seguimiento de costes y la supervisión del rendimiento sean más eficientes.
+
+Puedes configurar hasta cinco filtros personalizados basados en tus etiquetas de AWS. Cada filtro personalizado requiere los siguientes componentes:
+
+* *Nombre de la etiqueta del filtro*: El nombre para mostrar que aparece en el dashboard
+* *Nombre de la clave de etiqueta de AWS*: La clave de etiqueta de AWS real utilizada en tus recursos
+* *Tipo de selección*: selección única o selección múltiple
+
+
+Si no configuras ningún filtro personalizado, los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo) siguen disponibles para que puedas ver e interactuar con tus paneles.
+
+
+
+=== Etiquetas AWS
+
+Las etiquetas de AWS son metadatos para tus recursos de AWS. Te ayudan a categorizar tus recursos de AWS de diferentes maneras, por ejemplo, por proyecto, aplicación o unidad de negocio.
+
+Para utilizar filtros personalizados de forma eficaz, configura etiquetas de AWS en tu FSx para volúmenes ONTAP según tus requisitos empresariales; por ejemplo, etiquetas que representen proyectos, equipos o unidades de negocio.
+
+Para más detalles sobre el etiquetado, consulta https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["¿Qué son las etiquetas?"^] y https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Referencia de la API de etiquetado de grupos de recursos de AWS"^].
+
+
+
+== Detalles del volumen
+
+El panel de control ofrece modos de visualización que te ayudan a analizar tus métricas de almacenamiento en diferentes niveles de detalle.
+
+
+
+=== Vista total
+
+La vista Total (predeterminada) muestra las métricas agregadas de todos los volúmenes que coinciden con los filtros que seleccionaste. Esta vista proporciona una visión a grandes rasgos del rendimiento general del almacenamiento, mostrando métricas combinadas de capacidad, IOPS y throughput.
+
+Utiliza esta vista para:
+
+* Comprende las tendencias generales
+* Planifica las necesidades futuras de capacidad
+* Informe sobre el consumo total de recursos en todos los proyectos o equipos
+
+
+
+
+=== Vista de volumen
+
+La vista Volumen muestra el rendimiento de volúmenes individuales a lo largo del tiempo, mostrando los 10 volúmenes principales para cada métrica. Esta vista te ayuda a identificar volúmenes específicos que están impulsando el uso de recursos y a observar su comportamiento durante el periodo de tiempo seleccionado.
+
+Utiliza esta vista para:
+
+* Encontrar cuellos de botella de rendimiento
+* Identifica los volúmenes que pueden necesitar un redimensionamiento
+* Identifica qué proyectos o cargas de trabajo específicos están consumiendo más recursos
+
+
+
+
+==== Métricas de volumen mostradas
+
+Cuando ves volúmenes individuales, el panel muestra los 10 volúmenes principales de tu número total de volúmenes para cada métrica:
+
+* *Volumen de capacidad utilizada*: Muestra los volúmenes con mayor capacidad utilizada actualmente.
+* *IOPS*: Muestra los volúmenes con la media más alta de IOPS durante el periodo de tiempo seleccionado.
+* *Rendimiento*: Muestra los volúmenes con el mayor rendimiento medio durante el periodo de tiempo seleccionado.
+
+
+
+NOTE: El panel solo muestra los 10 volúmenes principales para cada métrica. Si tienes más de 10 volúmenes, es posible que algunos no se muestren en la vista detallada.
+
+Cuando aparecen los mismos volúmenes en varias métricas, el dashboard utiliza un código de colores coherente en la leyenda para facilitar el seguimiento de volúmenes específicos en diferentes métricas.
+
+
+
+==== Datos de volumen interactivo
+
+Los datos hover interactivos proporcionan métricas precisas en momentos específicos, ayudándote a correlacionar los cambios de rendimiento con eventos o periodos de tiempo concretos. Esta información detallada es valiosa para solucionar problemas de rendimiento, validar esfuerzos de optimización o explicar patrones de uso de recursos a las partes interesadas.
+
+Si pasas el ratón por encima de cualquier línea de volumen en los gráficos, puedes ver:
+
+* *Capacidad utilizada del volumen*: Nombre del volumen, capacidad utilizada en ese momento y capacidad asignada
+* *IOPS*: Nombre del volumen, IOPS medias para el intervalo de tiempo e IOPS máximas para el intervalo de tiempo
+* *Rendimiento*: Nombre del volumen, rendimiento medio para el intervalo de tiempo y rendimiento máximo para el intervalo de tiempo
+
+
+
+
+== Información relacionada
+
+* link:task-configure-project-dashboard.html["Configura el panel de control de proyectos"]
+* link:task-use-project-dashboard.html["Usa el panel Proyectos"]
+

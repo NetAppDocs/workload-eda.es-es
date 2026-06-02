@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: task-configure-latency-monitoring.html 
+keywords: latency analysis, configure thresholds, CloudWatch alarms, latency monitoring, FSx for ONTAP, warning events, critical events, latency notifications, email notifications, SNS notifications, latency configuration 
+summary: Configura los umbrales de supervisión de la latencia y los ajustes de notificación para detectar y responder a problemas de rendimiento con FSx para volúmenes ONTAP. 
+---
+= Configura la monitorización de latencia en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configura umbrales de advertencia y críticos para la latencia de lectura y escritura para supervisar el rendimiento de FSx for ONTAP volume. Configura notificaciones opcionales por correo electrónico o Amazon SNS para recibir alertas en tiempo real cuando se detecten eventos de latencia.
+
+
+
+== Antes de empezar
+
+Asegúrate de cumplir los siguientes requisitos antes de configurar la supervisión de latencia.
+
+
+
+=== Credenciales y permisos de AWS
+
+Debes añadir credenciales de AWS a Workload Factory con permisos de lectura/escritura. La función de supervisión de la latencia requiere acceso a las métricas de CloudWatch para todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS.
+
+los permisos de los modos _Basic_ y _Read-only_ no son compatibles con la monitorización de la latencia.
+
+Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
+
+
+
+=== FSx para el sistema de archivos ONTAP
+
+Necesitas al menos un sistema de archivos FSx para ONTAP con volúmenes desplegados en tu entorno de AWS. La función de supervisión de latencia recopila automáticamente métricas para todos los volúmenes asociados con tus credenciales de AWS configuradas.
+
+
+
+=== Enlace a FSx para ONTAP
+
+Para ver la información básica del análisis, debes asociar un enlace con el sistema de archivos FSx para ONTAP. Sin un enlace, se pueden seguir detectando eventos, pero el análisis proporciona información limitada. Si no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar un enlace existente y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
+
+Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Crear un enlace"^].
+
+
+
+=== Modelo ARN de Amazon Bedrock (opcional)
+
+Para usar la función opcional de análisis de agente de IA, tienes que proporcionar un ARN de modelo de Amazon Bedrock en la configuración de Workload Factory.
+
+Para más detalles, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
+
+Si no configuras un modelo ARN de Bedrock, igual puedes usar la monitorización de latencia y el análisis básico automatizado, pero el análisis de AI-agent no está disponible.
+
+
+
+=== Configuración de notificaciones (opcional)
+
+Para recibir notificaciones por correo electrónico o Amazon SNS cuando se detecten eventos de latencia, configura las preferencias de notificación en los ajustes de Workload Factory. Consulta <<Configura las notificaciones de latencia>> para más detalles.
+
+
+
+== Configura los umbrales de latencia
+
+Configura los umbrales de advertencia y críticos para las operaciones de lectura y escritura. El sistema evalúa los umbrales continuamente y genera alertas cuando se cumplen las condiciones.
+
+
+NOTE: Debes establecer los umbrales de eventos críticos más altos que los umbrales de eventos de advertencia para asegurar una escalada de alertas adecuada. Si no, no puedes guardar tu configuración.
+
+
+NOTE: Los umbrales de latencia que configuras en EDA se aplican a toda tu cuenta por defecto. También puedes configurar umbrales de latencia para volúmenes individuales en cargas de trabajo de almacenamiento general, y esos ajustes de volumen tienen prioridad para ese volumen. Actualizar los umbrales a nivel de cuenta en EDA no cambia ningún ajuste a nivel de volumen.
+
+.Pasos
+. Inicie sesión utilizando uno de los link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias de consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona *EDA*.
+. Selecciona la pestaña *Latencia*.
+. En la página de configuración de latencia de EDA, configura los umbrales para:
++
+** Latencia de lectura (advertencia y crítica)
+** Latencia de escritura (advertencia y crítica)
+** Umbrales de IOPS para cada
+** Intervalos de tiempo para la evaluación
+
+
+. Selecciona *Aplicar* para guardar tu configuración.
+
+
+.Resultado
+Workload Factory comienza a recopilar métricas de latencia para todos los volúmenes FSx para ONTAP asociados con tus credenciales de AWS. Las métricas se recopilan al menos cada 20 minutos. Cualquier volumen que supere tus umbrales configurados se muestra en la tabla de eventos de latencia.
+
+
+
+== Configura las notificaciones de latencia
+
+Configura notificaciones por correo electrónico o Amazon SNS para recibir alertas cuando se detecten eventos de latencia. Las notificaciones se envían cada vez que un volumen supera tus umbrales configurados, proporcionando conocimiento en tiempo real de los problemas de rendimiento.
+
+Las notificaciones de latencia se envían por sistema de archivos. Cuando uno o varios volúmenes de un sistema de archivos superan los umbrales de latencia, recibes una única notificación con una lista de todos los volúmenes afectados.
+
+
+NOTE: Si hay más de 10 volúmenes afectados, el correo electrónico muestra los 10 primeros volúmenes e indica cuántos volúmenes adicionales están afectados. Puedes ver todos los volúmenes afectados en la consola Workload Factory.
+
+Canales de notificación:
+
+* *Correo electrónico*: Enviado a las direcciones de correo electrónico configuradas en tus ajustes de notificación de Workload Factory
+* *Amazon SNS*: Publicado en tu tema SNS configurado para la integración con otros sistemas
+
+
+Para activar las notificaciones, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html#wf-console-email-notifications["Configura la configuración de notificaciones"].
+
+
+
+== Gestiona la configuración de latencia
+
+Después de la configuración inicial, puedes editar tus umbrales según lo necesites.
+
+.Pasos
+. En la página *Latencia*, selecciona *Editar*.
+. Modifica cualquiera de los valores de umbral según sea necesario.
++
+
+NOTE: Asegúrate de que los umbrales críticos se mantengan más altos que los umbrales de aviso. El sistema muestra un error si configuras umbrales críticos más bajos que los umbrales de aviso.
+
+. Selecciona *Aplicar* para guardar tus cambios.
+
+
+
+
+== Mejores prácticas
+
+Ten en cuenta estas recomendaciones a la hora de configurar la supervisión de la latencia:
+
+* *Establece umbrales realistas*: configura los umbrales según los requisitos de tu carga de trabajo. Los valores predeterminados proporcionan un punto de partida pero puede que necesites ajustarlos para tu entorno específico.
+* *Comienza con umbrales de advertencia*: Usa eventos de advertencia para establecer expectativas de rendimiento de referencia antes de ajustar los umbrales críticos.
+* *Considera cuidadosamente los intervalos de tiempo*: los intervalos de tiempo más cortos (5-10 minutos) detectan los problemas más rápido pero pueden generar más alertas. Los intervalos de tiempo más largos (15-20 minutos) reducen los falsos positivos pero pueden retrasar la detección.
+* *Coordina los umbrales de IOPS y latencia*: la lógica de doble condición significa que deben superarse ambos. Establecer umbrales de IOPS muy altos podría evitar las alertas incluso cuando la latencia es problemática.
+* *Revisa los sucesos descartados*: revisa periódicamente por qué se descartaron los sucesos para identificar oportunidades de ajuste de umbrales o mejoras en la infraestructura.
+
+
+
+
+== Información relacionada
+
+* link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"]
+* link:task-analyze-latency-issues.html["Analiza los problemas de latencia"]
+* link:task-analyze-latency-trends.html["Analiza las tendencias de latencia"]
+
