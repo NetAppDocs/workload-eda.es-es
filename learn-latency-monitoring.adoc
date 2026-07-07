@@ -35,7 +35,7 @@ Puedes configurar umbrales distintos para:
 * Gravedad crítica
 
 
-Todos los eventos detectados aparecen en la tabla de eventos de latencia. Si se han configurado las notificaciones, también recibirás un correo electrónico o un mensaje de Amazon SNS con detalles sobre los volúmenes afectados.
+Todos los eventos detectados aparecen en la tabla de eventos de latencia. Si se han configurado las notificaciones, también recibes un correo electrónico o un mensaje de Amazon SNS con detalles sobre los volúmenes afectados. Puedes controlar la frecuencia con la que recibes las notificaciones, ya sea diariamente por sistema de archivos o cada 20 minutos.
 
 
 

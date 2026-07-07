@@ -91,7 +91,11 @@ Workload Factory recopila métricas de latencia de todos los volúmenes de FSx f
 
 == Configura las notificaciones de latencia
 
-Configura notificaciones por correo electrónico o a través de Amazon SNS para recibir alertas cuando se detecte una latencia elevada. Recibirás una notificación cada vez que un volumen supere los umbrales que hayas establecido, así sabrás de inmediato si hay algún problema de rendimiento.
+Configura notificaciones por correo electrónico o a través de Amazon SNS para recibir alertas cuando se detecte una latencia elevada. Puedes controlar la frecuencia de las notificaciones mediante dos opciones:
+
+* *Recordármelo cada día (recomendado)*: Recibe una notificación cuando se produzca una nueva brecha en cualquier sistema de archivos. Después de enviar una notificación para un sistema de archivos, espera 24 horas antes de enviar otra notificación para el mismo sistema de archivos.
+* *Notificar cualquier incumplimiento de latencia (cada 20 minutos)*: recibe una notificación cuando se detecte un incumplimiento, como máximo una vez cada 20 minutos.
+
 
 Las notificaciones de latencia se envían por sistema de archivos. Cuando uno o varios volúmenes de un sistema de archivos superan los umbrales de latencia, recibes una única notificación con una lista de todos los volúmenes afectados.
 
