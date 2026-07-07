@@ -11,21 +11,21 @@ summary: Descubre cómo el panel de proyectos en Workload Factory for EDA te ayu
 
 
 [role="lead"]
-El panel de control de proyectos ayuda a los administradores de TI y a los gestores de proyectos a observar y analizar el uso de los proyectos en todos los sistemas de archivos y volúmenes de FSx para ONTAP. Proporciona visibilidad de los patrones de uso del almacenamiento, ayudándote a identificar los proyectos que consumen muchos recursos, hacer un seguimiento de los costos y optimizar la asignación del almacenamiento antes de que los problemas de capacidad o rendimiento afecten tus simulaciones EDA.
+El panel de control de proyectos permite a los administradores de TI y a los gestores de proyectos ver cómo los proyectos utilizan el almacenamiento en los sistemas de archivos y volúmenes de FSx for ONTAP. Muestra los patrones de uso del almacenamiento para que puedas identificar los proyectos que consumen más recursos, realizar un seguimiento de los costes y ajustar el almacenamiento antes de que los problemas de capacidad o rendimiento afecten a las simulaciones EDA.
 
 
 
 == Cómo funciona el panel de control de Proyectos
 
-El panel Projects recopila métricas de CloudWatch para todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS. Puedes crear hasta cinco filtros personalizados basados en tus etiquetas de AWS para organizar y filtrar los datos según tus requisitos específicos del negocio, como proyectos, equipos o aplicaciones.
+El panel de control de proyectos muestra las métricas de CloudWatch para todos los volúmenes de FSx for ONTAP vinculados a tus credenciales de AWS. Puedes crear hasta cinco filtros usando etiquetas de AWS para organizar y ver los datos por proyecto, equipo, aplicación u otras categorías.
 
 El cuadro de mandos te ayuda:
 
-* Planifica la capacidad y evalúa los costes
-* Toma decisiones condicionadas por los datos sobre la asignación de recursos
-* Identifica los proyectos que requieren muchos recursos
-* Realiza un seguimiento preciso de los costes en todos los proyectos o equipos
-* Optimiza la asignación del almacenamiento antes de que surjan problemas
+* Planifica la capacidad y entiende los costes
+* Utiliza los datos para decidir cómo asignar los recursos
+* Detecta proyectos que consumen muchos recursos
+* Haz un seguimiento de los costes por proyecto o equipo
+* Adapta el almacenamiento antes de que surjan problemas
 
 
 Para la supervisión proactiva de la latencia, consulta link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"].
@@ -46,16 +46,16 @@ El panel recoge y muestra las siguientes métricas CloudWatch:
 
 == Filtros personalizados
 
-Los filtros personalizados te permiten organizar los datos de tu panel según cómo funciona tu organización. Al alinear los filtros con la estructura de tus proyectos, equipos o centros de costes, puedes acceder rápidamente a los datos específicos que necesitas sin tener que navegar por información irrelevante. Esto hace que la planificación de capacidad, el seguimiento de costes y la supervisión del rendimiento sean más eficientes.
+Los filtros personalizados te ayudan a organizar los datos del panel de control para adaptarlos al funcionamiento de tu organización. Establece filtros por proyecto, equipo o centro de costes para que puedas encontrar rápidamente los datos que necesitas sin tener que revisar información no relacionada. Esto facilita la planificación de capacidad, el seguimiento de los costes y la supervisión del rendimiento.
 
-Puedes configurar hasta cinco filtros personalizados basados en tus etiquetas de AWS. Cada filtro personalizado requiere los siguientes componentes:
+Puedes configurar hasta cinco filtros personalizados basados en tus etiquetas de AWS.
 
 * *Nombre de la etiqueta del filtro*: El nombre para mostrar que aparece en el dashboard
 * *Nombre de la clave de etiqueta de AWS*: La clave de etiqueta de AWS real utilizada en tus recursos
 * *Tipo de selección*: selección única o selección múltiple
 
 
-Si no configuras ningún filtro personalizado, los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo) siguen disponibles para que puedas ver e interactuar con tus paneles.
+Si no configuras ningún filtro personalizado, los filtros predeterminados—sistema de archivos, tipo de volumen e intervalo de tiempo—seguirán estando disponibles, por lo que podrás ver y usar tus paneles.
 
 
 
@@ -63,7 +63,7 @@ Si no configuras ningún filtro personalizado, los filtros predeterminados (sist
 
 Las etiquetas de AWS son metadatos para tus recursos de AWS. Te ayudan a categorizar tus recursos de AWS de diferentes maneras, por ejemplo, por proyecto, aplicación o unidad de negocio.
 
-Para utilizar filtros personalizados de forma eficaz, configura etiquetas de AWS en tu FSx para volúmenes ONTAP según tus requisitos empresariales; por ejemplo, etiquetas que representen proyectos, equipos o unidades de negocio.
+Para utilizar filtros personalizados, añade etiquetas de AWS a tus volúmenes de FSx for ONTAP que se ajusten a tus necesidades, como etiquetas para proyectos, equipos o unidades de negocio.
 
 Para más detalles sobre el etiquetado, consulta https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["¿Qué son las etiquetas?"^] y https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Referencia de la API de etiquetado de grupos de recursos de AWS"^].
 
@@ -77,7 +77,7 @@ El panel de control ofrece modos de visualización que te ayudan a analizar tus 
 
 === Vista total
 
-La vista Total (predeterminada) muestra las métricas agregadas de todos los volúmenes que coinciden con los filtros que seleccionaste. Esta vista proporciona una visión a grandes rasgos del rendimiento general del almacenamiento, mostrando métricas combinadas de capacidad, IOPS y throughput.
+La vista Total (predeterminada) muestra métricas combinadas de todos los volúmenes que coinciden con los filtros que seleccionaste. Te da una visión general rápida del rendimiento general del almacenamiento, incluyendo la capacidad total, las IOPS y el rendimiento.
 
 Utiliza esta vista para:
 
@@ -90,13 +90,16 @@ Utiliza esta vista para:
 
 === Vista de volumen
 
-La vista Volumen muestra el rendimiento de volúmenes individuales a lo largo del tiempo, mostrando los 10 volúmenes principales para cada métrica. Esta vista te ayuda a identificar volúmenes específicos que están impulsando el uso de recursos y a observar su comportamiento durante el periodo de tiempo seleccionado.
+La vista «Volumen» muestra cómo rinden los volúmenes individuales a lo largo del tiempo. Muestra los 10 volúmenes principales para cada métrica. Esto te ayuda a ver qué volúmenes consumen más recursos y cómo se comportan durante el periodo de tiempo seleccionado.
 
 Utiliza esta vista para:
 
-* Encontrar cuellos de botella de rendimiento
-* Identifica los volúmenes que pueden necesitar un redimensionamiento
-* Identifica qué proyectos o cargas de trabajo específicos están consumiendo más recursos
+* Averigua qué está ralentizando el rendimiento
++
+** Identifica los volúmenes de almacenamiento que podrían necesitar ser redimensionados
+** Comprueba qué proyectos o cargas de trabajo consumen más recursos
+
+
 
 
 
@@ -113,13 +116,13 @@ Cuando ves volúmenes individuales, el panel muestra los 10 volúmenes principal
 
 NOTE: El panel solo muestra los 10 volúmenes principales para cada métrica. Si tienes más de 10 volúmenes, es posible que algunos no se muestren en la vista detallada.
 
-Cuando aparecen los mismos volúmenes en varias métricas, el dashboard utiliza un código de colores coherente en la leyenda para facilitar el seguimiento de volúmenes específicos en diferentes métricas.
+Cuando los mismos volúmenes aparecen en varias métricas, el panel de control utiliza los mismos colores en la leyenda para que puedas seguir fácilmente esos volúmenes en las distintas métricas.
 
 
 
 ==== Datos de volumen interactivo
 
-Los datos hover interactivos proporcionan métricas precisas en momentos específicos, ayudándote a correlacionar los cambios de rendimiento con eventos o periodos de tiempo concretos. Esta información detallada es valiosa para solucionar problemas de rendimiento, validar esfuerzos de optimización o explicar patrones de uso de recursos a las partes interesadas.
+Pasa el cursor por encima del gráfico para ver los valores exactos en momentos concretos. Esto te ayuda a relacionar los cambios en el rendimiento con eventos o periodos de tiempo. Los datos detallados pueden ayudarte a detectar problemas de rendimiento, confirmar que las optimizaciones han funcionado y explicar el uso de los recursos a otras personas.
 
 Si pasas el ratón por encima de cualquier línea de volumen en los gráficos, puedes ver:
 

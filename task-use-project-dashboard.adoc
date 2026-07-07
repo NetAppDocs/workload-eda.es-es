@@ -11,7 +11,7 @@ summary: Usa el panel de control de proyectos para supervisar el uso del almacen
 
 
 [role="lead"]
-Usa el panel de control de proyectos para monitorear el uso del almacenamiento en tus sistemas de archivos y volúmenes FSx para ONTAP. Filtra los datos por proyectos, equipos o aplicaciones y analiza tanto el rendimiento agregado como el de volúmenes individuales para tomar decisiones informadas sobre la planificación de capacidad y la optimización de recursos.
+Utiliza el panel de control de proyectos para realizar un seguimiento del uso del almacenamiento en tus sistemas de archivos y volúmenes de FSx for ONTAP. Filtra los datos por proyecto, equipo o aplicación. Consulta el rendimiento tanto global como por volumen para planificar mejor la capacidad y utilizar los recursos de almacenamiento de forma más eficiente.
 
 
 
@@ -23,7 +23,7 @@ Deberías tener link:task-configure-project-dashboard.html["filtros personalizad
 
 == Filtrar el panel de control
 
-El filtrado te ayuda a centrarte en subconjuntos específicos de tus recursos de almacenamiento, lo que hace más fácil analizar tendencias, identificar problemas y generar informes para las partes interesadas. Al combinar varios filtros, puedes responder a preguntas empresariales específicas como "¿Cuánto almacenamiento está usando mi equipo de proyecto ASIC?" o "¿Qué volúmenes en la región US-West tienen las IOPS más altas?"
+El filtrado te permite centrarte en grupos específicos de recursos de almacenamiento. Esto facilita detectar tendencias, encontrar problemas y crear informes para los stakeholders. Al usar varios filtros juntos, puedes responder a preguntas concretas como: “¿Cuánto almacenamiento está usando el equipo del proyecto ASIC?” o “¿Qué volúmenes en la región US-West tienen el mayor número de IOPS?”
 
 .Acerca de esta tarea
 Puedes filtrar la información mostrada en el panel de control usando una combinación de filtros predeterminados y cualquier filtro personalizado que hayas configurado.
@@ -46,16 +46,16 @@ Puedes filtrar la información mostrada en el panel de control usando una combin
 
 == Ver detalles del volumen
 
-Comprender el rendimiento de los volúmenes tanto agregados como individuales te ayuda a tomar decisiones informadas sobre la planificación de capacidad y la optimización del rendimiento. La vista Total muestra las tendencias generales, mientras que la vista Volumen te ayuda a identificar volúmenes específicos que pueden necesitar atención, optimización o recursos adicionales.
+Analizar tanto el rendimiento del volumen total como el de los volúmenes individuales te ayuda a planificar la capacidad y mejorar el rendimiento. La vista Total muestra las tendencias generales. La vista Volumen te ayuda a encontrar volúmenes específicos que puedan necesitar atención, ajustes o más recursos.
 
 
 
 === Ver métricas de volumen agregadas
 
-La vista Total muestra las métricas agregadas de todos los volúmenes que coinciden con los filtros que seleccionaste.
+La vista Total muestra las métricas combinadas de todos los volúmenes que se ajustan a tus filtros.
 
 .Pasos
-. En la pestaña *Proyecto*, asegúrate de que la pestaña *Total* está seleccionada (esta es la vista por defecto).
+. Abre la pestaña **Proyecto** y asegúrate de que la pestaña **Total** esté seleccionada. Esta es la vista predeterminada.
 . Revisa las métricas mostradas:
 +
 ** Capacidad combinada de todos los volúmenes
@@ -63,17 +63,17 @@ La vista Total muestra las métricas agregadas de todos los volúmenes que coinc
 ** Rendimiento agregado
 
 
-. Usa esta vista para entender las tendencias generales y planificar las necesidades de capacidad futuras.
+. Utiliza esta vista para ver las tendencias y planificar cuánta capacidad necesitarás en el futuro.
 
 
 
 
 === Ver el rendimiento de cada volumen
 
-La vista Volumen muestra el rendimiento de volúmenes individuales a lo largo del tiempo, mostrando los 10 volúmenes principales para cada métrica.
+La vista «Volumen» muestra cómo funciona cada volumen a lo largo del tiempo. Destaca los 10 volúmenes principales para cada métrica.
 
 .Pasos
-. En la pestaña *Proyecto*, selecciona la pestaña *Volumen*.
+. En la pestaña **Proyecto**, selecciona la pestaña **Volumen**.
 . Revisa las métricas de volumen:
 +
 ** *Volumen de capacidad utilizada*: Muestra los volúmenes con mayor capacidad utilizada actualmente
@@ -81,7 +81,7 @@ La vista Volumen muestra el rendimiento de volúmenes individuales a lo largo de
 ** *Rendimiento*: muestra los volúmenes con el mayor rendimiento medio durante el periodo de tiempo seleccionado
 +
 
-NOTE: El panel solo muestra los 10 volúmenes principales para cada métrica. Si tienes más de 10 volúmenes, es posible que algunos no se muestren en la vista detallada.
+NOTE: Si tienes más de 10 volúmenes, el resto no aparecerá en la vista detallada.
 
 
 
@@ -92,16 +92,16 @@ NOTE: El panel solo muestra los 10 volúmenes principales para cada métrica. Si
 ** *Rendimiento*: Nombre del volumen, rendimiento medio para el intervalo de tiempo y rendimiento máximo para el intervalo de tiempo
 
 
-. Usa la leyenda para identificar volúmenes específicos. Cuando los mismos volúmenes aparecen en varias métricas, el dashboard utiliza un código de colores coherente para que sea más fácil hacer seguimiento de los volúmenes.
+. Utiliza la leyenda para identificar cada volumen. Los mismos volúmenes usan los mismos colores en todas las métricas para que puedas hacerles seguimiento fácilmente.
 
 
 .Resultado
-Estos datos interactivos te ayudan a:
+Utiliza estos datos para:
 
-* Analiza los patrones de rendimiento del volumen
-* Identificar posibles cuellos de botella
-* Encuentra volúmenes que puedan necesitar un redimensionamiento
-* Identifica qué proyectos o cargas de trabajo específicos están consumiendo más recursos
+* Analiza los patrones de uso
+* Detecta posibles cuellos de botella
+* Busca los volúmenes que quizá necesiten ser redimensionados
+* Comprueba qué proyectos o cargas de trabajo consumen más recursos
 
 
 
@@ -110,12 +110,12 @@ Estos datos interactivos te ayudan a:
 
 Ten en cuenta estas recomendaciones cuando uses el panel de control de Projects:
 
-* *Supervisión periódica*: Comprueba el panel de control con regularidad para identificar tendencias antes de que se conviertan en problemas.
-* *Combina filtros estratégicamente*: Usa varios filtros juntos para responder preguntas empresariales específicas sobre el uso de recursos.
-* *Comparar vistas*: Usa las vistas Total y Volumen juntas—Total para la planificación y Volumen para la solución de problemas.
-* *Haz seguimiento a lo largo del tiempo*: Usa distintos intervalos de tiempo para entender si los patrones de rendimiento son variaciones normales o indican una tendencia.
-* *Documenta las líneas de base*: Anota los niveles normales de rendimiento de tus volúmenes para que puedas identificar rápidamente las anomalías.
-* *Actúa sobre la información*: Usa los datos de rendimiento del volumen para tomar decisiones proactivas sobre la asignación de recursos, el dimensionamiento correcto o la optimización antes de que los problemas afecten las cargas de trabajo.
+* Consulta el panel de control con regularidad para detectar patrones antes de que se conviertan en problemas.
+* Utiliza varios filtros a la vez para responder a preguntas concretas sobre cómo se están utilizando los recursos.
+* Analiza ambas vistas: utiliza Total para planificar la capacidad y Volumen para encontrar y solucionar problemas.
+* Modifica el intervalo de tiempo para comprobar si los cambios son normales o forman parte de una tendencia al alza.
+* Registra los niveles normales de rendimiento para que luego sea más fácil detectar comportamientos inusuales.
+* Utiliza la información que obtengas de los datos para ajustar los recursos, modificar el tamaño de los volúmenes o mejorar el rendimiento antes de que las cargas de trabajo se vean afectadas.
 
 
 

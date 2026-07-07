@@ -1,10 +1,10 @@
-= Filtrado mejorado del panel de control con etiquetas personalizables
+= Filtrado mejorado del panel de control con etiquetas personalizables en cargas de trabajo de EDA
 :allow-uri-read: 
 
 
 
 
-=== Filtrado mejorado del panel de control con etiquetas personalizables
+=== Filtrado mejorado del panel de control con etiquetas personalizables en cargas de trabajo de EDA
 
 Ahora puedes configurar hasta cinco filtros personalizados en el panel de EDA según tus etiquetas de AWS. Cada filtro personalizado incluye un nombre de etiqueta, una clave de etiqueta de AWS y un tipo de selección (selección única o múltiple).
 

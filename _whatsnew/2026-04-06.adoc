@@ -23,15 +23,15 @@ https://docs.netapp.com/us-en/workload-eda/task-use-overview-dashboard.html#capa
 
 === Análisis automatizado de latencia de IA
 
-El análisis de latencia ahora incluye el análisis de agentes de IA.
+El análisis de latencia ahora incluye análisis con IA.
 
-Para escenarios complejos que impliquen latencia de datos o de clúster, puedes invocar el análisis de agentes de IA para recibir:
+En casos complejos relacionados con la latencia de los datos o de los clústeres, puedes recurrir al análisis de IA para obtener:
 
 * Identificación detallada de la causa raíz
 * Lista de clientes EC2 afectados
 * Medidas correctoras específicas
 
 
-El análisis del agente de IA requiere la configuración de ARN del modelo de Amazon Bedrock y está disponible bajo demanda para escenarios en los que el análisis básico recomienda una investigación más profunda. El agente de IA puede identificar problemas como volúmenes bully, configuraciones de puntos de montaje no óptimas, necesidades de reequilibrio de FlexGroup y requisitos de escalado horizontal.
+El análisis de IA requiere la configuración del ARN del modelo de Amazon Bedrock y está disponible bajo demanda para escenarios en los que el análisis básico recomienda una investigación más profunda. El agente de IA puede identificar problemas como volúmenes bully, configuraciones de puntos de montaje no óptimas, necesidades de reequilibrio de FlexGroup y requisitos de escalado horizontal.
 
-https://docs.netapp.com/us-en/workload-eda/task-monitor-latency.html#run-ai-agent-analysis["Más información sobre el análisis de agentes de IA"^].
+https://docs.netapp.com/us-en/workload-eda/task-monitor-latency.html#run-ai-agent-analysis["Conoce más sobre el análisis con IA"^].
