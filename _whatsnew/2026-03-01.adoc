@@ -4,6 +4,7 @@
 
 
 
+[[overview-dashboard-for-eda-storage-management]]
 === Panel de control general para la gestión del almacenamiento EDA
 
 Como administrador de TI que gestiona docenas de sistemas de archivos FSx para ONTAP, puedes usar el panel de información general para responder a preguntas operativas comunes sobre el estado del clúster, la utilización y la colocación de volúmenes.
@@ -20,6 +21,7 @@ https://docs.netapp.com/us-en/workload-eda/task-use-overview-dashboard.html["Má
 
 
 
+[[automated-latency-analysis]]
 === Análisis automatizado de latencia
 
 El análisis de latencia ahora incluye un análisis básico automatizado. Cuando se detectan eventos de latencia, el sistema analiza automáticamente las métricas de delay center de ONTAP QoS para identificar el origen de los problemas de latencia.
@@ -28,6 +30,7 @@ El análisis básico evalúa las políticas de QoS, el rendimiento de los discos
 
 
 
+[[new-ask-me-bookmark-available-in-workload-factory]]
 === Nuevo marcador Ask Me disponible en Workload Factory
 
 Hemos añadido un nuevo marcador Ask Me en cada pantalla de la consola Workload Factory. Esta mejora hace que sea más fácil y rápido para ti acceder a Ask Me siempre que necesites ayuda. Ask Me es nuestro asistente de IA, que te permite hacer preguntas sobre tus propios entornos de carga de trabajo, obtener información personalizada directamente de tu entorno y consultar conversaciones anteriores.

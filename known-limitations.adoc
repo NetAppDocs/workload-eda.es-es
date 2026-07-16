@@ -15,6 +15,7 @@ Las limitaciones conocidas identifican plataformas, dispositivos o funciones que
 
 
 
+[[operator-permissions-required]]
 == Se requieren permisos de operador
 
 NetApp Workload Factory para EDA requiere permisos de operador para funcionar correctamente.

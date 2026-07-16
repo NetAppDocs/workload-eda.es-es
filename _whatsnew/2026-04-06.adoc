@@ -4,6 +4,7 @@
 
 
 
+[[eda-capacity-recommendations]]
 === Recomendaciones de capacidad de EDA
 
 Workload Factory ahora analiza automáticamente la capacidad SSD de cada clúster FSx para ONTAP en tu inventario EDA y genera recomendaciones de capacidad cuando se necesitan ajustes. El algoritmo se ejecuta una vez cada 24 horas para cada clúster.
@@ -21,6 +22,7 @@ https://docs.netapp.com/us-en/workload-eda/task-use-overview-dashboard.html#capa
 
 
 
+[[automated-ai-latency-analysis]]
 === Análisis automatizado de latencia de IA
 
 El análisis de latencia ahora incluye análisis con IA.

@@ -15,6 +15,7 @@ Trabaja con diferentes versiones de tus proyectos EDA creando instantáneas y cl
 
 
 
+[[create-a-snapshot-of-a-project]]
 == Crear una instantánea de un proyecto
 
 Puede crear una instantánea de un proyecto siguiendo estos pasos.
@@ -31,6 +32,7 @@ Puede crear una instantánea de un proyecto siguiendo estos pasos.
 
 
 
+[[create-a-clone-of-a-project]]
 == Crear un clon de un proyecto
 
 Clone un proyecto EDA desde una instantánea siguiendo estos pasos. Cuando se crea un clon, se crea un nuevo volumen editable para contener el clon.

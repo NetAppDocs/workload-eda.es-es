@@ -15,6 +15,7 @@ El panel de control Overview ofrece a los administradores de TI un único lugar 
 
 
 
+[[overview]]
 == Descripción general
 
 El panel Overview recopila métricas de CloudWatch para todos los sistemas de archivos FSx para ONTAP asociados con tus credenciales de AWS configuradas.
@@ -36,10 +37,12 @@ Te ayuda a:
 
 
 
+[[dashboard-components]]
 == Componentes del panel de control
 
 
 
+[[cluster-health-status]]
 === Estado de salud del clúster
 
 El estado del clúster ofrece una visión general rápida de la actividad en los sistemas de archivos que hayas seleccionado. Esto solo aparece si hay al menos un enlace FSx for ONTAP conectado a tus sistemas de archivos.
@@ -53,6 +56,7 @@ El estado de salud incluye las siguientes áreas:
 
 
 
+[[clusters-table]]
 === Tabla de clústeres
 
 La tabla de clústeres proporciona una vista detallada de cada sistema de archivos FSx para ONTAP, filtrada por tu región activa y las selecciones de cuenta de AWS. Los datos se recopilan de las métricas de CloudWatch.
@@ -68,10 +72,12 @@ Utiliza la tabla para:
 
 
 
+[[ssd-capacity-management]]
 == Gestión de la capacidad de las SSD
 
 
 
+[[management-modes]]
 === Modos de gestión
 
 *Automatiza*:: Workload Factory añade automáticamente más espacio en SSD cuando el uso alcanza los límites establecidos. Se encarga de ello de forma autónoma, por lo que no es necesario realizar ninguna acción manual. Esto funciona bien en entornos en los que se prefiere la gestión automática.
@@ -81,6 +87,7 @@ Utiliza la tabla para:
 
 
 
+[[capacity-recommendations]]
 === Recomendaciones de capacidad
 
 Cuando Workload Factory está en modo Automate o Recommend, comprueba automáticamente cada FSx for ONTAP file system y ejecuta un algoritmo de recomendación de capacidad. El sistema analiza cada 24 horas si se debe ajustar la capacidad de los SSD.
@@ -96,6 +103,7 @@ La recomendación explica el cambio sugerido y el razonamiento que lo sustenta, 
 
 
 
+[[ssd-management-parameters]]
 === Parámetros de gestión de SSD
 
 Los parámetros controlan cómo el sistema de gestión de la capacidad analiza y actúa sobre tu uso de SSD:
@@ -109,6 +117,7 @@ Puedes configurar estos parámetros para cada sistema de archivos de forma indiv
 
 
 
+[[understanding-capacity-decision-points]]
 === Comprender los puntos de decisión sobre capacidad
 
 El gráfico de uso del SSD indica cuándo el sistema realizó recomendaciones sobre la capacidad o llevó a cabo acciones automáticas. Estos marcadores muestran cómo se comportó el algoritmo de gestión de la capacidad a lo largo del tiempo.
@@ -128,6 +137,7 @@ Utiliza el gráfico del historial de uso del SSD para:
 
 
 
+[[related-information]]
 == Información relacionada
 
 * link:task-activate-overview-dashboard.html["Activa el panel de información general"]

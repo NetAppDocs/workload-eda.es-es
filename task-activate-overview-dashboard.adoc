@@ -15,12 +15,14 @@ Activa el panel Overview para empezar a recopilar métricas de CloudWatch para t
 
 
 
+[[before-you-begin]]
 == Antes de empezar
 
 Asegúrate de cumplir los siguientes requisitos antes de activar el panel de control.
 
 
 
+[[aws-credentials-with-view-permissions]]
 === Credenciales de AWS con permisos de visualización
 
 Debes configurar las credenciales de AWS en Workload Factory con al menos permisos de lectura (vista) para General Storage. Las credenciales _Basic_ no son compatibles.
@@ -31,6 +33,7 @@ Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp
 
 
 
+[[activate-the-dashboard]]
 == Activa el panel de control
 
 Después de que Workload Factory verifique las credenciales con permisos de visualización, activa el panel para empezar a recopilar métricas de CloudWatch para tus sistemas de archivos FSx for ONTAP.
@@ -52,6 +55,7 @@ Workload Factory comienza a recopilar métricas de CloudWatch para todos los sis
 
 
 
+[[next-steps]]
 == Próximos pasos
 
 Después de activar el dashboard, puedes:
@@ -63,6 +67,7 @@ Después de activar el dashboard, puedes:
 
 
 
+[[related-information]]
 == Información relacionada
 
 * link:learn-overview-dashboard.html["Conoce el panel de control general"]

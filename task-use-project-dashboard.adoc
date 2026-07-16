@@ -15,12 +15,14 @@ Utiliza el panel de control de proyectos para realizar un seguimiento del uso de
 
 
 
+[[before-you-begin]]
 == Antes de empezar
 
 Deberías tener link:task-configure-project-dashboard.html["filtros personalizados configurados"] para el panel de control de Projects. Si no has configurado filtros personalizados, aún puedes usar los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo).
 
 
 
+[[filter-the-dashboard]]
 == Filtrar el panel de control
 
 El filtrado te permite centrarte en grupos específicos de recursos de almacenamiento. Esto facilita detectar tendencias, encontrar problemas y crear informes para los stakeholders. Al usar varios filtros juntos, puedes responder a preguntas concretas como: “¿Cuánto almacenamiento está usando el equipo del proyecto ASIC?” o “¿Qué volúmenes en la región US-West tienen el mayor número de IOPS?”
@@ -44,12 +46,14 @@ Puedes filtrar la información mostrada en el panel de control usando una combin
 
 
 
+[[view-volume-details]]
 == Ver detalles del volumen
 
 Analizar tanto el rendimiento del volumen total como el de los volúmenes individuales te ayuda a planificar la capacidad y mejorar el rendimiento. La vista Total muestra las tendencias generales. La vista Volumen te ayuda a encontrar volúmenes específicos que puedan necesitar atención, ajustes o más recursos.
 
 
 
+[[view-aggregated-volume-metrics]]
 === Ver métricas de volumen agregadas
 
 La vista Total muestra las métricas combinadas de todos los volúmenes que se ajustan a tus filtros.
@@ -68,6 +72,7 @@ La vista Total muestra las métricas combinadas de todos los volúmenes que se a
 
 
 
+[[view-individual-volume-performance]]
 === Ver el rendimiento de cada volumen
 
 La vista «Volumen» muestra cómo funciona cada volumen a lo largo del tiempo. Destaca los 10 volúmenes principales para cada métrica.
@@ -106,6 +111,7 @@ Utiliza estos datos para:
 
 
 
+[[best-practices]]
 == Mejores prácticas
 
 Ten en cuenta estas recomendaciones cuando uses el panel de control de Projects:
@@ -120,6 +126,7 @@ Ten en cuenta estas recomendaciones cuando uses el panel de control de Projects:
 
 
 
+[[related-information]]
 == Información relacionada
 
 * link:learn-project-dashboard.html["Conoce el panel de control Projects"]

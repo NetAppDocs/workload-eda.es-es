@@ -15,6 +15,7 @@ El panel de control de proyectos permite a los administradores de TI y a los ges
 
 
 
+[[how-the-projects-dashboard-works]]
 == Cómo funciona el panel de control de Proyectos
 
 El panel de control de proyectos muestra las métricas de CloudWatch para todos los volúmenes de FSx for ONTAP vinculados a tus credenciales de AWS. Puedes crear hasta cinco filtros usando etiquetas de AWS para organizar y ver los datos por proyecto, equipo, aplicación u otras categorías.
@@ -32,6 +33,7 @@ Para la supervisión proactiva de la latencia, consulta link:learn-latency-monit
 
 
 
+[[cloudwatch-metrics-collected]]
 === CloudWatch métricas recopiladas
 
 El panel recoge y muestra las siguientes métricas CloudWatch:
@@ -44,6 +46,7 @@ El panel recoge y muestra las siguientes métricas CloudWatch:
 
 
 
+[[custom-filters]]
 == Filtros personalizados
 
 Los filtros personalizados te ayudan a organizar los datos del panel de control para adaptarlos al funcionamiento de tu organización. Establece filtros por proyecto, equipo o centro de costes para que puedas encontrar rápidamente los datos que necesitas sin tener que revisar información no relacionada. Esto facilita la planificación de capacidad, el seguimiento de los costes y la supervisión del rendimiento.
@@ -59,6 +62,7 @@ Si no configuras ningún filtro personalizado, los filtros predeterminados—sis
 
 
 
+[[aws-tags]]
 === Etiquetas AWS
 
 Las etiquetas de AWS son metadatos para tus recursos de AWS. Te ayudan a categorizar tus recursos de AWS de diferentes maneras, por ejemplo, por proyecto, aplicación o unidad de negocio.
@@ -69,12 +73,14 @@ Para más detalles sobre el etiquetado, consulta https://docs.aws.amazon.com/whi
 
 
 
+[[volume-details]]
 == Detalles del volumen
 
 El panel de control ofrece modos de visualización que te ayudan a analizar tus métricas de almacenamiento en diferentes niveles de detalle.
 
 
 
+[[total-view]]
 === Vista total
 
 La vista Total (predeterminada) muestra métricas combinadas de todos los volúmenes que coinciden con los filtros que seleccionaste. Te da una visión general rápida del rendimiento general del almacenamiento, incluyendo la capacidad total, las IOPS y el rendimiento.
@@ -88,6 +94,7 @@ Utiliza esta vista para:
 
 
 
+[[volume-view]]
 === Vista de volumen
 
 La vista «Volumen» muestra cómo rinden los volúmenes individuales a lo largo del tiempo. Muestra los 10 volúmenes principales para cada métrica. Esto te ayuda a ver qué volúmenes consumen más recursos y cómo se comportan durante el periodo de tiempo seleccionado.
@@ -133,6 +140,7 @@ Si pasas el ratón por encima de cualquier línea de volumen en los gráficos, p
 
 
 
+[[related-information]]
 == Información relacionada
 
 * link:task-configure-project-dashboard.html["Configura el panel de control de proyectos"]

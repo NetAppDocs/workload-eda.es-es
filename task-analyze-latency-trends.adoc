@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: task-analyze-latency-trends.html 
-keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency 
-summary: Usa el gráfico de latencia interactivo para analizar las tendencias de latencia de volumen a lo largo del tiempo, identificar patrones y seguir la efectividad de la remediación. 
+keywords: latency graph, latency visualization, latency trends, breach patterns, latency spikes, latency patterns, time range analysis, breach frequency, iops, throughput 
+summary: Utiliza los gráficos interactivos para analizar las tendencias de latencia de volumen a lo largo del tiempo, identificar patrones y hacer un seguimiento de la eficacia de las medidas correctivas. 
 ---
 = Analiza las tendencias de latencia para EDA en Workload Factory
 :allow-uri-read: 
@@ -11,51 +11,55 @@ summary: Usa el gráfico de latencia interactivo para analizar las tendencias de
 
 
 [role="lead"]
-Después de que se detecta un evento de latencia, usa el gráfico interactivo para ver cómo cambian la latencia y el volumen a lo largo del tiempo. Esto te ayuda a identificar patrones, ver si el problema ocurre a menudo o solo una vez, y decidir cómo solucionarlo según los datos.
+Después de que se detecta una infracción de latencia, usa los gráficos para ver cómo cambian la latencia de volumen, las IOPS y el rendimiento a lo largo del tiempo. Esto te ayuda a identificar patrones y validar si la remediación mejoró el rendimiento.
 
 
 
+[[before-you-begin]]
 == Antes de empezar
 
-Debes tener link:task-configure-latency-monitoring.html["monitorización de latencia configurada"] y al menos un evento de latencia detectado. Puedes consultar los gráficos de rendimiento si tienes credenciales de AWS. Para ver el desglose por componentes, necesitas un enlace.
+Debes disponer de link:task-configure-latency-monitoring.html["monitorización de latencia configurada"] y al menos una infracción detectada. Para ver los gráficos, asegúrate de que las credenciales de AWS estén disponibles. Para ver el desglose de los componentes de latencia de QoS, asegúrate de que el sistema de archivos esté vinculado.
 
 
 
+[[analyze-latency-trends]]
 == Analiza las tendencias de latencia
 
-La pestaña *A lo largo del tiempo* ofrece gráficos de rendimiento que te ayudan a analizar el comportamiento del volumen: latencia, IOPS y rendimiento.
+La página *Análisis detallado de la latencia* ofrece gráficos de rendimiento que te ayudan a analizar el comportamiento del volumen a lo largo del tiempo: latencia, IOPS y rendimiento.
 
 .Acerca de esta tarea
-Los gráficos muestran métricas de CloudWatch para el volumen afectado. Todos los gráficos usan la misma línea temporal. Muestran automáticamente métricas de lectura o escritura según la alarma que haya activado el evento.
+Los gráficos muestran las métricas de CloudWatch para el volumen afectado. Todos los gráficos usan la misma línea temporal. Muestran automáticamente las métricas según la alarma que haya activado el evento.
 
 Puedes modificar el intervalo de tiempo para ver el rendimiento en diferentes periodos. También puedes alternar entre Todas, Lectura, Escritura o Metadatos.
 
 La visualización incluye:
 
-* *Gráfico de latencia*: Muestra los valores reales de latencia (en milisegundos) recopilados de CloudWatch a lo largo del tiempo con líneas de umbral e indicadores de incumplimiento.
-* *Gráfico de IOPS*: Muestra la latencia real en milisegundos de CloudWatch a lo largo del tiempo. Las líneas de umbral marcan los límites establecidos y los marcadores muestran cuándo se superaron esos límites. También muestra las operaciones por segundo con una línea de umbral y marcadores para las infracciones anteriores. La actividad de lectura muestra DataReadOperations y la de escritura muestra DataWriteOperations.
-* *Gráfico de rendimiento*: Muestra las tasas de transferencia de datos. Para los eventos de lectura, muestra DataReadBytes. Para los eventos de escritura, muestra DataWriteBytes. Si se selecciona **Metadata** en el filtro, el gráfico de rendimiento no muestra ningún dato.
-* *Líneas de umbral*: Las líneas horizontales punteadas muestran los límites de advertencia y críticos que has establecido en los gráficos de latencia e IOPS.
-* *Indicadores de incumplimiento*: Marcadores visuales que muestran cuándo se superaron los umbrales y cuántas veces durante el periodo.
-* *Detalles de las infracciones*: Para cada infracción, consulta el retraso mediano, el porcentaje por encima del límite, los datos del centro de retraso de QoS y la hora en que se detectó.
+* *Gráfico de latencia*: Muestra la latencia de volumen (ms) a lo largo del tiempo con líneas de umbral de advertencia y críticas y marcadores de superación.
+* *Gráfico de IOPS*: Muestra las IOPS a lo largo del tiempo, con umbrales e indicadores de incumplimiento (si se han configurado).
+* *Gráfico de rendimiento*: Muestra el rendimiento a lo largo del tiempo para el intervalo de tiempo seleccionado. Si se selecciona **Metadata** en el filtro, el gráfico de rendimiento no muestra ningún dato.
+* *Líneas de umbral*: Las líneas horizontales punteadas muestran los umbrales de advertencia y críticos.
+* *Marcadores de incidencias*: Los marcadores visuales indican las incidencias detectadas. Pasa el cursor por encima de un marcador para ver la gravedad, la hora de detección, CloudWatch la latencia mediana (ms) y el desglose de los componentes de latencia de QoS.
 
 
 .Pasos
-. En la pestaña *Latencia*, selecciona un evento de latencia de la tabla de eventos.
+. En la pestaña *Latencia*, selecciona el evento en la columna gravedad.
 +
 Se abre el panel de análisis de latencia.
 
-. Selecciona la pestaña *A lo largo del tiempo*.
-. Consulta la vista predeterminada, que muestra gráficos de rendimiento para la latencia, las IOPS y el rendimiento durante las últimas 3 horas.
-. Si lo deseas, utiliza el filtro *Tipo* para alternar entre Todas, Lectura, Escritura o Metadatos. El valor predeterminado coincide con el tipo de evento (Lectura para eventos de lectura, Escritura para eventos de escritura).
+. Consulta el gráfico de latencia y el resumen de incumplimientos correspondientes al *período* y al *tipo* seleccionados.
+. Selecciona *Ver análisis completo* para abrir *Análisis detallado de la latencia*.
+. En los *gráficos de latencia*, utiliza el *intervalo de tiempo* (por ejemplo, 72 horas) y el *tipo* (lectura/escritura/metadatos) para ajustar los gráficos.
+. Revisa las tablas para:
++
+** *Latencia* (ms) con líneas de umbral de advertencia/crítico
+** *IOPS* con líneas de umbral (si se configuraron)
+** *Rendimiento* durante el mismo intervalo de tiempo
+
+
+. Utiliza los indicadores de picos y el resumen de infracciones (por ejemplo, "1 infracción crítica detectada en este intervalo de tiempo") para correlacionar los aumentos de latencia con los cambios en IOPS y el rendimiento.
 . Cambia el intervalo de tiempo para analizar otros periodos y buscar patrones.
 . Comprueba las líneas de tendencia de la latencia, las IOPS y el rendimiento. Los gráficos de IOPS y latencia incluyen líneas de umbral a modo de comparación.
-. Busca los indicadores de incumplimiento en los gráficos. Estos marcadores aparecen cuando se superan los umbrales varias veces durante el periodo de tiempo seleccionado.
-. Para ver más detalles, pasa el cursor por encima de un indicador de breach o selecciónalo.
-. Revisa el resumen del recuento de infracciones:
-+
-El gráfico muestra el número total de incidencias de nivel de advertencia o crítico durante el periodo seleccionado.
-
+. Pasa el cursor por encima de un marcador de breach para ver los detalles (gravedad, hora de detección, latencia mediana de CW y componentes de latencia de QoS).
 . Utiliza las percepciones gráficas para:
 +
 ** Comprueba si los problemas de latencia se producen una sola vez o de forma repetida
@@ -70,10 +74,11 @@ El gráfico muestra el número total de incidencias de nivel de advertencia o cr
 Puedes ver cómo varía la latencia del volumen a lo largo del tiempo. Esto te ayuda a decidir si debes tomar medidas ahora, cambiar los límites de alerta o comprobar si hay problemas en el sistema.
 
 
-NOTE: El gráfico de latencia utiliza métricas de CloudWatch. Es posible que estas difieran ligeramente de los datos del centro de retardo de QoS de ONTAP, ya que se recopilan de forma diferente. Se muestran ambas para ofrecer una visión más completa.
+NOTE: Los gráficos utilizan métricas de CloudWatch. Estas pueden diferir ligeramente de los componentes de latencia informados por QoS, ya que se recopilan de diferentes maneras.
 
 
 
+[[graph-interpretation]]
 == Interpretación de gráficos
 
 Usa estos consejos cuando revises los cambios en el tiempo de respuesta:

@@ -15,12 +15,14 @@ Establece límites de advertencia y críticos para la latencia de lectura y escr
 
 
 
+[[before-you-begin]]
 == Antes de empezar
 
 Asegúrate de cumplir los siguientes requisitos antes de configurar la supervisión de latencia.
 
 
 
+[[aws-credentials-and-permissions]]
 === Credenciales y permisos de AWS
 
 Debes añadir credenciales de AWS a Workload Factory con permisos de lectura/escritura. La función de supervisión de la latencia requiere acceso a las métricas de CloudWatch para todos los volúmenes de FSx para ONTAP asociados con tus credenciales de AWS.
@@ -31,12 +33,14 @@ Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp
 
 
 
+[[fsx-for-ontap-file-system]]
 === FSx para el sistema de archivos ONTAP
 
 Necesitas al menos un sistema de archivos FSx para ONTAP con volúmenes desplegados en tu entorno de AWS.
 
 
 
+[[link-to-fsx-for-ontap]]
 === Enlace a FSx para ONTAP
 
 Para ver el desglose de componentes en el análisis básico, debes asociar un enlace al sistema de archivos FSx for ONTAP. Sin un enlace, igual puedes ver los gráficos de latencia, IOPS y rendimiento. Si aún no hay ningún enlace asociado, selecciona *Asociar enlace* en EDA, elige si quieres crear un nuevo enlace o asociar uno existente, y luego selecciona *Continuar* para ir automáticamente a la página de creación de enlaces en Storage workloads.
@@ -45,6 +49,7 @@ Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:ht
 
 
 
+[[amazon-bedrock-model-arn-optional]]
 === Modelo ARN de Amazon Bedrock (opcional)
 
 (Opcional) Para utilizar el análisis de IA, introduce un ARN de modelo de Amazon Bedrock en la configuración de Workload Factory. Si no lo haces, puedes seguir usando la supervisión de la latencia y el análisis básico.
@@ -53,12 +58,14 @@ Para más detalles, consulta link:https://docs.netapp.com/us-en/workload-genai/k
 
 
 
+[[notification-configuration-optional]]
 === Configuración de notificaciones (opcional)
 
 Para recibir notificaciones por correo electrónico o Amazon SNS cuando se detecten eventos de latencia, configura las preferencias de notificación en los ajustes de Workload Factory. Consulta <<Configura las notificaciones de latencia>> para más detalles.
 
 
 
+[[configure-latency-thresholds]]
 == Configura los umbrales de latencia
 
 Establece límites de advertencia y críticos para la lectura y la escritura. El sistema comprueba estos límites de forma continua y envía una alerta cuando se alcanzan.
@@ -89,6 +96,7 @@ Workload Factory recopila métricas de latencia de todos los volúmenes de FSx f
 
 
 
+[[configure-latency-notifications]]
 == Configura las notificaciones de latencia
 
 Configura notificaciones por correo electrónico o a través de Amazon SNS para recibir alertas cuando se detecte una latencia elevada. Puedes controlar la frecuencia de las notificaciones mediante dos opciones:
@@ -112,6 +120,7 @@ Para activar las notificaciones, consulta link:https://docs.netapp.com/us-en/wor
 
 
 
+[[manage-latency-configuration]]
 == Gestiona la configuración de latencia
 
 Después de la configuración, puedes cambiar tus umbrales en cualquier momento.
@@ -128,6 +137,7 @@ NOTE: Establece el umbral crítico por encima del umbral de advertencia. Si esta
 
 
 
+[[best-practices]]
 == Mejores prácticas
 
 Ten en cuenta estas recomendaciones a la hora de configurar la supervisión de la latencia:
@@ -141,6 +151,7 @@ Ten en cuenta estas recomendaciones a la hora de configurar la supervisión de l
 
 
 
+[[related-information]]
 == Información relacionada
 
 * link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"]
