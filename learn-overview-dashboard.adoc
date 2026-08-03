@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: learn-overview-dashboard.html 
-keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, capacity automation, capacity recommendations, decision points 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, throughput management, capacity automation, capacity recommendations, decision points 
 summary: Descubre cómo el panel Overview en Workload Factory para EDA te ayuda a monitorear la salud, la capacidad y el rendimiento de los clústeres de FSx for ONTAP a escala. 
 ---
 = Conoce el panel de información general en Workload Factory for EDA
@@ -11,7 +11,7 @@ summary: Descubre cómo el panel Overview en Workload Factory para EDA te ayuda 
 
 
 [role="lead"]
-El panel de control Overview ofrece a los administradores de TI un único lugar para supervisar las cargas de trabajo de EDA en varios sistemas de archivos FSx for ONTAP. Úsalo para comprobar rápidamente el estado y el uso del sistema, elegir dónde colocar nuevos volúmenes o trabajos, encontrar volúmenes o SVM que puedan necesitar moverse y ver cuándo es momento de aumentar la capacidad o el rendimiento.
+El panel de control Overview ofrece a los administradores de TI un único lugar desde el que supervisar las cargas de trabajo de EDA en múltiples sistemas de archivos FSx for ONTAP. Úsalo para comprobar rápidamente el estado y el uso del sistema, elegir dónde ubicar nuevos volúmenes o trabajos, encontrar volúmenes o SVM que puedan necesitar ser movidos y ver cuándo es momento de aumentar la capacidad o el rendimiento.
 
 
 
@@ -22,7 +22,7 @@ El panel Overview recopila métricas de CloudWatch para todos los sistemas de ar
 
 Incluye:
 
-* *Estado de salud del clúster*: En la parte superior se muestra un resumen que destaca los eventos de latencia, el uso de SSD, las recomendaciones de capacidad y los eventos de ONTAP EMS en todos tus sistemas de archivos.
+* *Estado del clúster*: En la parte superior se muestra un resumen que destaca los eventos de latencia, el uso de SSD, el estado del modo de rendimiento, las recomendaciones de capacidad y los eventos de ONTAP EMS en todos tus sistemas de archivos.
 * *Tabla de clústeres*: Una tabla con función de búsqueda que muestra el uso y el rendimiento de cada clúster. Puedes filtrar y ordenar los datos, moverte entre páginas y exportarlos como un archivo CSV.
 
 
@@ -50,7 +50,14 @@ El estado del clúster ofrece una visión general rápida de la actividad en los
 El estado de salud incluye las siguientes áreas:
 
 *Latencia*:: Muestra el número de eventos de latencia detectados en los sistemas de archivos seleccionados. Esta información solo aparece si la supervisión de la latencia está activada.
-*Gestión de la capacidad de las SSD*:: Muestra el número de sistemas de archivos con un uso de SSD superior al 80% y el número de sistemas de archivos con recomendaciones de capacidad activas. Esto te ayuda a identificar rápidamente los sistemas de archivos que podrían requerir atención de capacidad.
+*Elasticidad del sistema de archivos*::
++
+--
+* *Capacidad del SSD*: Muestra cuántos sistemas de archivos usan Automate, Recommend o None para gestionar la capacidad del SSD.
+* *Rendimiento*: Muestra cuántos sistemas de archivos usan Automate, Recommend o None para gestionar el rendimiento.
+
+
+--
 *Eventos de ONTAP*:: Muestra el número de eventos EMS detectados, clasificados por Capacidad, Disponibilidad y protección, y Seguridad y otros.
 
 
@@ -70,6 +77,8 @@ Utiliza la tabla para:
 * Selecciona varios clusters para actualizar parámetros en masa
 
 
+Selecciona un sistema de archivos para abrir los detalles del clúster, incluida la información del clúster, los valores de capacidad de los SSD y el gráfico Capacidad de los SSD a lo largo del tiempo.
+
 
 
 [[ssd-capacity-management]]
@@ -80,26 +89,10 @@ Utiliza la tabla para:
 [[management-modes]]
 === Modos de gestión
 
+*Solo notificar (modo recomendado)*:: Workload Factory analiza cómo utilizas tus SSD y te sugiere cuándo aumentar la capacidad. Revisas estas sugerencias y decides si las aplicas o no. Así mantienes el control total sobre los cambios de capacidad y al mismo tiempo aprovechas el análisis automatizado.
 *Automatiza*:: Workload Factory añade automáticamente más espacio en SSD cuando el uso alcanza los límites establecidos. Se encarga de ello de forma autónoma, por lo que no es necesario realizar ninguna acción manual. Esto funciona bien en entornos en los que se prefiere la gestión automática.
-*Recomendar*:: Workload Factory analiza cómo utilizas tus SSD y te sugiere cuándo aumentar la capacidad. Revisas estas sugerencias y decides si las aplicas o no. Así mantienes el control total sobre los cambios de capacidad y al mismo tiempo aprovechas el análisis automatizado.
-*Ninguno*:: El sistema no ofrece recomendaciones sobre la capacidad ni lleva a cabo acciones automáticas. Utiliza esta opción si deseas gestionar la capacidad por tu cuenta.
+*Ninguno*:: Si no has activado la gestión de capacidad del SSD, el sistema no ofrece recomendaciones sobre la capacidad ni lleva a cabo acciones automáticas. Utiliza esta opción si deseas gestionar la capacidad por tu cuenta.
 
-
-
-
-[[capacity-recommendations]]
-=== Recomendaciones de capacidad
-
-Cuando Workload Factory está en modo Automate o Recommend, comprueba automáticamente cada FSx for ONTAP file system y ejecuta un algoritmo de recomendación de capacidad. El sistema analiza cada 24 horas si se debe ajustar la capacidad de los SSD.
-
-Cuando se identifica una recomendación:
-
-* Recibirás una notificación inmediata según la configuración de notificaciones de Workload Factory.
-* Identifica los sistemas de archivos con recomendaciones filtrando la tabla Clusters usando las columnas **Last SSD increase timestamp** o **Last SSD increase description**.
-* La interfaz muestra el número total de sistemas de archivos que actualmente tienen recomendaciones activas.
-
-
-La recomendación explica el cambio sugerido y el razonamiento que lo sustenta, como por ejemplo: recomendamos aumentar el tamaño del SSD en función de tu patrón de uso del SSD del sistema de archivos.
 
 
 
@@ -110,10 +103,63 @@ Los parámetros controlan cómo el sistema de gestión de la capacidad analiza y
 
 *Umbral* (10-90%):: El porcentaje de uso del SSD que activa las recomendaciones de capacidad o las acciones de automatización. Por ejemplo, un umbral del 80% significa que se activan recomendaciones o acciones cuando el uso del SSD alcanza el 80%. Esta configuración está disponible tanto en el modo Recommend como en el modo Automate.
 *Lookback* (1-200 horas):: Periodo de tiempo utilizado para analizar los patrones de uso históricos de las unidades SSD. Un periodo más largo proporciona más contexto histórico para las decisiones de capacidad. Disponible solo en modo Automate.
-*Por adelantado* (1-200 horas):: Periodo de tiempo utilizado para proyectar las necesidades futuras de capacidad. Un periodo más largo planifica con más anticipación el crecimiento de la capacidad. Disponible solo en modo Automate.
+*Previsión* (1-200 horas):: Periodo de tiempo utilizado para proyectar las necesidades futuras de capacidad. Un periodo más largo planifica con más anticipación el crecimiento de la capacidad. Disponible solo en modo Automate.
 
 
 Puedes configurar estos parámetros para cada sistema de archivos de forma individual, o usar la edición masiva para aplicar la misma configuración a varios sistemas de archivos.
+
+
+
+[[throughput-management]]
+== Gestión del rendimiento
+
+Puedes configurar el comportamiento de aumento elástico del rendimiento para uno o varios sistemas de archivos.
+
+
+
+[[management-modes]]
+=== Modos de gestión
+
+*Solo notificar (modo recomendado)*:: Workload Factory evalúa la presión de rendimiento y te ofrece recomendaciones que puedes aplicar.
+*Automatiza*:: Workload Factory aumenta el rendimiento automáticamente cuando se cumplen las condiciones configuradas.
+*Ninguno*:: Si no has activado la gestión del rendimiento, el sistema no ofrece recomendaciones ni lleva a cabo acciones automáticas. Utiliza esta opción si deseas gestionar la capacidad por tu cuenta.
+
+
+
+
+[[throughput-parameters]]
+=== Parámetros de rendimiento
+
+El cuadro de diálogo de configuración del rendimiento incluye:
+
+* *Umbral de utilización* (50-100%, valor predeterminado 80%): porcentaje de utilización del rendimiento que activa recomendaciones o automatización.
+
+
+Los parámetros avanzados de rendimiento están disponibles en una sección expandible llamada *Configuración avanzada*.
+
+* *Intervalo de evaluación (horas)* (12-72 horas, valor predeterminado 24)
+* *Métricas que superan el límite (%)* (por defecto 66%): umbral porcentual para determinar si se ha superado el límite
+* *Intervalo de infracciones consecutivas (horas)* (1-5 horas, valor predeterminado 2)
+* *Métricas de incumplimiento consecutivo (%)* (valor predeterminado 95%)
+* *Latencia mínima (ms)* (valor predeterminado 10 ms)
+* *SKU de rendimiento máximo* (por defecto None)
+
+
+
+
+[[file-system-elasticity-recommendations]]
+== Recomendaciones sobre la elasticidad del sistema de archivos
+
+Cuando Workload Factory está en modo Automate o Recommend, comprueba automáticamente cada FSx for ONTAP file system y ejecuta un algoritmo de recomendación de capacidad. El sistema analiza periódicamente si se debe ajustar la capacidad o el rendimiento de los SSD.
+
+Cuando se identifica una recomendación:
+
+* Recibirás una notificación inmediata según la configuración de notificaciones de Workload Factory.
+* Identifica los sistemas de archivos con recomendaciones filtrando la tabla Clusters.
+* La interfaz muestra el número total de sistemas de archivos que actualmente tienen recomendaciones activas.
+
+
+La recomendación explica el cambio sugerido y el razonamiento que lo sustenta, como por ejemplo: recomendamos aumentar el tamaño del SSD en función de tu patrón de uso del SSD del sistema de archivos.
 
 
 

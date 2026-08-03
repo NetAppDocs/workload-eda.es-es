@@ -25,7 +25,7 @@ Asegúrate de cumplir los siguientes requisitos antes de activar el panel de con
 [[aws-credentials-with-view-permissions]]
 === Credenciales de AWS con permisos de visualización
 
-Debes configurar las credenciales de AWS en Workload Factory con al menos permisos de lectura (vista) para General Storage. Las credenciales _Basic_ no son compatibles.
+Debes configurar las credenciales de AWS en Workload Factory con al menos permisos de lectura (visualización) para el almacenamiento general. No se admiten las credenciales _básicas_ porque no incluyen los permisos de lectura necesarios para las métricas de CloudWatch.
 
 Si no has configurado las credenciales con permisos de visualización, se te redirige a la página de configuración de credenciales de AWS cuando abres la pestaña Overview.
 
@@ -61,15 +61,7 @@ Workload Factory comienza a recopilar métricas de CloudWatch para todos los sis
 Después de activar el dashboard, puedes:
 
 * link:task-use-overview-dashboard.html["Usa el panel de control general"] para monitorizar la salud y la capacidad de los clústeres
-* Configura los modos de gestión de la capacidad de las unidades SSD (Automatizar, Recomendar o Ninguno)
+* link:task-use-overview-dashboard.html#change-ssd-management-mode["Habilitar y configurar los modos de gestión de capacidad de los SSD"] (Recomendar, Automatizar o Ninguna)
+* link:task-use-overview-dashboard.html#change-throughput-management-mode["Activar y configurar los modos de gestión del rendimiento"] (Recomendar, Automatizar o Ninguna)
 * Configura filtros para centrarte en regiones o cuentas de AWS específicas
-
-
-
-
-[[related-information]]
-== Información relacionada
-
-* link:learn-overview-dashboard.html["Conoce el panel de control general"]
-* link:task-use-overview-dashboard.html["Usa el panel de control general"]
 

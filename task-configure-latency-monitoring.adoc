@@ -29,7 +29,7 @@ Debes añadir credenciales de AWS a Workload Factory con permisos de lectura/esc
 
 los permisos de los modos _Basic_ y _Read-only_ no son compatibles con la monitorización de la latencia.
 
-Si no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
+Si aún no has configurado las credenciales de AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agregar credenciales AWS"^].
 
 
 
@@ -49,12 +49,10 @@ Para obtener instrucciones sobre cómo crear y asociar enlaces, consulta link:ht
 
 
 
-[[amazon-bedrock-model-arn-optional]]
-=== Modelo ARN de Amazon Bedrock (opcional)
+[[turn-on-ai-settings]]
+=== Activa la configuración de IA
 
-(Opcional) Para utilizar el análisis de IA, introduce un ARN de modelo de Amazon Bedrock en la configuración de Workload Factory. Si no lo haces, puedes seguir usando la supervisión de la latencia y el análisis básico.
-
-Para más detalles, consulta link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisitos básicos de GenAI"^].
+Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás utilizar el análisis de IA. Ponte en contacto con tu administrador o consulta link:https://docs.netapp.com/us-en/workload-setup-admin/manage-genai-features.html["conoce la administración de IA"^].
 
 
 
@@ -92,7 +90,7 @@ NOTE: Los umbrales de latencia que configuras en EDA se aplican a toda tu cuenta
 
 
 .Resultado
-Workload Factory recopila métricas de latencia de todos los volúmenes de FSx for ONTAP vinculados a tus credenciales de AWS. Recopila estas métricas al menos cada 20 minutos. Los volúmenes que superan tus umbrales aparecen en la tabla de eventos de latencia.
+Workload Factory recopila métricas de latencia de todos los volúmenes de FSx for ONTAP vinculados a tus credenciales de AWS. Los volúmenes que superan tus umbrales aparecen en la tabla de eventos de latencia.
 
 
 

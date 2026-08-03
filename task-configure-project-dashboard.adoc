@@ -40,7 +40,7 @@ Si no configuras ningún filtro personalizado, los filtros predeterminados, sist
 +
 Si aún no ha configurado su panel de control, se le solicitará automáticamente que lo haga.
 
-. Selecciona *+ Add filters*.
+. Selecciona *Add filters*.
 . Para cada filtro personalizado que quieras crear, añade los detalles:
 +
 ** Nombre de la etiqueta del filtro (el nombre que aparece en el dashboard)

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: task-use-overview-dashboard.html 
-keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, bulk edit, decision points, clusters table, ONTAP events, latency events 
-summary: Usa el panel de información general para supervisar el estado del clúster, ver recomendaciones de capacidad, gestionar los ajustes de capacidad SSD y analizar las tendencias de rendimiento en todos tus sistemas de archivos FSx para ONTAP. 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+summary: Utiliza el panel de control «Visión general» para supervisar el estado del clúster, consultar recomendaciones de capacidad, gestionar la configuración de los SSD y el rendimiento, y analizar las tendencias de rendimiento en todos tus sistemas de archivos FSx for ONTAP. 
 ---
 = Usa el panel de control Visión general en Workload Factory for EDA
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Usa el panel de información general para supervisar el estado del clú
 
 
 [role="lead"]
-Utiliza el panel de control «Visión general» para comprobar el estado y la capacidad de tus sistemas de archivos FSx for ONTAP. Puedes filtrar los datos, consultar recomendaciones de capacidad, ajustar la configuración de la capacidad de los SSD y revisar las tendencias de rendimiento para ayudarte a decidir dónde ubicar los volúmenes y cuándo ampliar la capacidad.
+Utiliza el panel de control «Visión general» para comprobar el estado y la capacidad de tus sistemas de archivos FSx for ONTAP. Puedes filtrar los datos, consultar recomendaciones de capacidad, ajustar la configuración de los SSD y del rendimiento, y revisar las tendencias de rendimiento para ayudarte a decidir dónde ubicar los volúmenes y cuándo ampliar la capacidad.
 
 
 
@@ -52,7 +52,12 @@ En la parte superior del panel de control, ves un resumen del estado y la activi
 El estado de salud del clúster incluye las siguientes áreas clave:
 
 * *Latencia*: Número de eventos de latencia detectados
-* *Modo de capacidad SSD*: estado de utilización de SSD y sistemas de archivos con recomendaciones de capacidad activa
+* *Elasticidad del sistema de archivos*:
++
+** *Capacidad del SSD*: Muestra cuántos sistemas de archivos usan Automate, Recommend o None para gestionar la capacidad del SSD.
+** *Rendimiento*: Muestra cuántos sistemas de archivos usan Automate, Recommend o None para gestionar el rendimiento.
+
+
 * *Eventos ONTAP*: Número de eventos EMS por categoría (Capacidad, Disponibilidad y protección, Seguridad y otros)
 
 
@@ -75,25 +80,25 @@ La tarjeta de vista de eventos de ONTAP muestra el número de eventos EMS por ca
 
 
 
-[[view-and-apply-capacity-recommendations]]
-== Ver y aplicar las recomendaciones de capacidad
+[[view-and-apply-capacity-or-throughput-recommendations]]
+== Ver y aplicar recomendaciones de capacidad o rendimiento
 
-Workload Factory genera automáticamente una recomendación de capacidad para cada sistema de archivos FSx for ONTAP. Puedes encontrar los sistemas de archivos con recomendaciones filtrando la tabla Clusters.
+Workload Factory ejecuta automáticamente recomendaciones para cada sistema de archivos FSx for ONTAP. Puedes encontrar los sistemas de archivos con recomendaciones filtrando la tabla Clusters.
 
 .Pasos
-. En la tabla *Clusters*, filtra por las columnas *Last SSD increase timestamp* o *Last SSD increase description*.
+. En la tabla *Clusters*, filtra por las columnas de tiempo o detalles relevantes.
 +
-Los sistemas de archivos con recomendaciones de capacidad aparecen en la parte superior de la tabla.
+Los sistemas de archivos con recomendaciones de capacidad o rendimiento aparecen en la parte superior de la tabla.
 
-. Selecciona el nombre de un sistema de archivos en la tabla para abrirlo y ver las recomendaciones.
-. Revisa la recomendación de SSD y el gráfico de capacidad.
+. Selecciona el nombre de un sistema de archivos en la tabla para abrir los detalles del clúster.
+. Revisa la recomendación y el gráfico.
 +
 La recomendación explica el cambio sugerido y el razonamiento en el que se basa. Por ejemplo: recomendamos aumentar el tamaño del SSD en función del patrón de uso del SSD de tu sistema de archivos.
 
 +
-El gráfico presenta el uso actual de SSD junto con las tendencias históricas y muestra cómo el algoritmo de recomendación de capacidad habría ajustado la capacidad a lo largo del tiempo.
+El gráfico muestra el uso actual junto con las tendencias históricas.
 
-. En la parte superior derecha del gráfico, selecciona el intervalo de tiempo para cambiar el periodo mostrado. El valor predeterminado es una semana.
+. En la parte superior derecha del gráfico, selecciona el intervalo de tiempo para cambiar el periodo mostrado.
 +
 El gráfico también muestra puntos de decisión de recomendación y puntos de decisión de automatización (si el modo de automatización está activado). Pasa el ratón por encima de cualquier punto de decisión para ver detalles sobre la recomendación de capacidad o la acción de automatización en ese momento.
 
@@ -107,28 +112,20 @@ El gráfico también muestra puntos de decisión de recomendación y puntos de d
 
 Para cada sistema de archivos, elige cómo se gestiona la capacidad del SSD: recibir recomendaciones manuales o permitir el escalado automático.
 
-.Acerca de esta tarea
-Los modos de gestión de SSD incluyen:
-
-* *Automatizar*: aumenta automáticamente la capacidad de las SSD en función de umbrales predefinidos
-* *Recomendar*: Obtén recomendaciones de capacidad que puedes revisar y aplicar manualmente
-* *Ninguna*: No hay recomendaciones de capacidad ni acciones automatizadas
-
-
-Si seleccionas el modo Automate, puedes configurar los parámetros Threshold, Lookback y Ahead que controlan cómo el sistema de gestión de capacidad analiza tu uso de SSD y toma decisiones de automatización. Si seleccionas el modo Recommend, solo puedes configurar el parámetro Threshold.
-
-* *Umbral* (10-90%): el porcentaje de uso de SSD que activa recomendaciones de capacidad o acciones de automatización
-* *Lookback* (1-200 horas): el periodo de tiempo utilizado para analizar los patrones de uso históricos de las SSD
-* *Ahead* (1-200 horas): periodo de tiempo utilizado para proyectar las necesidades futuras de capacidad
-
-
 .Pasos
 . En la tabla Clusters busca el nombre del sistema de archivos. Junto a él, abre image:icon-action.png["el icono del menú de acción"] y selecciona *Cambiar la gestión de la capacidad SSD*.
+. Selecciona *Habilitar gestión de capacidad de SSD* y luego selecciona *Aplicar*.
 . Elige el modo que prefieras:
 +
-** *Ninguna*: desactivar la gestión de la capacidad
-** *Recomendar*: Establece el parámetro Umbral para el análisis de recomendaciones
-** *Automatizar*: Establece los parámetros Umbral, Retroceso y Anticipo para el escalado de capacidad automatizado
+** *Solo notificar (modo recomendado)*
+** *Automatiza*
+
+
+. Configura los parámetros de gestión de la capacidad del SSD:
++
+** *Umbral (%)*: porcentaje de uso del SSD que activa una recomendación
+** *Lookback (%)*: Período de datos históricos de uso para el análisis
+** *Previsión (%)*: uso previsto para la planificación de capacidad futura
 
 
 . Seleccione *Aplicar*.
@@ -139,18 +136,42 @@ El sistema de archivos pasa al nuevo modo de inmediato. Si eliges Recomendar o A
 
 
 
-[[bulk-edit-ssd-management-parameters]]
-== Editar en masa los parámetros de gestión de SSD
+[[change-throughput-management-mode]]
+== Cambiar el modo de gestión del rendimiento
 
-Modifica la configuración de la capacidad del SSD para varios sistemas de archivos a la vez, de modo que se aplique la misma configuración en todos tus clústeres.
+Para cada sistema de archivos, elige cómo se gestiona el aumento del rendimiento.
 
-.Acerca de esta tarea
-Al seleccionar varios sistemas de archivos para la edición masiva:
+.Pasos
+. En la pestaña *Resumen*, selecciona uno o más sistemas de archivos en la tabla Clusters.
+. Selecciona *Cambiar la gestión del rendimiento*.
+. Selecciona *Habilitar gestión del rendimiento* y luego selecciona *Aplicar*.
+. Elige el modo que prefieras:
++
+** *Solo notificar (modo recomendado)*
+** *Automatiza*
 
-* Si todos los sistemas de archivos seleccionados utilizan la misma configuración, dicha configuración aparece como predeterminada en el cuadro de diálogo de edición.
-* Si alguno de los sistemas de archivos seleccionados está en modo None, se rellenan los valores predeterminados en el cuadro de diálogo.
-* Si los valores de los parámetros varían entre los sistemas de archivos seleccionados, se rellenan los valores por defecto en el cuadro de diálogo.
 
+. En el cuadro de diálogo, configura los parámetros de gestión del rendimiento:
++
+** *Intervalo de evaluación (horas)*: periodo de tiempo para analizar los patrones de rendimiento
+** *Métricas incumplidas (%)*: umbral porcentual para determinar el incumplimiento
+** *Ventana de infracciones consecutivas (horas)*: duración de las infracciones consecutivas antes de tomar medidas
+** *Latencia mínima (ms)*: umbral de latencia utilizado para determinar el aumento del rendimiento
+** *Rendimiento máximo (SKU)*: SKU de rendimiento máximo permitido
+
+
+. Seleccione *Aplicar*.
+
+
+.Resultado
+Los sistemas de archivos seleccionados cambian inmediatamente al nuevo modo de rendimiento.
+
+
+
+[[bulk-edit-management-parameters]]
+== Edición masiva de parámetros de gestión
+
+Modifica la configuración de varios sistemas de archivos a la vez para que se aplique la misma configuración en todos tus clústeres.
 
 .Pasos
 . Desde la pestaña *Overview*, selecciona los sistemas de archivos que quieres editar en la tabla.
@@ -158,9 +179,9 @@ Al seleccionar varios sistemas de archivos para la edición masiva:
 
 TIP: Puedes seleccionar sistemas de archivos individuales o usar la casilla de verificación de la cabecera para seleccionar todos los sistemas de archivos visibles.
 
-. Selecciona *Cambiar gestión de capacidad SSD* encima de la tabla.
+. Selecciona *Cambiar la gestión de la capacidad del SSD* o *Cambiar la gestión del rendimiento* encima de la tabla.
 . Elige el modo que prefieras.
-. En el cuadro de diálogo de edición, ajusta los parámetros Umbral, Retroceso y Avance según sea necesario.
+. En el cuadro de diálogo de edición, ajusta los parámetros según sea necesario.
 +
 Cada campo de parámetro incluye un tooltip que describe su propósito y rango válido. El diálogo indica los valores actuales o por defecto basados en tu selección.
 
@@ -168,7 +189,7 @@ Cada campo de parámetro incluye un tooltip que describe su propósito y rango v
 
 
 .Resultado
-Los parámetros se actualizan para todos los sistemas de archivos seleccionados. Los sistemas de archivos en modo Recomendar o Automatizar usan los nuevos parámetros inmediatamente para el análisis de capacidad y la toma de decisiones.
+Los parámetros se actualizan para todos los sistemas de archivos seleccionados. Los sistemas de archivos en modo Recommend o Automate usan los nuevos parámetros de inmediato para el análisis y la toma de decisiones.
 
 
 
@@ -180,7 +201,7 @@ Utiliza el gráfico de uso del SSD para ver cómo evoluciona el uso del almacena
 .Acerca de esta tarea
 Los puntos de decisión del gráfico indican cuándo:
 
-* *Puntos de decisión de recomendación*: El algoritmo de recomendación de capacidad identificó que se necesita capacidad SSD adicional. Esto puede ocurrir con una frecuencia de hasta cada 30 minutos si no se ha aumentado la capacidad SSD.
+* *Puntos de decisión de recomendación*: El algoritmo de recomendación de capacidad identificó que se necesita capacidad SSD adicional.
 * *Puntos de decisión de la automatización*: El sistema de automatización intentó aumentar la capacidad de SSD. Estos puntos muestran si la acción tuvo éxito o falló.
 
 
@@ -218,7 +239,6 @@ Pasa el mouse por los encabezados de columna de rendimiento para ver los detalle
 
 . Para personalizar las columnas, selecciona el icono de configuración de columnas y elige qué columnas mostrar.
 . Para exportar datos, selecciona el icono de exportación para descargar un archivo CSV.
-. Para realizar operaciones masivas, selecciona varios sistemas de archivos usando las casillas de verificación y luego selecciona *Editar parámetros*.
 
 
 
@@ -229,12 +249,12 @@ Pasa el mouse por los encabezados de columna de rendimiento para ver los detalle
 Ten en cuenta estas recomendaciones a la hora de utilizar el panel de resumen:
 
 * *Seguimiento periódico*: Consulta el panel de control con frecuencia para detectar tendencias antes de que se conviertan en problemas.
-* **Establece umbrales claros**: elige umbrales de gestión de SSD que se adapten a tu carga de trabajo y planes de capacidad.
+* **Establece límites claros**: Elige los límites de uso del SSD y los parámetros de rendimiento que mejor se adapten a tu carga de trabajo y a la planificación de capacidad.
 * **Utiliza filtros**: Aplica filtros de región y de cuenta para centrarte en las partes de tu infraestructura que deseas revisar.
-* **Revisa rápidamente las recomendaciones**: Filtra la tabla Clusters por **Last SSD increase timestamp** o descripción para encontrar los sistemas de archivos con recomendaciones de capacidad. Revísalas y actúa para evitar quedarte sin espacio.
-* **Elige el modo adecuado**: utiliza el modo **Recommend** si quieres aprobar tú mismo los cambios de capacidad. Utiliza el modo **Automation** si quieres que el sistema gestione la capacidad de forma automática.
+* **Revisa rápidamente las recomendaciones**: Filtra la tabla Clusters para encontrar los sistemas de archivos con recomendaciones sobre capacidad o rendimiento. Revísalas y actúa para evitar quedarte sin espacio.
+* **Elige el modo adecuado**: utiliza el modo **Recommend** si quieres aprobar tú mismo los cambios en la capacidad o el rendimiento. Utiliza el modo **Automate** si quieres que el sistema gestione la capacidad o el rendimiento de forma automática.
 * **Presta atención a los puntos de decisión**: Revisa los puntos de decisión en los gráficos de capacidad para ver cómo el sistema toma decisiones y confirma que la configuración funciona para tus necesidades.
-* **Edición masiva**: Cuando gestionas muchos sistemas de archivos, usa la edición masiva para mantener la coherencia en la configuración de la capacidad.
+* **Edición masiva**: cuando gestiones muchos sistemas de archivos, utiliza la edición masiva para mantener la coherencia en la configuración.
 
 
 

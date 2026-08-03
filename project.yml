@@ -27,6 +27,8 @@ sidebar:
       url: "/learn-eda.html"
     - title: Inicio rápido
       url: "/quick-start-eda.html"
+    - title: Requisitos
+      url: "/requirements-eda.html"
   - title: Descripción general del almacenamiento EDA
     entries:
     - title: Conoce el panel de control general
@@ -57,8 +59,6 @@ sidebar:
     entries:
     - title: Obtenga más información sobre la integración de Perforce
       url: "/learn-eda-workloads.html"
-    - title: Requisitos
-      url: "/requirements-eda.html"
     - title: Gestionar proyectos
       url: "/manage-projects.html"
     - title: Administrar versiones del proyecto

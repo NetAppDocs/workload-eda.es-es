@@ -20,7 +20,7 @@ Credenciales y permisos de AWS:: Debe agregar credenciales de AWS a Workload Fac
 los permisos de modo _Basic_ y _Read-only_ no son compatibles en este momento.
 
 
-NOTE: También se requieren credenciales de AWS para utilizar la función de supervisión de la latencia, que recopila métricas de CloudWatch para el análisis del rendimiento del volumen. Para recibir notificaciones sobre eventos de latencia, configura las preferencias de notificación en los ajustes de Workload Factory. Para habilitar el análisis opcional mediante IA para escenarios complejos de latencia, también debes proporcionar un ARN de modelo de Amazon Bedrock. link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"].
+NOTE: También se requieren credenciales de AWS para utilizar la función de supervisión de la latencia, que recopila métricas de CloudWatch para el análisis del rendimiento del volumen. Para recibir notificaciones sobre eventos de latencia, configura las preferencias de notificación en los ajustes de Workload Factory. El análisis opcional mediante IA para escenarios complejos de latencia está disponible cuando se habilita el análisis de IA gestionado por NetApp. link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"].
 
 https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aprenda a agregar credenciales de AWS a Workload Factory"^]
 
@@ -35,7 +35,7 @@ Este sistema de archivos FSx para ONTAP debe utilizar volúmenes FlexVol . No se
 * Necesitarás al menos un volumen en el sistema de archivos con la siguiente configuración:
 +
 ** El volumen debe configurarse como un recurso compartido NFS.
-** El sistema de archivos debe configurarse con un enlace. https://docs.netapp.com/us-en/workload-fsx-ontap/links-overview.html["Obtenga más información sobre los enlaces"^].
+** El sistema de archivos debe configurarse con un enlace. link:https://docs.netapp.com/us-en/workload-fsx-ontap/links-overview.html["Obtenga más información sobre los enlaces"^].
 
 
 * Deberá tener en cuenta los pares clave/valor de etiqueta que desea aplicar a los recursos de AWS que forman parte de esta implementación (opcional).

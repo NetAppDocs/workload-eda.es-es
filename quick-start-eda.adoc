@@ -53,7 +53,7 @@ link:task-configure-project-dashboard.html["Aprende a configurar el panel de con
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Seis"] Configura FSx para el análisis de latencia de ONTAP
 [role="quick-margin-para"]
-Configura umbrales de latencia para identificar y resolver de forma proactiva los problemas de rendimiento antes de que afecten al tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, configura notificaciones por correo electrónico o SNS para recibir alertas en tiempo real, aprovecha el análisis básico automatizado y, si quieres, activa el análisis mediante IA para escenarios complejos configurando un ARN de modelo de Amazon Bedrock.
+Configura umbrales de latencia para identificar y resolver de forma proactiva los problemas de rendimiento antes de que afecten al tiempo de ejecución de la simulación. Configura alertas de advertencia y críticas, establece notificaciones por correo electrónico o SNS para recibir alertas en tiempo real, aprovecha el análisis básico automatizado y, si quieres, usa el análisis con IA para escenarios complejos.
 
 [role="quick-margin-para"]
 link:task-configure-latency-monitoring.html["Aprende a configurar la supervisión de la latencia"^]. Una vez detectados los eventos, puedes link:task-analyze-latency-trends.html["analizar las tendencias de latencia"^] usando el gráfico interactivo.

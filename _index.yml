@@ -13,6 +13,8 @@ indexpage:
       url: "/learn-eda.html"
     - title: Inicio rápido
       url: "/quick-start-eda.html"
+    - title: Requisitos
+      url: "/requirements-eda.html"
   - title: Descripción general del almacenamiento EDA
     links:
     - title: Conoce el panel de control general
@@ -41,8 +43,6 @@ indexpage:
     links:
     - title: Obtenga más información sobre la integración de Perforce
       url: "/learn-eda-workloads.html"
-    - title: Requisitos
-      url: "/requirements-eda.html"
     - title: Automatizar con Codebox
       url: "/automate-codebox.html"
   - title: Conocimiento y apoyo

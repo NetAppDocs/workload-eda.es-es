@@ -23,6 +23,9 @@ El análisis de latencia recopila métricas de CloudWatch sobre la actividad de 
 Si aumenta la latencia, Workload Factory revisa automáticamente las métricas de retardo de QoS de ONTAP para identificar la causa principal de la ralentización. Para problemas más complejos relacionados con los datos o los componentes del clúster, puedes ejecutar un análisis opcional de IA que proporciona la causa raíz probable, identifica los clientes afectados y sugiere pasos para resolver el problema.
 
 
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás utilizar el análisis de IA. Ponte en contacto con tu administrador o https://docs.netapp.com/us-en/workload-setup-admin/manage-genai-features.html["conoce la administración de IA"^].
+
+
 
 [[alert-generation]]
 === Generación de alertas
@@ -107,14 +110,20 @@ NOTE: Los valores de latencia obtenidos mediante el análisis de QoS de ONTAP y 
 
 Aunque el análisis básico permite identificar el origen de la latencia, las situaciones más complejas relacionadas con los datos o los componentes del clúster suelen requerir una investigación más exhaustiva. El análisis de IA ofrece esta resolución de problemas más exhaustiva al detectar incidencias como volúmenes sobrecargados, una configuración deficiente o la necesidad de añadir más capacidad, problemas que el análisis básico podría pasar por alto.
 
+La disponibilidad del análisis de IA depende de la configuración de tu cuenta:
+
+* *NetApp-managed AI credits enabled*: Puedes realizar análisis de IA sin necesidad de una configuración adicional de Bedrock.
+* *Desactivado por el administrador*: Las opciones de IA no están disponibles.
+
+
+Si los créditos de IA gestionados por NetApp están activados pero se ha alcanzado el presupuesto mensual, el análisis de IA no está disponible y se muestra un mensaje.
+
 Al ejecutar un análisis de IA, el sistema ofrece:
 
 * *Posible causa raíz*: Explicación detallada de lo que está causando el problema de latencia
 * *Clientes afectados*: Lista de nombres de instancias EC2 afectadas por la latencia
 * *Posibles medidas correctoras*: dos o más acciones específicas para resolver el problema
 
-
-El análisis de IA requiere un ARN de modelo de Amazon Bedrock en la configuración de Workload Factory. Si Bedrock no está configurado, todavía puedes usar la supervisión de latencia y el análisis automatizado básico.
 
 
 
