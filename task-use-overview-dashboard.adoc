@@ -113,11 +113,10 @@ El gráfico también muestra puntos de decisión de recomendación y puntos de d
 Para cada sistema de archivos, elige cómo se gestiona la capacidad del SSD: recibir recomendaciones manuales o permitir el escalado automático.
 
 .Pasos
-. En la tabla Clusters busca el nombre del sistema de archivos. Junto a él, abre image:icon-action.png["el icono del menú de acción"] y selecciona *Cambiar la gestión de la capacidad SSD*.
-. Selecciona *Habilitar gestión de capacidad de SSD* y luego selecciona *Aplicar*.
+. En la tabla «Clusters», busca y selecciona el nombre del sistema de archivos y selecciona *Change SSD capacity management*.
 . Elige el modo que prefieras:
 +
-** *Solo notificar (modo recomendado)*
+** *Recomendar*
 ** *Automatiza*
 
 
@@ -144,18 +143,20 @@ Para cada sistema de archivos, elige cómo se gestiona el aumento del rendimient
 .Pasos
 . En la pestaña *Resumen*, selecciona uno o más sistemas de archivos en la tabla Clusters.
 . Selecciona *Cambiar la gestión del rendimiento*.
-. Selecciona *Habilitar gestión del rendimiento* y luego selecciona *Aplicar*.
+. Selecciona *Enable throughput management*.
 . Elige el modo que prefieras:
 +
 ** *Solo notificar (modo recomendado)*
 ** *Automatiza*
 
 
-. En el cuadro de diálogo, configura los parámetros de gestión del rendimiento:
+. En *Umbral de utilización (%)*, configura el nivel de utilización que activa las recomendaciones o las acciones de automatización.
+. En *Configuración avanzada*, configura los parámetros de gestión del rendimiento:
 +
 ** *Intervalo de evaluación (horas)*: periodo de tiempo para analizar los patrones de rendimiento
 ** *Métricas incumplidas (%)*: umbral porcentual para determinar el incumplimiento
 ** *Ventana de infracciones consecutivas (horas)*: duración de las infracciones consecutivas antes de tomar medidas
+** *Indicadores de infracciones consecutivas (%)*: umbral porcentual para determinar las infracciones consecutivas
 ** *Latencia mínima (ms)*: umbral de latencia utilizado para determinar el aumento del rendimiento
 ** *Rendimiento máximo (SKU)*: SKU de rendimiento máximo permitido
 
@@ -165,31 +166,6 @@ Para cada sistema de archivos, elige cómo se gestiona el aumento del rendimient
 
 .Resultado
 Los sistemas de archivos seleccionados cambian inmediatamente al nuevo modo de rendimiento.
-
-
-
-[[bulk-edit-management-parameters]]
-== Edición masiva de parámetros de gestión
-
-Modifica la configuración de varios sistemas de archivos a la vez para que se aplique la misma configuración en todos tus clústeres.
-
-.Pasos
-. Desde la pestaña *Overview*, selecciona los sistemas de archivos que quieres editar en la tabla.
-+
-
-TIP: Puedes seleccionar sistemas de archivos individuales o usar la casilla de verificación de la cabecera para seleccionar todos los sistemas de archivos visibles.
-
-. Selecciona *Cambiar la gestión de la capacidad del SSD* o *Cambiar la gestión del rendimiento* encima de la tabla.
-. Elige el modo que prefieras.
-. En el cuadro de diálogo de edición, ajusta los parámetros según sea necesario.
-+
-Cada campo de parámetro incluye un tooltip que describe su propósito y rango válido. El diálogo indica los valores actuales o por defecto basados en tu selección.
-
-. Selecciona *Aplicar* para aplicar los cambios a todos los sistemas de archivos seleccionados.
-
-
-.Resultado
-Los parámetros se actualizan para todos los sistemas de archivos seleccionados. Los sistemas de archivos en modo Recommend o Automate usan los nuevos parámetros de inmediato para el análisis y la toma de decisiones.
 
 
 
@@ -203,23 +179,20 @@ Los puntos de decisión del gráfico indican cuándo:
 
 * *Puntos de decisión de recomendación*: El algoritmo de recomendación de capacidad identificó que se necesita capacidad SSD adicional.
 * *Puntos de decisión de la automatización*: El sistema de automatización intentó aumentar la capacidad de SSD. Estos puntos muestran si la acción tuvo éxito o falló.
++
+Si la gestión de la capacidad de SSD está desactivada, el gráfico solo muestra el uso anterior y no muestra recomendaciones ni decisiones de automatización.
+
 
 
 .Pasos
-. En la pestaña *Overview*, selecciona el nombre de un sistema de archivos en la tabla.
-. Revisa el gráfico de uso de SSD que muestra las tendencias históricas de capacidad.
-. Selecciona diferentes intervalos de tiempo para ver el comportamiento de la capacidad durante varios periodos.
-. Pasa el ratón por encima de los puntos de decisión del gráfico para ver detalles sobre las recomendaciones o las acciones de automatización en momentos concretos.
-. Utiliza la información del gráfico para:
-+
-** Entiende con qué frecuencia se necesitan ajustes de capacidad
-** Evalúa si el modo de automatización o de recomendación se ajusta mejor a tus patrones de carga de trabajo
-** Identifica las limitaciones de capacidad recurrentes
-** Planifica las futuras necesidades de capacidad en función de las tendencias de crecimiento
-** Solucionar los intentos fallidos de automatización
+. En la pestaña *Resumen*, selecciona el nombre de un sistema de archivos en la tabla. En la vista de detalles del clúster, selecciona la opción *Throughput* o *SSD Capacity* para cambiar la visualización del gráfico.
 
 
+Si seleccionas *Throughput*, el gráfico muestra el throughput y la utilización de los clientes, lo que te permite comparar la demanda con el nivel de throughput y los umbrales configurados.
 
+Si seleccionas «SSD Capacity», el gráfico muestra el uso de SSD, incluidas las tendencias históricas de capacidad y los puntos de decisión de capacidad.
+
+Selecciona diferentes intervalos de tiempo para ver las tendencias de rendimiento o capacidad a lo largo de distintos periodos. . Pasa el cursor por encima de los puntos de decisión del gráfico para ver detalles sobre las recomendaciones o las acciones de automatización en momentos específicos. . Usa la información que ofrece el gráfico para: * Comprender con qué frecuencia es necesario ajustar la capacidad * Evaluar si el modo de automatización o el de recomendaciones se adapta mejor a tus patrones de carga de trabajo * Identificar limitaciones de capacidad recurrentes * Planificar las necesidades futuras de capacidad en función de las tendencias de crecimiento * Solucionar los intentos fallidos de automatización
 
 
 
