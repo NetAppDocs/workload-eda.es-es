@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: faq-eda.html 
+keywords: faq, frequently asked questions, frequently asked questions about workload factory for eda, eda, electronic design automation, fsx for ontap, latency monitoring, overview dashboard, project dashboard, perforce, ci cd, codebox 
+summary: Preguntas frecuentes sobre NetApp Workload Factory para EDA. 
+---
+= Preguntas frecuentes sobre Workload Factory para EDA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Esta sección de preguntas frecuentes responde a las dudas más habituales sobre NetApp Workload Factory for EDA. Se centra en conceptos, terminología y comportamientos que resultan útiles a la hora de configurar la supervisión, analizar eventos de latencia, configurar paneles de control y gestionar flujos de trabajo de CI/CD.
+
+
+
+[[latency-monitoring-and-analysis]]
+== Supervisión y análisis de la latencia
+
+.¿Por qué necesito un enlace asociado con mi sistema de archivos FSx for ONTAP?
+Necesitas un enlace para ver el desglose por componentes en el análisis básico de latencia. Sin un enlace, aún puedes ver los gráficos de latencia, IOPS y rendimiento, pero no el desglose detallado. Para obtener más información, consulta link:task-configure-latency-monitoring.html["Configura la monitorización de latencia en Workload Factory para EDA"].
+
+.¿Cómo se activa una alerta de latencia?
+Una alerta se activa únicamente cuando se superan tanto el umbral de latencia como el umbral de IOPS para el mismo tipo de operación (lectura o escritura), y ambas condiciones persisten durante todo el intervalo de tiempo seleccionado. Exigir ambas reduce las falsas alarmas, ya que garantiza que la latencia alta se produzca mientras el sistema gestiona una carga de trabajo real. Para obtener más información, consulta link:learn-latency-monitoring.html["Conoce la supervisión de la latencia en Workload Factory para EDA"].
+
+.¿Por qué pueden diferir los valores de latencia entre el análisis básico y los gráficos de CloudWatch?
+El análisis básico usa métricas del centro de retardo de QoS de ONTAP, mientras que los gráficos de latencia usan datos de CloudWatch, y estas dos fuentes recopilan los datos de forma diferente, por lo que es normal que haya ligeras discrepancias. La identificación de la causa raíz se basa en los datos de QoS de ONTAP. Para obtener más información, consulta link:learn-latency-monitoring.html["Conoce la supervisión de la latencia en Workload Factory para EDA"].
+
+.¿Cuál es la diferencia entre el análisis básico y el análisis con IA para los eventos de latencia?
+El análisis básico se ejecuta automáticamente en cada evento de latencia y usa las métricas del centro de retardo de QoS de ONTAP para identificar qué componente (como FlexCache, el pool de capacidad, los límites de QoS, los discos, los datos o el clúster) está causando la ralentización. El análisis con IA es opcional y proporciona una investigación más detallada para problemas complejos de datos o del clúster, incluida una posible causa raíz, una lista de clientes EC2 afectados y dos o más pasos de corrección. Para obtener más información, consulta link:task-analyze-latency-issues.html["Analiza los problemas de latencia en Workload Factory para EDA"].
+
+.¿Por qué no puedo realizar un análisis de IA sobre un evento de latencia?
+El análisis de IA no está disponible si el administrador de tu cuenta ha desactivado las funciones de IA, o si los créditos de IA gestionados por NetApp están activados pero ya se alcanzó tu presupuesto mensual. En cualquiera de los dos casos, se muestra un mensaje y no puedes usar el análisis de IA.
+
+.¿Cuántos eventos de latencia aparecen en la tabla de eventos?
+Solo se muestra el incumplimiento más reciente de cada volumen; los incumplimientos anteriores del mismo volumen no se muestran. Se muestra un máximo de 200 eventos en total y los eventos más antiguos se eliminan a medida que se añaden eventos nuevos.
+
+.¿Con qué frecuencia recibirás notificaciones sobre eventos de latencia?
+Puedes elegir entre dos frecuencias de notificación: *recordármelo cada día* (recomendado), que espera 24 horas antes de enviar otra notificación para el mismo sistema de archivos, o *notificar ante cualquier incumplimiento de latencia*, que envía una notificación como máximo una vez cada 20 minutos. Las notificaciones se envían por sistema de archivos, no por volumen, agrupando todos los volúmenes afectados en una única alerta (en el correo electrónico se muestran hasta 10 volúmenes). Para obtener más información, consulta link:task-configure-latency-monitoring.html["Configura la monitorización de latencia en Workload Factory para EDA"].
+
+.¿Cómo interactúan los umbrales de latencia a nivel de cuenta y a nivel de volumen?
+Los umbrales de latencia que configures en EDA se aplican a toda tu cuenta de forma predeterminada. También puedes establecer umbrales de latencia individuales para cada volumen en las cargas de trabajo de General Storage, y esos ajustes a nivel de volumen tienen prioridad para ese volumen en concreto. Actualizar los umbrales a nivel de cuenta en EDA no cambiará ningún ajuste existente a nivel de volumen. Para obtener más información, consulta link:task-configure-latency-monitoring.html["Configura la monitorización de latencia en Workload Factory para EDA"].
+
+.¿Por qué no puedo guardar la configuración de mi umbral de latencia?
+El umbral de eventos críticos debe establecerse por encima del umbral de advertencia. Si configuras el umbral crítico por debajo del umbral de advertencia, el sistema muestra un error y no puedes guardar la configuración.
+
+
+
+[[dashboards]]
+== Cuadros de mando
+
+.¿Cuál es la diferencia entre los modos Automate, Recommend y None para la gestión de la capacidad y el rendimiento de SSD?
+*Solo notificar (Recomendado)*: Workload Factory analiza el uso y sugiere cambios, pero tú decides si aplicarlos o no, lo que te permite mantener el control total. *Automatizar*: Workload Factory realiza automáticamente cambios en la capacidad o el rendimiento cuando se cumplen las condiciones configuradas, sin necesidad de intervención manual. *Ninguna*: El sistema no realiza recomendaciones ni acciones automatizadas, por lo que tú mismo gestionas la capacidad. Para obtener más información, consulta link:learn-overview-dashboard.html["Conoce el panel de información general en Workload Factory for EDA"].
+
+.¿Cuántos filtros personalizados puedo crear en el panel de control de Projects y quién puede gestionarlos?
+Puedes configurar hasta cinco filtros personalizados basados en etiquetas de AWS, cada uno con una etiqueta de filtro, un nombre de clave de etiqueta de AWS y un tipo de selección (selección única o selección múltiple). Solo el primer administrador que abra el dashboard de Projects puede crear, cambiar o eliminar filtros personalizados; todos los demás usuarios, incluidos otros administradores, solo pueden ver los filtros. Para obtener más información, consulta link:task-configure-project-dashboard.html["Configura el panel de control de proyectos en Workload Factory para EDA"].
+
+.¿Qué ocurre si no configuro filtros personalizados en el panel de control de Projects?
+Si no configuras ningún filtro personalizado, los filtros predeterminados—sistema de archivos, tipo de volumen e intervalo de tiempo—seguirán estando disponibles, por lo que podrás seguir viendo y utilizando tus paneles de control. Para obtener más información, consulta link:learn-project-dashboard.html["Conoce el panel de control Projects en Workload Factory para EDA"].
+
+.¿Cuántos volúmenes se muestran en la vista «Volume» del panel de control de Projects?
+La vista «Volúmenes» muestra únicamente los 10 volúmenes principales para cada métrica (capacidad utilizada, IOPS, rendimiento). Si tienes más de 10 volúmenes, algunos de ellos no se mostrarán en la vista detallada. Para obtener más información, consulta link:learn-project-dashboard.html["Conoce el panel de control Projects en Workload Factory para EDA"].
+
+
+
+[[cicd-and-perforce-integration]]
+== Integración de CI/CD y Perforce
+
+.¿Qué son los proyectos y los espacios de trabajo en EDA CI/CD?
+A cada proyecto se le asigna un volumen que representa tu entorno de software y tus artefactos. A medida que actualizas tu software, tomas snapshots del volumen para marcar versiones conocidas. Un clon de una versión específica del software—usado para desarrollo, QA o procesos de compilación—se llama workspace. Para obtener más información, consulta link:learn-eda-workloads.html["Conoce la integración de Perforce en Workload Factory para EDA"].
+
+.¿Qué ocurre con las instantáneas y los clones cuando elimino un proyecto?
+Al eliminar un proyecto, todo el código y los artefactos asociados al mismo se eliminan del volumen. No obstante, se conservan las instantáneas y los clones del proyecto. Para obtener más información, consulta link:manage-projects.html["Gestiona proyectos EDA en Workload Factory para EDA"].
+
+.¿Qué límites puedo establecer para los clones de proyectos?
+Al crear un proyecto, puedes configurar políticas operativas, como la retención máxima en días (tras la cual Workload Factory elimina el clon), el número máximo de clones por usuario o grupo y el tamaño máximo de los clones en GiB. Para obtener más información, consulta link:manage-projects.html["Gestiona proyectos EDA en Workload Factory para EDA"].
+
+.¿Cómo puedo integrar Workload Factory for EDA con Perforce?
+Descarga el archivo de integración de P4V, abre P4V y ve a *Tools* > *Manage Tools* > *HTML tabs*, selecciona *Import HTML tabs*, selecciona el archivo XML de integración y, a continuación, ve a *View* > *Workload Factory*. La web UI de Workload Factory for EDA aparece entonces como una pestaña HTML dentro del cliente de P4V. Para obtener más información, consulta link:integrate-perforce.html["Integra Workload Factory para EDA con Perforce"].
+
+.¿Qué es Codebox y cómo ayuda a automatizar las cargas de trabajo de EDA?
+Codebox es un copiloto de infraestructura como código (IaC) integrado en Workload Factory que te ayuda a generar código para ejecutar cualquier operación compatible con Workload Factory. Ofrece la generación de fragmentos de código durante la creación de recursos, actúa como copiloto de IaC para desarrolladores y DevOps, y proporciona un visor de código y un catálogo de automatización para reutilizarlo rápidamente. Para obtener más información, consulta link:automate-codebox.html["Automatiza las cargas de trabajo EDA con Codebox"].
+
+
+
+[[support]]
+== Soporte
+
+.¿Quién ofrece asistencia técnica para FSx for ONTAP frente a Workload Factory?
+Amazon FSx for NetApp ONTAP es una solución de AWS de origen, así que para obtener soporte usa el Support Center en tu AWS Management Console y abre un caso seleccionando "FSx for ONTAP." Para preguntas generales sobre Workload Factory o sus aplicaciones y servicios, consulta link:get-help-eda.html["cómo obtener ayuda para EDA"].
