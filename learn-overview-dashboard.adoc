@@ -185,6 +185,26 @@ Utiliza el gráfico del historial de uso del SSD para:
 
 
 
+[[understanding-throughput-decision-points]]
+=== Comprender los puntos de decisión relacionados con el rendimiento
+
+El gráfico de rendimiento del cliente muestra cuándo el sistema ha modificado el rendimiento recomendado o lo ha ajustado automáticamente. Estos marcadores también aparecen en la leyenda del gráfico. Si la gestión del rendimiento está desactivada, el gráfico solo muestra el rendimiento anterior y no muestra recomendaciones ni cambios automáticos.
+
+*Puntos de decisión de la recomendación*:: Se muestra cuando el sistema detecta que es necesario aumentar el rendimiento. Pasa el cursor por encima de un punto de decisión para ver los detalles. Si hay varias recomendaciones en la misma marca de tiempo, el punto muestra el número de recomendaciones y los detalles de la más reciente.
+*Puntos de decisión para la automatización*:: Se muestra cuando el sistema de automatización intenta aumentar el rendimiento. Pasa el cursor sobre un punto de decisión para ver los detalles. Si el aumento se realizó correctamente, también se muestra la nueva SKU. Si falló, en su lugar se muestra una breve explicación. Si se producen varios fallos al mismo tiempo, el punto muestra el número de fallos y los detalles del más reciente.
+
+
+Utiliza el gráfico de rendimiento del cliente para:
+
+* Comprueba con qué frecuencia necesitas más rendimiento
+* Elige si el modo de automatización o el de recomendaciones se adapta mejor a tus necesidades
+* Identifica los límites recurrentes del rendimiento
+* Planifica las necesidades futuras de rendimiento a medida que el uso vaya aumentando con el tiempo
+* Investiga por qué fallaron los intentos de automatización
+
+
+
+
 [[related-information]]
 == Información relacionada
 

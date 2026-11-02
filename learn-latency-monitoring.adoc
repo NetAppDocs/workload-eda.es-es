@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: learn-latency-monitoring.html 
-keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP, root cause analysis, QoS delay center, automated analysis, file system pressure 
 summary: Descubre cómo la supervisión de la latencia en Workload Factory for EDA te ayuda a detectar y analizar problemas de rendimiento en los volúmenes de FSx for ONTAP mediante análisis básicos automatizados y análisis opcionales con IA. 
 ---
 = Conoce la supervisión de la latencia en Workload Factory para EDA
@@ -124,6 +124,13 @@ Al ejecutar un análisis de IA, el sistema ofrece:
 * *Clientes afectados*: Lista de nombres de instancias EC2 afectadas por la latencia
 * *Posibles medidas correctoras*: dos o más acciones específicas para resolver el problema
 
+
+
+
+[[file-system-pressure]]
+=== Presión del sistema de archivos
+
+Para los volúmenes con una alerta de latencia, puedes ejecutar una comprobación bajo demanda para ver si el sistema de archivos estaba sometido a suficiente presión como para afectar al rendimiento cuando se produjo el evento. La comprobación revisa los 40 minutos de datos de CloudWatch anteriores al evento y devuelve *Pressured* o *Not pressured*. Un resultado de *Pressured* significa que hay más de un 80 % de probabilidades de que la presión del sistema de archivos afectara al rendimiento y a la latencia. La comprobación también incluye un enlace al recurso de FSx for ONTAP para que puedas revisar las métricas relacionadas.
 
 
 
